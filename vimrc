@@ -7,6 +7,7 @@ Bundle 'ZenCoding.vim'
 Bundle 'unite.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'othree/html5-syntax.vim'
+Bundle 'majutsushi/tagbar'
 
 " ライン番号
 set number
