@@ -1,3 +1,13 @@
+" vundle
+set rtp+=~/.vim/vundle.git/
+call vundle#rc()
+
+Bundle 'scrooloose/syntastic'
+Bundle 'ZenCoding.vim'
+Bundle 'unite.vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'othree/html5-syntax.vim'
+
 " ライン番号
 set number
 
