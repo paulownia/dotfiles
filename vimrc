@@ -30,6 +30,7 @@ set noswapfile
 
 " ステータス行
 set laststatus=2
+set statusline=%F%m%r%h%w\ (%Y)%=%l/%L\ lines\ (%p%%)
 
 " 検索結果をハイライト
 set hlsearch
@@ -42,6 +43,10 @@ set ambiwidth=double
 
 " 文法で折りたたみ
 set foldmethod=syntax
+
+" カーソルに下線
+set cursorline
+
 
 " シンタックスハイライト
 syntax on
@@ -81,3 +86,4 @@ let g:user_zen_expandabbr_key = '<C-y>'
 " syntasticでjshintを使う
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_javascript_checker = 'jshint'
+
