@@ -1,4 +1,6 @@
 " vundle
+set nocompatible
+filetype off
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
@@ -13,12 +15,7 @@ Bundle 'tpope/vim-rails'
 " ライン番号
 set number
 
-" インデント
-" set autoindent
-" set smartindent
-" set cindent
-
-" タブ幅（基本設定、言語別設定はftpluginで）
+" タブ幅
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -27,11 +24,24 @@ set shiftwidth=4
 set nolinebreak
 set nowrap
 
+" スワップファイル、バックアップを作らない
+set nobackup
+set noswapfile
+
 " ステータス行
 set laststatus=2
 
 " 検索結果をハイライト
 set hlsearch
+
+" コマンド補完
+set wildmenu
+
+" CJK記号の幅調整
+set ambiwidth=double
+
+" 文法で折りたたみ
+set foldmethod=syntax
 
 " シンタックスハイライト
 syntax on
@@ -56,16 +66,6 @@ nnoremap <C-e> $
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
 
-
-" CJK記号の幅調整
-set ambiwidth=double
-
-" 文法で折りたたみ
-set foldmethod=syntax
-
-" zen coding キーパイント変更
-let g:user_zen_expandabbr_key = '<C-y>'
-
 " Tagbar
 nnoremap t :TagbarToggle<CR>
 
@@ -74,4 +74,7 @@ nnoremap UM :Unite file_mru<CR>
 nnoremap UB :Unite buffer<CR>
 nnoremap UF :Unite file<CR>
 nnoremap UR :Unite file_rec<CR>
+
+" zen coding キーパイント変更
+let g:user_zen_expandabbr_key = '<C-y>'
 
