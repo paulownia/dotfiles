@@ -78,3 +78,6 @@ nnoremap UR :Unite file_rec<CR>
 " zen coding キーパイント変更
 let g:user_zen_expandabbr_key = '<C-y>'
 
+" syntasticでjshintを使う
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_javascript_checker = 'jshint'
