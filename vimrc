@@ -8,6 +8,7 @@ Bundle 'unite.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'othree/html5-syntax.vim'
 Bundle 'majutsushi/tagbar'
+Bundle 'tpope/vim-rails'
 
 " ライン番号
 set number
