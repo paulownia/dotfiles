@@ -11,6 +11,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'othree/html5-syntax.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-rails'
+Bundle 'dag/vim2hs'
 
 " ライン番号
 set number
