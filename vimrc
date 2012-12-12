@@ -13,7 +13,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-rails'
 
 " ライン番号
-set number
+" set number
 
 " タブ幅
 set tabstop=4
@@ -30,7 +30,7 @@ set noswapfile
 
 " ステータス行
 set laststatus=2
-set statusline=%F%m%r%h%w\ (%Y)%=%l/%L\ lines\ (%p%%)
+set statusline=%F%m%r%h%w\ (%Y)%=\ %l/%L
 
 " 検索結果をハイライト
 set hlsearch
@@ -84,6 +84,6 @@ nnoremap UR :Unite file_rec<CR>
 let g:user_zen_expandabbr_key = '<C-y>'
 
 " syntasticでjshintを使う
-let g:syntastic_auto_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
 let g:syntastic_javascript_checker = 'jshint'
 
