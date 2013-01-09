@@ -13,6 +13,8 @@ Bundle 'tpope/vim-rails'
 Bundle 'dag/vim2hs'
 Bundle 'jQuery'
 Bundle 'nginx.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'h1mesuke/unite-outline'
 
 " ライン番号
 " set number
