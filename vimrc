@@ -1,6 +1,5 @@
 " vundle
 set nocompatible
-filetype off
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
@@ -12,6 +11,8 @@ Bundle 'othree/html5-syntax.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-rails'
 Bundle 'dag/vim2hs'
+Bundle 'jQuery'
+Bundle 'nginx.vim'
 
 " ライン番号
 " set number
