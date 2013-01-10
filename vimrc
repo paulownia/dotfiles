@@ -15,6 +15,7 @@ Bundle 'jQuery'
 Bundle 'nginx.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'h1mesuke/unite-outline'
+Bundle 'thinca/vim-quickrun'
 
 " ライン番号
 " set number
@@ -90,4 +91,10 @@ let g:user_zen_expandabbr_key = '<C-y>'
 " syntasticでjshintを使う
 " let g:syntastic_auto_loc_list = 1
 let g:syntastic_javascript_checker = 'jshint'
+
+" QuickRun設定
+let g:quickrun_config = {}
+" 結果を上下分割で表示
+let g:quickrun_config._ = { 'split': '' }
+
 
