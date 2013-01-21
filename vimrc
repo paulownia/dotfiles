@@ -35,7 +35,7 @@ set noswapfile
 
 " ステータス行
 set laststatus=2
-set statusline=%F%m%r%h%w\ (%Y)%=\ %l/%L
+set statusline=%f%m%r%h%w\ %{fugitive#statusline()}\ (%Y)%=\ %l/%L
 
 " 検索結果をハイライト
 set hlsearch
@@ -97,4 +97,10 @@ let g:quickrun_config = {}
 " 結果を上下分割で表示
 let g:quickrun_config._ = { 'split': '' }
 
-
+" tagbar javascript設定
+let g:tagbar_type_javascript = {
+\		'ctagtype': 'JavaScript',
+\		'kinds': [
+\			'c:classes', 'm:methods', 'f:functions'
+\		]
+\	}
