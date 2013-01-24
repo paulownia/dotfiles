@@ -15,6 +15,7 @@ Bundle 'jQuery'
 Bundle 'nginx.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'h1mesuke/unite-outline'
+Bundle 'leafgarland/typescript-vim'
 
 " ライン番号
 " set number
