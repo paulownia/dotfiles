@@ -16,6 +16,7 @@ Bundle 'nginx.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'h1mesuke/unite-outline'
 Bundle 'leafgarland/typescript-vim'
+Bundle 'thinca/vim-quickrun'
 
 " ライン番号
 " set number
@@ -35,7 +36,7 @@ set noswapfile
 
 " ステータス行
 set laststatus=2
-set statusline=%F%m%r%h%w\ (%Y)%=\ %l/%L
+set statusline=%f%m%r%h%w\ %{fugitive#statusline()}\ (%Y)%=\ %l/%L
 
 " 検索結果をハイライト
 set hlsearch
@@ -92,3 +93,15 @@ let g:user_zen_expandabbr_key = '<C-y>'
 " let g:syntastic_auto_loc_list = 1
 let g:syntastic_javascript_checker = 'jshint'
 
+" QuickRun設定
+let g:quickrun_config = {}
+" 結果を上下分割で表示
+let g:quickrun_config._ = { 'split': '' }
+
+" tagbar javascript設定
+let g:tagbar_type_javascript = {
+\		'ctagtype': 'JavaScript',
+\		'kinds': [
+\			'c:classes', 'm:methods', 'f:functions'
+\		]
+\	}
