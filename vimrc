@@ -105,3 +105,6 @@ let g:tagbar_type_javascript = {
 \			'c:classes', 'm:methods', 'f:functions'
 \		]
 \	}
+
+" JSON type
+autocmd BufRead,BufNewFile *.json set filetype=json 
