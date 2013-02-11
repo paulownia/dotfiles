@@ -17,6 +17,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'h1mesuke/unite-outline'
 Bundle 'leafgarland/typescript-vim'
 Bundle 'thinca/vim-quickrun'
+Bundle 'derekwyatt/vim-scala'
 
 " ライン番号
 " set number
