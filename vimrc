@@ -17,6 +17,7 @@ Bundle 'nginx.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'leafgarland/typescript-vim'
 Bundle 'thinca/vim-quickrun'
+Bundle 'derekwyatt/vim-scala'
 
 filetype on
 
