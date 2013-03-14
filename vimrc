@@ -1,5 +1,6 @@
 " vundle
 set nocompatible
+filetype off
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
@@ -16,6 +17,9 @@ Bundle 'nginx.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'leafgarland/typescript-vim'
 Bundle 'thinca/vim-quickrun'
+
+filetype on
+
 
 " ライン番号
 " set number
@@ -89,8 +93,8 @@ nnoremap UR :Unite file_rec<CR>
 let g:user_zen_expandabbr_key = '<C-y>'
 
 " syntasticでjshintを使う
-" let g:syntastic_auto_loc_list = 1
-let g:syntastic_javascript_checker = 'jshint'
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_auto_loc_list = 1
 
 " QuickRun設定
 let g:quickrun_config = {}
@@ -107,3 +111,4 @@ let g:tagbar_type_javascript = {
 
 " JSON type
 autocmd BufRead,BufNewFile *.json set filetype=json 
+
