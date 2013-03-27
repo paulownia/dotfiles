@@ -18,7 +18,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'leafgarland/typescript-vim'
 Bundle 'thinca/vim-quickrun'
 Bundle 'derekwyatt/vim-scala'
-
+Bundle 'rking/ag.vim'
 
 " ライン番号
 " set number
