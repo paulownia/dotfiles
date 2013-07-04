@@ -20,6 +20,7 @@ Bundle 'thinca/vim-quickrun'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'rking/ag.vim'
 Bundle 'elzr/vim-json'
+Bundle 'sudo.vim'
 
 " ライン番号
 " set number
