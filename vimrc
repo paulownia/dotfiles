@@ -19,6 +19,7 @@ Bundle 'leafgarland/typescript-vim'
 Bundle 'thinca/vim-quickrun'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'rking/ag.vim'
+Bundle 'elzr/vim-json'
 
 " ライン番号
 " set number
@@ -109,5 +110,5 @@ let g:tagbar_type_javascript = {
 \	}
 
 " JSON type
-autocmd BufRead,BufNewFile *.json set filetype=json 
+" autocmd BufRead,BufNewFile *.json set filetype=json 
 
