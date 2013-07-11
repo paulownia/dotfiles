@@ -25,6 +25,9 @@ Bundle 'sudo.vim'
 " ライン番号
 " set number
 
+" スクロール
+set scrolloff=4
+
 " タブ幅
 set tabstop=4
 set softtabstop=4
