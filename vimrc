@@ -113,6 +113,6 @@ let g:tagbar_type_javascript = {
 \		]
 \	}
 
-" JSON type
-" autocmd BufRead,BufNewFile *.json set filetype=json 
+" filetype
+autocmd BufRead,BufNewFile *.md set filetype=markdown
 
