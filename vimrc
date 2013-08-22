@@ -29,6 +29,7 @@ Bundle 'sudo.vim'
 set scrolloff=4
 
 " タブ幅
+set noexpandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
