@@ -95,6 +95,9 @@ nnoremap UB :Unite buffer<CR>
 nnoremap UF :Unite file<CR>
 nnoremap UR :Unite file_rec<CR>
 
+" vertical diffsplit
+nnoremap vd :vertical diffsplit 
+
 " zen coding キーパイント変更
 let g:user_zen_expandabbr_key = '<C-y>'
 
