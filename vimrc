@@ -105,6 +105,11 @@ let g:user_zen_expandabbr_key = '<C-y>'
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_auto_loc_list = 1
 
+" syntasticでinclude pathを指定
+let g:syntastic_cpp_include_dirs = [ 'include/']
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_remove_include_errors = 1
+
 " QuickRun設定
 let g:quickrun_config = {}
 " 結果を上下分割で表示
