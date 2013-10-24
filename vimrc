@@ -62,6 +62,9 @@ set foldmethod=syntax
 " カーソルに下線
 set cursorline
 
+" モードライン
+set modeline
+set modelines=5
 
 " シンタックスハイライト
 syntax on
