@@ -110,6 +110,11 @@ let g:syntastic_cpp_include_dirs = [ 'include/']
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_remove_include_errors = 1
 
+" syntasticのjavac設定
+let g:syntastic_java_javac_options = '-Xlint -J-Dfile.encoding=UTF-8'
+" let g:syntastic_java_javac_delete_output = 0
+" let g:syntastic_java_javac_temp_dir = '/tmp'
+
 " QuickRun設定
 let g:quickrun_config = {}
 " 結果を上下分割で表示
