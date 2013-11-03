@@ -1,9 +1,10 @@
 " vundle
 set nocompatible
 " filetype off
-set rtp+=~/.vim/vundle.git/
+set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+Bundle 'gmarik/vundle'
 Bundle 'scrooloose/syntastic'
 Bundle 'ZenCoding.vim'
 Bundle 'unite.vim'
