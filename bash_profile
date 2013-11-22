@@ -38,7 +38,7 @@ fi
 
 # loading local setting
 if [ -f ~/.bash_local ]; then
-  . .bash_local
+  . ~/.bash_local
 fi
 
 # functions
