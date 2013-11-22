@@ -51,3 +51,5 @@ function jl() {
   cat "$1" | jq "$QL" -C 2>&1 | less -R
 }
 
+# git
+alias git-vimdiff="git difftool --tool=vimdiff --no-prompt"
