@@ -24,7 +24,7 @@ Bundle 'elzr/vim-json'
 Bundle 'sudo.vim'
 Bundle 'moll/vim-node'
 Bundle 'osyo-manga/vim-anzu'
-
+Bundle 'itchyny/lightline.vim'
 
 " ライン番号
 " set number
@@ -48,7 +48,7 @@ set noswapfile
 
 " ステータス行
 set laststatus=2
-set statusline=%f%m%r%h%w\ %{fugitive#statusline()}\ (%Y)%=\ %l/%L
+"set statusline=%f%m%r%h%w\ %{fugitive#statusline()}\ (%Y)%=\ %l/%L
 
 " 検索結果をハイライト
 set hlsearch
@@ -143,6 +143,23 @@ let g:tagbar_type_javascript = {
 \			'c:classes', 'm:methods', 'f:functions'
 \		]
 \	}
+
+" lightline
+let g:lightline = {
+\		'active': {
+\			'left': [
+\				[ 'mode', 'paste' ],
+\				[ 'filename', 'fugitive', 'readonly', 'modified']
+\			]
+\		},
+\		'component': {
+\			'fugitive': '%{fugitive#statusline()}'
+\		},
+\		'component_visible_condition': {
+\			'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+\		}
+\	}
+
 
 " filetype
 autocmd BufRead,BufNewFile *.md set filetype=markdown
