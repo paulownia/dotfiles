@@ -23,6 +23,8 @@ Bundle 'rking/ag.vim'
 Bundle 'elzr/vim-json'
 Bundle 'sudo.vim'
 Bundle 'moll/vim-node'
+Bundle 'osyo-manga/vim-anzu'
+
 
 " ライン番号
 " set number
@@ -98,6 +100,16 @@ nnoremap UM :Unite file_mru<CR>
 nnoremap UB :Unite buffer<CR>
 nnoremap UF :Unite file<CR>
 nnoremap UR :Unite file_rec<CR>
+
+" vim-anzu
+" mapping
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+" clear status
+nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
+
 
 " vertical diffsplit
 nnoremap vd :vertical diffsplit 
