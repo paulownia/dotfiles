@@ -156,6 +156,7 @@ let g:quickrun_config._ = { 'split': '' }
 
 "" --- lightline
 let g:lightline = {
+\		'colorscheme': 'wombat',
 \		'active': {
 \			'left': [
 \				[ 'mode', 'paste' ],
