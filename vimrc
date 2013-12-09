@@ -92,16 +92,32 @@ nnoremap <C-e> $
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
 
-" Tagbar
-nnoremap t :TagbarToggle<CR>
+" vertical diffsplit
+nnoremap vd :vertical diffsplit 
 
-" Unite
+" filetype
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+
+
+
+"" --- Tagbar
+nnoremap t :TagbarToggle<CR>
+let g:tagbar_type_javascript = {
+\		'ctagtype': 'JavaScript',
+\		'kinds': [
+\			'c:classes', 'm:methods', 'f:functions'
+\		]
+\	}
+
+
+"" --- Unite
 nnoremap UM :Unite file_mru<CR>
 nnoremap UB :Unite buffer<CR>
 nnoremap UF :Unite file<CR>
 nnoremap UR :Unite file_rec<CR>
 
-" vim-anzu
+
+"" --- vim-anzu
 " mapping
 nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
@@ -111,40 +127,34 @@ nmap # <Plug>(anzu-sharp-with-echo)
 nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
 
 
-" vertical diffsplit
-nnoremap vd :vertical diffsplit 
-
-" zen coding キーパイント変更
+"" --- Zen Coding
+" キーバインド変更
 let g:user_zen_expandabbr_key = '<C-y>'
 
-" syntasticでjshintを使う
+
+"" --- Syntastic
+" JavaScript / jshintを使う
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_auto_loc_list = 1
 
-" syntasticでinclude pathを指定
+" C++ / include pathを指定
 let g:syntastic_cpp_include_dirs = [ 'include/']
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_remove_include_errors = 1
 
-" syntasticのjavac設定
+" Java / javac設定
 let g:syntastic_java_javac_options = '-Xlint -J-Dfile.encoding=UTF-8'
 " let g:syntastic_java_javac_delete_output = 0
 " let g:syntastic_java_javac_temp_dir = '/tmp'
 
-" QuickRun設定
-let g:quickrun_config = {}
+
+"" --- QuickRun
 " 結果を上下分割で表示
+let g:quickrun_config = {}
 let g:quickrun_config._ = { 'split': '' }
 
-" tagbar javascript設定
-let g:tagbar_type_javascript = {
-\		'ctagtype': 'JavaScript',
-\		'kinds': [
-\			'c:classes', 'm:methods', 'f:functions'
-\		]
-\	}
 
-" lightline
+"" --- lightline
 let g:lightline = {
 \		'active': {
 \			'left': [
@@ -159,8 +169,4 @@ let g:lightline = {
 \			'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
 \		}
 \	}
-
-
-" filetype
-autocmd BufRead,BufNewFile *.md set filetype=markdown
 
