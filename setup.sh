@@ -4,7 +4,7 @@ DOTFILE_DIR=$(cd `dirname $0`; pwd)
 
 # --- copy dotfile
 
-FILES=( bash_profile vimrc vim gemrc )
+FILES=( bash_profile vimrc vim gemrc jshintrc )
 
 for i in ${FILES[@]}; do
 
