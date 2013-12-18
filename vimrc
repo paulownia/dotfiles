@@ -6,7 +6,7 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'scrooloose/syntastic'
-Bundle 'ZenCoding.vim'
+Bundle 'mattn/emmet-vim'
 Bundle 'unite.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'othree/html5-syntax.vim'
@@ -125,11 +125,6 @@ nmap * <Plug>(anzu-star-with-echo)
 nmap # <Plug>(anzu-sharp-with-echo)
 " clear status
 nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
-
-
-"" --- Zen Coding
-" キーバインド変更
-let g:user_zen_expandabbr_key = '<C-y>'
 
 
 "" --- Syntastic
