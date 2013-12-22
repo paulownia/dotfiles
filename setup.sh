@@ -1,23 +1,21 @@
 #!/bin/bash
 
-DOTFILE_DIR=$(cd `dirname $0`; pwd)
+DOTFILE_DIR=$(cd $(dirname $0); pwd)
 
 # --- copy dotfile
 
-FILES=( bash_profile vimrc vim gemrc jshintrc )
+FILE_LIST=`ls $DOTFILE_DIR | grep -v setup.sh`
 
-for i in ${FILES[@]}; do
+for i in $FILE_LIST; do
 
 	FILE_SRC=${DOTFILE_DIR}/${i}
 	FILE_DST=${HOME}/.${i}
 
 	if [ -L $FILE_DST ]; then
-		# echo "${FILE_DST} is symbolic link, remove it."
-		rm $FILE_DST
+		rm $FILE_DST && echo "${FILE_DST} is symbolic link, remove it."
 
 	elif [ -e $FILE_DST ]; then
-		# echo "${FILE_DST} already exists, rename it."
-		mv $FILE_DST $FILE_DST.org
+		mv $FILE_DST $FILE_DST.org && echo "${FILE_DST} already exists, rename it."
 	fi
 	
 	ln -s $FILE_SRC $FILE_DST
