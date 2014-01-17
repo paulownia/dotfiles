@@ -25,6 +25,7 @@ Bundle 'sudo.vim'
 Bundle 'moll/vim-node'
 Bundle 'osyo-manga/vim-anzu'
 Bundle 'itchyny/lightline.vim'
+Bundle 'closetag.vim'
 
 " ライン番号
 " set number
@@ -141,6 +142,9 @@ let g:syntastic_cpp_remove_include_errors = 1
 let g:syntastic_java_javac_options = '-Xlint -J-Dfile.encoding=UTF-8'
 " let g:syntastic_java_javac_delete_output = 0
 " let g:syntastic_java_javac_temp_dir = '/tmp'
+
+" HTML / Angularの属性をチェックしない
+let g:syntastic_html_tidy_ignore_errors=[' proprietary attribute "ng-']
 
 
 "" --- QuickRun
