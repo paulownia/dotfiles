@@ -26,6 +26,7 @@ Bundle 'moll/vim-node'
 Bundle 'osyo-manga/vim-anzu'
 Bundle 'itchyny/lightline.vim'
 Bundle 'closetag.vim'
+Bundle 'digitaltoad/vim-jade'
 
 " ライン番号
 " set number
