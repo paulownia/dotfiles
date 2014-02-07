@@ -43,12 +43,22 @@ fi
 
 # functions
 function jl() {
-  if [ -n "$2" ]; then
-    QL=$2
+
+  if [ -p /dev/stdin ]; then
+		if [ -n "$1" ]; then
+		  QL=$1
+    else
+      QL="."
+    fi
+    jq "$QL" -C 2>&1 - | less -R
   else
-	QL="."
+		if [ -n "$2" ]; then
+		  QL=$2
+    else
+      QL="."
+    fi
+    cat "$1" | jq "$QL" -C 2>&1 | less -R
   fi
-  cat "$1" | jq "$QL" -C 2>&1 | less -R
 }
 
 # git
