@@ -58,7 +58,7 @@ set hlsearch
 " コマンド補完
 set wildmenu
 
-" CJK記号の幅調整
+" CJK記号の幅調整（iTermでは Profile > Text > Double-Width Characters > Treat ambiguous-width characters as double widthのチェックも必要）
 set ambiwidth=double
 
 " 文法で折りたたみ
@@ -70,6 +70,9 @@ set cursorline
 " モードライン
 set modeline
 set modelines=5
+
+" deleteキー操作
+set backspace=start,eol,indent
 
 " シンタックスハイライト
 syntax on
