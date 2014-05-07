@@ -188,16 +188,18 @@ let g:lightline = {
 
 
 "" --- neosnippet
-imap <Nul> <Plug>(neosnippet_expand_or_jump)
-smap <Nul> <Plug>(neosnippet_expand_or_jump)
-xmap <Nul> <Plug>(neosnippet_expand_target)
+if has('lua') 
+	imap <Nul> <Plug>(neosnippet_expand_or_jump)
+	smap <Nul> <Plug>(neosnippet_expand_or_jump)
+	xmap <Nul> <Plug>(neosnippet_expand_target)
 
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-			\ "\<Plug>(neosnippet_expand_or_jump)"
-			\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-			\ "\<Plug>(neosnippet_expand_or_jump)"
-			\: "\<TAB>"
+	imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+				\ "\<Plug>(neosnippet_expand_or_jump)"
+				\: pumvisible() ? "\<C-n>" : "\<TAB>"
+	smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+				\ "\<Plug>(neosnippet_expand_or_jump)"
+				\: "\<TAB>"
+endif
 
 if has('conceal')
 	set conceallevel=2 concealcursor=i
