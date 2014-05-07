@@ -28,6 +28,12 @@ Bundle 'itchyny/lightline.vim'
 Bundle 'closetag.vim'
 Bundle 'digitaltoad/vim-jade'
 
+if has('lua') 
+	Bundle 'Shougo/neocomplete'
+	Bundle 'Shougo/neosnippet'
+	Bundle 'Shougo/neosnippet-snippets'
+endif
+
 " ライン番号
 " set number
 
@@ -83,7 +89,7 @@ filetype indent on
 filetype plugin on
 
 " インサートモードからノーマルモードへの変換をCtrl-Spaceで
-inoremap <Nul> <ESC>
+"inoremap <Nul> <ESC>
 
 " 数値インクリメント(Ctrl-a)をCtrl-kに変更
 " 数値デクリメント(Ctrl-x)をCtrl-jに変更
@@ -103,6 +109,12 @@ nnoremap vd :vertical diffsplit
 " filetype
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 
+
+" vimdiff color
+hi! DiffAdd      ctermbg=19
+hi! DiffDelete   ctermbg=52
+hi! DiffChange   ctermbg=22
+hi! DiffText     ctermbg=57
 
 
 "" --- Tagbar
@@ -174,3 +186,19 @@ let g:lightline = {
 \		}
 \	}
 
+
+"" --- neosnippet
+imap <Nul> <Plug>(neosnippet_expand_or_jump)
+smap <Nul> <Plug>(neosnippet_expand_or_jump)
+xmap <Nul> <Plug>(neosnippet_expand_target)
+
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+			\ "\<Plug>(neosnippet_expand_or_jump)"
+			\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+			\ "\<Plug>(neosnippet_expand_or_jump)"
+			\: "\<TAB>"
+
+if has('conceal')
+	set conceallevel=2 concealcursor=i
+endif
