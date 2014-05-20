@@ -33,14 +33,7 @@ done
 
 # --- install vundle.vim
 
-VUNDLE_DIR=${DOTFILE_DIR}/vim/bundle
-if [ ! -d ${VUNDLE_DIR} ]; then
-	mkdir -p ${VUNDLE_DIR}
-fi
-
-if [ ! -d ${VUNDLE_DIR}/vundle ]; then
-	git clone https://github.com/gmarik/vundle ${VUNDLE_DIR}/vundle
-else
-	log "Vundle have been already installed."
-fi
+cd ${DOTFILE_DIR}
+git submodule init
+git submodule update
 
