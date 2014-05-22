@@ -1,38 +1,42 @@
 " vundle
 set nocompatible
-" filetype off
+filetype off
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/syntastic'
-Bundle 'mattn/emmet-vim'
-Bundle 'unite.vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'othree/html5-syntax.vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'tpope/vim-rails'
-Bundle 'dag/vim2hs'
-Bundle 'jQuery'
-Bundle 'nginx.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'leafgarland/typescript-vim'
-Bundle 'thinca/vim-quickrun'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'rking/ag.vim'
-Bundle 'elzr/vim-json'
-Bundle 'sudo.vim'
-Bundle 'moll/vim-node'
-Bundle 'osyo-manga/vim-anzu'
-Bundle 'itchyny/lightline.vim'
-Bundle 'closetag.vim'
-Bundle 'digitaltoad/vim-jade'
+Plugin 'gmarik/vundle'
+Plugin 'scrooloose/syntastic'
+Plugin 'mattn/emmet-vim'
+Plugin 'unite.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'othree/html5-syntax.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-rails'
+Plugin 'dag/vim2hs'
+Plugin 'jQuery'
+Plugin 'nginx.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'thinca/vim-quickrun'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'rking/ag.vim'
+Plugin 'elzr/vim-json'
+Plugin 'sudo.vim'
+Plugin 'moll/vim-node'
+Plugin 'osyo-manga/vim-anzu'
+Plugin 'itchyny/lightline.vim'
+Plugin 'closetag.vim'
+Plugin 'digitaltoad/vim-jade'
 
 if has('lua') 
-	Bundle 'Shougo/neocomplete'
-	Bundle 'Shougo/neosnippet'
-	Bundle 'Shougo/neosnippet-snippets'
+	Plugin 'Shougo/neocomplete'
+	Plugin 'Shougo/neosnippet'
+	Plugin 'Shougo/neosnippet-snippets'
 endif
+
+call vundle#end()
+filetype plugin indent on
+
 
 " ライン番号
 " set number
