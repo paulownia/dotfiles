@@ -1,7 +1,5 @@
 # vim: set ft=zsh :
 
-bindkey -e
-
 # basic aliases
 alias ls="ls -G"
 alias ll="ls -lF"
@@ -11,7 +9,6 @@ alias home="open ~/"
 alias edit="open -a CotEditor"
 alias al="ag --pager 'less -R'"
 
-PROMPT="%{[0;32m%}${HOST}:%1~%{[m%} %{[0;35m%}${USER}%(!.#.$)%{[m%} "
 
 # for svn and git editor 
 export EDITOR=vim
@@ -29,7 +26,7 @@ export PATH=~/apps/bin:$PATH
 
 # nvm
 if [ -f ~/.nvm/nvm.sh ]; then
-  . ~/.nvm/nvm.sh
+  source ~/.nvm/nvm.sh
 fi
 
 # rbenv
@@ -40,8 +37,32 @@ fi
 
 # loading local setting
 if [ -f ~/.bash_local ]; then
-  . ~/.bash_local
+  source ~/.bash_local
 fi
+
+# zsh setting
+export PROMPT="%{[0;32m%}${HOST%%.*}:%1~%{[m%} %{[0;35m%}${USER}%(!.#.$)%{[m%} "
+export HISTFILE=${HOME}/.zsh_history
+export HISTSIZE=1000
+export SAVEHIST=1000
+setopt hist_ignore_dups
+setopt EXTENDED_HISTORY
+
+bindkey -v
+
+autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey '' history-beginning-search-backward-end
+bindkey '' history-beginning-search-forward-end
+bindkey -a '' vi-beginning-of-line
+bindkey -a '' vi-end-of-line
+bindkey -v '' vi-beginning-of-line
+bindkey -v '' vi-end-of-line
+bindkey -a '' history-incremental-search-backward
+bindkey -v '' history-incremental-search-backward
+
+
 
 # functions
 function jl() {
