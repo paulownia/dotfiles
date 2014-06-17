@@ -55,6 +55,17 @@ fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 autoload -U compinit
 compinit
 
+zstyle ':completion:*:default' menu selection
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
+zstyle ':completion:*:messages' format "%{[1;33m%}%d %{[m%}"
+zstyle ':completion:*:warnings' format "%{[1;31m%}No matches for: %d %{[m%}"
+zstyle ':completion:*:descriptions' format "%{[1;34m%}%d %{[m%}"
+zstyle ':completion:*:corrections' format "%{[1;33m%}%d %{[1;31m%}(errors: %e)%b %{[m%}"
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*' group-name ''
+
+
 # nvm
 if [ -f ~/.nvm/nvm.sh ]; then
   source ~/.nvm/nvm.sh
