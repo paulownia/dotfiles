@@ -24,22 +24,6 @@ export MANPATH=/usr/local/share/man:$MANPATH
 # user path
 export PATH=~/apps/bin:$PATH
 
-# nvm
-if [ -f ~/.nvm/nvm.sh ]; then
-  source ~/.nvm/nvm.sh
-fi
-
-# rbenv
-if [ -d ~/.rbenv ]; then
-  export PATH=~/.rbenv/bin:$PATH
-  eval "$(rbenv init - zsh)"
-fi
-
-# loading local setting
-if [ -f ~/.bash_local ]; then
-  source ~/.bash_local
-fi
-
 # zsh setting
 export PROMPT="%{[0;32m%}${HOST%%.*}:%1~%{[m%} %{[0;35m%}${USER}%(!.#.$)%{[m%} "
 export HISTFILE=${HOME}/.zsh_history
@@ -48,8 +32,10 @@ export SAVEHIST=1000
 setopt hist_ignore_dups
 setopt EXTENDED_HISTORY
 
+# zsh binding style
 bindkey -v
 
+# zsh history searching 
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
@@ -62,6 +48,28 @@ bindkey -v '' vi-end-of-line
 bindkey -a '' history-incremental-search-backward
 bindkey -v '' history-incremental-search-backward
 
+# completion installed by homebrew
+fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
+
+# zsh completion
+autoload -U compinit
+compinit
+
+# nvm
+if [ -f ~/.nvm/nvm.sh ]; then
+  source ~/.nvm/nvm.sh
+fi
+
+# rbenv
+if [ -d ~/.rbenv ]; then
+  export PATH=~/.rbenv/bin:$PATH
+  eval "$(rbenv init - zsh)"
+fi
+
+# loading local setting
+if [ -f ~/.zprofile.local ]; then
+	source ~/.zprofile.local
+fi
 
 
 # functions
