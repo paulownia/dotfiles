@@ -27,6 +27,7 @@ Plugin 'osyo-manga/vim-anzu'
 Plugin 'itchyny/lightline.vim'
 Plugin 'closetag.vim'
 Plugin 'digitaltoad/vim-jade'
+Plugin 'kchmck/vim-coffee-script'
 
 if has('lua') 
 	Plugin 'Shougo/neocomplete'
