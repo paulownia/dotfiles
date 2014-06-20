@@ -69,6 +69,11 @@ zstyle ':completion:*' group-name ''
 # nvm
 if [ -f ~/.nvm/nvm.sh ]; then
   source ~/.nvm/nvm.sh
+
+  if [ ! -f ~/.npm_completion ]; then
+    npm completion > ~/.npm_completion
+  fi
+  source ~/.npm_completion
 fi
 
 # rbenv
