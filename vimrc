@@ -121,12 +121,14 @@ hi! DiffDelete   ctermbg=52
 hi! DiffChange   ctermbg=22
 hi! DiffText     ctermbg=57
 
-" completion menu 
-hi! Pmenu ctermbg=0
-hi! PmenuSel ctermbg=21
+" completion menu color
+hi! Pmenu ctermbg=0 ctermfg=15
+hi! PmenuSel ctermbg=21 ctermfg=15
 hi! PmenuSbar ctermbg=8
 hi! PmenuThumb ctermfg=4
 
+" search color
+hi! Search ctermbg=58 ctermfg=15
 
 "" --- Tagbar
 nnoremap t :TagbarToggle<CR>
