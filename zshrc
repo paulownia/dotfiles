@@ -83,8 +83,8 @@ if [ -d ~/.rbenv ]; then
 fi
 
 # loading local setting
-if [ -f ~/.zprofile.local ]; then
-	source ~/.zprofile.local
+if [ -f ~/.zshrc.local ]; then
+  source ~/.zshrc.local
 fi
 
 
