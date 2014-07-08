@@ -36,8 +36,16 @@ if has('lua')
 endif
 
 call vundle#end()
-filetype plugin indent on
 
+" golang vim
+if executable('/usr/local/opt/go/libexec/bin/go')
+	set rtp+=/usr/local/opt/go/libexec/misc/vim
+endif
+"if executable('go')
+"	 exe 'set rtp+=' . system('echo -n $(go env GOROOT)/misc/vim')
+"endif
+
+filetype plugin indent on
 
 " ライン番号
 " set number
