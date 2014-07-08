@@ -93,6 +93,9 @@ set modelines=5
 " deleteキー操作
 set backspace=start,eol,indent
 
+" yankをclipboardへ
+set clipboard+=unnamed
+
 " シンタックスハイライト
 syntax on
 
@@ -226,4 +229,3 @@ if has('conceal')
 	set conceallevel=2 concealcursor=i
 endif
 
-set clipboard+=unnamed
