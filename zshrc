@@ -120,5 +120,32 @@ function jl() {
   fi
 }
 
+# launchctl
+function launchctl-start() {
+	local SERVICE_NAME
+
+	service_name=$(launchctl list | grep "^-" | peco | head -n 1 | cut -f 3)
+
+	if [ -n "$service_name" ]; then
+		echo "Start ${SERVICE_NAME}"
+		launchctl start $SERVICE_NAME
+	else
+		return 1
+	fi
+}
+
+function launchctl-stop() {
+	local SERVICE_NAME
+
+	SERVICE_NAME=$(launchctl list | grep -v "^-" | peco | head -n 1 | cut -f 3)
+
+	if [ -n "$SERVICE_NAME" ]; then
+		echo "Stop ${SERVICE_NAME}"
+		launchctl stop $SERVICE_NAME
+	else
+		return 1
+	fi
+}
+
 # git
 alias git-vimdiff="git difftool --tool=vimdiff --no-prompt"
