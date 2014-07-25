@@ -101,23 +101,28 @@ fi
 
 # functions
 function jl() {
-  local QL
+  local QUERY
+  local FILE
 
   if [ -p /dev/stdin ]; then
-    if [ -n "$1" ]; then
-      QL=$1
+    if [ $# -eq 0 ]; then
+      QUERY="."
     else
-      QL="."
+      QUERY="$1"
     fi
-    jq "$QL" -C 2>&1 - | less -R
+    FILE="-"
   else
-    if [ -n "$2" ]; then
-      QL=$2
+    if [ $# -eq 1 ]; then
+      QUERY="."
+      FILE=$1
+    elif [ $# -eq 2 ]; then
+      QUERY="$1"
+      FILE="$2"
     else
-      QL="."
+      return 1
     fi
-    cat "$1" | jq "$QL" -C 2>&1 | less -R
   fi
+  jq "$QUERY" -C 2>&1 $FILE | less -R
 }
 
 # launchctl
