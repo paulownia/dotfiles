@@ -129,9 +129,9 @@ function jl() {
 function launchctl-start() {
 	local SERVICE_NAME
 
-	service_name=$(launchctl list | grep "^-" | peco | head -n 1 | cut -f 3)
+	SERVICE_NAME=$(launchctl list | grep "^-" | peco | head -n 1 | cut -f 3)
 
-	if [ -n "$service_name" ]; then
+	if [ -n "$SERVICE_NAME" ]; then
 		echo "Start ${SERVICE_NAME}"
 		launchctl start $SERVICE_NAME
 	else
