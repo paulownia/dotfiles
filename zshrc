@@ -10,14 +10,14 @@ alias edit="open -a CotEditor"
 alias al="ag --pager 'less -R'"
 
 
-# for svn and git editor 
+# for svn and git editor
 export EDITOR=vim
 
 # java
 alias javac="javac -J-Dfile.encoding=UTF-8"
 alias java="java -Dfile.encoding=UTF-8"
 
-# homebrew path 
+# homebrew path
 export PATH=/usr/local/bin:$PATH
 export MANPATH=/usr/local/share/man:$MANPATH
 
@@ -35,7 +35,7 @@ setopt EXTENDED_HISTORY
 # zsh binding style
 bindkey -v
 
-# zsh history searching 
+# zsh history searching
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end

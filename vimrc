@@ -29,7 +29,7 @@ Plugin 'closetag.vim'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'kchmck/vim-coffee-script'
 
-if has('lua') 
+if has('lua')
 	Plugin 'Shougo/neocomplete'
 	Plugin 'Shougo/neosnippet'
 	Plugin 'Shougo/neosnippet-snippets'
@@ -115,12 +115,12 @@ nnoremap <C-k> <C-x>
 " 行頭、行末移動をbashと同じに
 nnoremap <C-a> 0
 nnoremap <C-e> $
- 
+
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
 
 " vertical diffsplit
-nnoremap vd :vertical diffsplit 
+nnoremap vd :vertical diffsplit
 
 " filetype
 autocmd BufRead,BufNewFile *.md set filetype=markdown
@@ -140,6 +140,9 @@ hi! PmenuThumb ctermfg=4
 
 " search color
 hi! Search ctermbg=58 ctermfg=15
+
+" auto trim
+autocmd BufWritePre * :%s/\s\+$//ge
 
 "" --- Tagbar
 nnoremap t :TagbarToggle<CR>
@@ -212,7 +215,7 @@ let g:lightline = {
 
 
 "" --- neosnippet
-if has('lua') 
+if has('lua')
 	imap <Nul> <Plug>(neosnippet_expand_or_jump)
 	smap <Nul> <Plug>(neosnippet_expand_or_jump)
 	xmap <Nul> <Plug>(neosnippet_expand_target)
