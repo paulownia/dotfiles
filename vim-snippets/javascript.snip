@@ -1,0 +1,37 @@
+snippet waterfall
+  async.warterfall([
+    function(next) {
+      ${0:TARGET}
+      next();
+    },
+  ], function(err) {
+    if (err) {
+
+    }
+  }
+
+snippet callback
+  function(err, result) {
+    if (err) {
+      callback(err);
+      return;
+    }
+    ${0:TARGET}
+  }
+
+snippet desc
+  describe('${1:#:describe}', function() {
+    ${0:TARGET}
+  });
+
+snippet before
+  before(function(done) {
+    ${0:TARGET}
+    done();
+  });
+
+snippet it
+  it('${1:#:test_case}', function(done) {
+    ${0:TARGET}
+    done();
+  });
