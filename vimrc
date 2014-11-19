@@ -125,6 +125,9 @@ nnoremap vd :vertical diffsplit
 " filetype
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 
+" 選択範囲の小文字化/大文字化を無効化
+vnoremap u <Nop>
+vnoremap U <Nop>
 
 " vimdiff color
 hi! DiffAdd      ctermbg=19
