@@ -149,7 +149,11 @@ nnoremap t :TagbarToggle<CR>
 let g:tagbar_type_javascript = {
 \		'ctagtype': 'JavaScript',
 \		'kinds': [
-\			'c:classes', 'm:methods', 'f:functions'
+\			'c:classes',
+\			'm:methods',
+\			'f:functions',
+\			't:testcase',
+\			'd:describe'
 \		]
 \	}
 
@@ -227,8 +231,8 @@ if has('lua')
 				\ "\<Plug>(neosnippet_expand_or_jump)"
 				\: "\<TAB>"
 
-   "let g:neosnippet#enable_snipmate_compatibility = 1
-   let g:neosnippet#snippets_directory='~/.vim-snippets'
+	"let g:neosnippet#enable_snipmate_compatibility = 1
+	let g:neosnippet#snippets_directory='~/.vim-snippets'
 endif
 
 if has('conceal')

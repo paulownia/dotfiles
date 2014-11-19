@@ -1,0 +1,3 @@
+--regex-javascript=/describe\(\'(.+)\', function/\1/d,describe/
+--regex-javascript=/it\(\'(.+)\', function/\1/t,testcase/
+
