@@ -122,9 +122,6 @@ inoremap <C-e> <End>
 " vertical diffsplit
 nnoremap vd :vertical diffsplit
 
-" filetype
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-
 " 選択範囲の小文字化/大文字化を無効化
 vnoremap u <Nop>
 vnoremap U <Nop>
@@ -144,8 +141,13 @@ hi! PmenuThumb ctermfg=4
 " search color
 hi! Search ctermbg=58 ctermfg=15
 
-" auto trim
-autocmd BufWritePre * :%s/\s\+$//ge
+augroup vimrc
+	autocmd!
+	" auto trim
+	autocmd BufWritePre * :%s/\s\+$//ge
+	" filetype
+	autocmd BufRead,BufNewFile *.md set filetype=markdown
+augroup END
 
 "" --- Tagbar
 nnoremap t :TagbarToggle<CR>
