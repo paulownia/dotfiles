@@ -49,18 +49,26 @@ bindkey -a '' history-incremental-search-backward
 bindkey -v '' history-incremental-search-backward
 
 # homebrew zsh completion
-if type brew >/dev/null 2>/dev/null; then
-  BREW_HOME=$(brew --prefix)
+() {
+  if type brew >/dev/null 2>/dev/null; then
+    local BREW_HOME=$(brew --prefix)
 
-  # completion installed by homebrew
-  fpath=($BREW_HOME/share/zsh/site-functions $fpath)
+    # completion installed by homebrew
+    fpath=($BREW_HOME/share/zsh/site-functions $fpath)
 
-  BREW_COMP_SRC=$BREW_HOME/Library/Contributions/brew_zsh_completion.zsh
-  BREW_COMP_DST=$BREW_HOME/share/zsh/site-functions/_brew
-  if [[ ! ("$BREW_COMP_SRC" -ef "$BREW_COMP_DST") ]]; then
-    ln -s $BREW_COMP_SRC $BREW_COMP_DST
+    local BREW_COMP_SRC=$BREW_HOME/Library/Contributions/brew_zsh_completion.zsh
+    local BREW_COMP_DST=$BREW_HOME/share/zsh/site-functions/_brew
+
+    local BREW_COMP_DST_DIR=$(dirname $BREW_COMP_DST)
+    if [[ ! -d $BREW_COMP_DST_DIR ]]; then
+	  mkdir -p $BREW_COMP_DST_DIR
+    fi
+
+    if [[ ! ($BREW_COMP_SRC -ef $BREW_COMP_DST) ]]; then
+      ln -s $BREW_COMP_SRC $BREW_COMP_DST
+    fi
   fi
-fi
+}
 
 # zsh completion
 autoload -U compinit
