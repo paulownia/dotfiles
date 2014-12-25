@@ -198,6 +198,8 @@ let g:syntastic_java_javac_options = '-Xlint -J-Dfile.encoding=UTF-8'
 " HTML / Angularの属性をチェックしない
 let g:syntastic_html_tidy_ignore_errors=[' proprietary attribute "ng-']
 
+" json
+let g:syntastic_json_checkers=['jsonlint']
 
 "" --- QuickRun
 " 結果を上下分割で表示
