@@ -175,3 +175,16 @@ precmd () {
 	vcs_info
 	RPROMPT='${vcs_info_msg_0_}'
 }
+
+
+# find and cd
+function fcd() {
+	if [ -z "$1" ]; then
+		return 1
+	fi
+
+	local md_query
+	md_query="kMDItemContentType == 'public.folder' && kMDItemDisplayName == '*$1*'c"
+	cd $(mdfind -onlyin ~ "$md_query" | peco)
+}
+
