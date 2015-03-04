@@ -96,6 +96,9 @@ set backspace=start,eol,indent
 " yankをclipboardへ
 set clipboard+=unnamed
 
+" diffopt追加、デフォルト縦分割にする
+set diffopt+=vertical
+
 " シンタックスハイライト
 syntax on
 
