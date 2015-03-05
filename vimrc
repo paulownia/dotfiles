@@ -28,6 +28,7 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'closetag.vim'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'Shougo/vimfiler.vim'
 
 if has('lua')
 	Plugin 'Shougo/neocomplete'
