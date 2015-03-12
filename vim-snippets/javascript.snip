@@ -11,6 +11,7 @@ snippet waterfall
   }
 
 snippet callback
+alias cb
   function(err, result) {
     if (err) {
       callback(err);
@@ -19,9 +20,13 @@ snippet callback
     ${0:TARGET}
   }
 
-snippet desc
+snippet describe
+alias desc
   describe('${1:#:describe}', function() {
-    ${0:TARGET}
+    it('${2:#test_case}', function(done) {
+      ${0:TARGET}
+      done();
+    });
   });
 
 snippet before
