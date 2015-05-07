@@ -50,24 +50,24 @@ bindkey -v '' history-incremental-search-backward
 
 # homebrew zsh completion
 () {
-  if type brew >/dev/null 2>/dev/null; then
-    local BREW_HOME=$(brew --prefix)
+	if type brew >/dev/null 2>/dev/null; then
+		local BREW_HOME=$(brew --prefix)
 
-    # completion installed by homebrew
-    fpath=($BREW_HOME/share/zsh/site-functions $fpath)
+		# completion installed by homebrew
+		fpath=($BREW_HOME/share/zsh/site-functions $fpath)
 
-    local BREW_COMP_SRC=$BREW_HOME/Library/Contributions/brew_zsh_completion.zsh
-    local BREW_COMP_DST=$BREW_HOME/share/zsh/site-functions/_brew
+		local BREW_COMP_SRC=$BREW_HOME/Library/Contributions/brew_zsh_completion.zsh
+		local BREW_COMP_DST=$BREW_HOME/share/zsh/site-functions/_brew
 
-    local BREW_COMP_DST_DIR=$(dirname $BREW_COMP_DST)
-    if [[ ! -d $BREW_COMP_DST_DIR ]]; then
-	  mkdir -p $BREW_COMP_DST_DIR
-    fi
+		local BREW_COMP_DST_DIR=$(dirname $BREW_COMP_DST)
+		if [[ ! -d $BREW_COMP_DST_DIR ]]; then
+			mkdir -p $BREW_COMP_DST_DIR
+		fi
 
-    if [[ ! ($BREW_COMP_SRC -ef $BREW_COMP_DST) ]]; then
-      ln -s $BREW_COMP_SRC $BREW_COMP_DST
-    fi
-  fi
+		if [[ ! ($BREW_COMP_SRC -ef $BREW_COMP_DST) ]]; then
+			ln -s $BREW_COMP_SRC $BREW_COMP_DST
+		fi
+	fi
 }
 
 # zsh completion
@@ -87,57 +87,56 @@ zstyle ':completion:*' group-name ''
 
 # nvm
 if [ -f ~/.nvm/nvm.sh ]; then
-  source ~/.nvm/nvm.sh
+	source ~/.nvm/nvm.sh
 
-  if [ ! -f ~/.npm_completion ]; then
-    npm completion > ~/.npm_completion
-  fi
-  source ~/.npm_completion
+	if [ ! -f ~/.npm_completion ]; then
+		npm completion > ~/.npm_completion
+	fi
+	source ~/.npm_completion
 fi
 
 # rbenv
 if [ -d ~/.rbenv ]; then
-  export PATH=~/.rbenv/bin:$PATH
-  eval "$(rbenv init - zsh)"
+	export PATH=~/.rbenv/bin:$PATH
+	eval "$(rbenv init - zsh)"
 fi
 
 # loading local setting
 if [ -f ~/.zshrc.local ]; then
-  source ~/.zshrc.local
+	source ~/.zshrc.local
 fi
 
 
 # functions
 function jl() {
-  local QUERY
-  local FILE
+	local QUERY
+	local FILE
 
-  if [ -p /dev/stdin ]; then
-    if [ $# -eq 0 ]; then
-      QUERY="."
-    else
-      QUERY="$1"
-    fi
-    FILE="-"
-  else
-    if [ $# -eq 1 ]; then
-      QUERY="."
-      FILE=$1
-    elif [ $# -eq 2 ]; then
-      QUERY="$1"
-      FILE="$2"
-    else
-      return 1
-    fi
-  fi
-  jq "$QUERY" -C 2>&1 $FILE | less -R
+	if [ -p /dev/stdin ]; then
+		if [ $# -eq 0 ]; then
+			QUERY="."
+		else
+			QUERY="$1"
+		fi
+		FILE="-"
+	else
+		if [ $# -eq 1 ]; then
+			QUERY="."
+			FILE=$1
+		elif [ $# -eq 2 ]; then
+			QUERY="$1"
+			FILE="$2"
+		else
+			return 1
+		fi
+	fi
+
+	jq "$QUERY" -C 2>&1 $FILE | less -R
 }
 
 # launchctl
 function launchctl-start() {
-	local SERVICE_NAME
-
-	SERVICE_NAME=$(launchctl list | grep "^-" | peco | head -n 1 | cut -f 3)
+	local SERVICE_NAME=$(launchctl list | grep "^-" | peco | head -n 1 | cut -f 3)
 
 	if [ -n "$SERVICE_NAME" ]; then
 		echo "Start ${SERVICE_NAME}"
@@ -148,9 +147,7 @@ function launchctl-start() {
 }
 
 function launchctl-stop() {
-	local SERVICE_NAME
-
-	SERVICE_NAME=$(launchctl list | grep -v "^-" | peco | head -n 1 | cut -f 3)
+	local SERVICE_NAME=$(launchctl list | grep -v "^-" | peco | head -n 1 | cut -f 3)
 
 	if [ -n "$SERVICE_NAME" ]; then
 		echo "Stop ${SERVICE_NAME}"
@@ -183,8 +180,8 @@ function fcd() {
 		return 1
 	fi
 
-	local md_query
-	md_query="kMDItemContentType == 'public.folder' && kMDItemDisplayName == '*$1*'c"
-	cd $(mdfind -onlyin ~ "$md_query" | peco)
+	local MD_QUERY="kMDItemContentType == 'public.folder' && kMDItemDisplayName == '*$1*'c"
+
+	cd $(mdfind -onlyin ~ "$MD_QUERY" | peco)
 }
 
