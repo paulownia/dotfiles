@@ -48,25 +48,57 @@ bindkey -v '' vi-end-of-line
 bindkey -a '' history-incremental-search-backward
 bindkey -v '' history-incremental-search-backward
 
+
+function isInstalled() {
+	if [ $# -ne 1 ]; then
+		return 1
+	fi
+
+	type "$1" 1>/dev/null 2>/dev/null
+	return $?;
+}
+
+
+function isBrewed() {
+	if [ $# -ne 1 ]; then
+		return 2
+	fi
+
+	if isInstalled "$1"; then
+		return 0
+	fi
+
+	if isInstalled brew; then
+		echo "Command '$1' is required. please type 'brew install $1'"
+	else
+		echo "Command '$1' is required. please install homebrew and type 'brew install $1'"
+	fi
+
+	return 1
+}
+
+
 # homebrew zsh completion
 () {
-	if type brew >/dev/null 2>/dev/null; then
-		local BREW_HOME=$(brew --prefix)
+	if isInstalled brew; then
+		return 1
+	fi
 
-		# completion installed by homebrew
-		fpath=($BREW_HOME/share/zsh/site-functions $fpath)
+	local BREW_HOME=$(brew --prefix)
 
-		local BREW_COMP_SRC=$BREW_HOME/Library/Contributions/brew_zsh_completion.zsh
-		local BREW_COMP_DST=$BREW_HOME/share/zsh/site-functions/_brew
+	# completion installed by homebrew
+	fpath=($BREW_HOME/share/zsh/site-functions $fpath)
 
-		local BREW_COMP_DST_DIR=$(dirname $BREW_COMP_DST)
-		if [[ ! -d $BREW_COMP_DST_DIR ]]; then
-			mkdir -p $BREW_COMP_DST_DIR
-		fi
+	local BREW_COMP_SRC=$BREW_HOME/Library/Contributions/brew_zsh_completion.zsh
+	local BREW_COMP_DST=$BREW_HOME/share/zsh/site-functions/_brew
 
-		if [[ ! ($BREW_COMP_SRC -ef $BREW_COMP_DST) ]]; then
-			ln -s $BREW_COMP_SRC $BREW_COMP_DST
-		fi
+	local BREW_COMP_DST_DIR=$(dirname $BREW_COMP_DST)
+	if [[ ! -d $BREW_COMP_DST_DIR ]]; then
+		mkdir -p $BREW_COMP_DST_DIR
+	fi
+
+	if [[ ! ($BREW_COMP_SRC -ef $BREW_COMP_DST) ]]; then
+		ln -s $BREW_COMP_SRC $BREW_COMP_DST
 	fi
 }
 
@@ -109,6 +141,10 @@ fi
 
 # functions
 function jl() {
+	if ! isBrewed jq; then
+		return 1
+	fi
+
 	local QUERY
 	local FILE
 
@@ -136,6 +172,10 @@ function jl() {
 
 # launchctl
 function launchctl-start() {
+	if ! isBrewed peco; then
+		return 1
+	fi
+
 	local SERVICE_NAME=$(launchctl list | grep "^-" | peco | head -n 1 | cut -f 3)
 
 	if [ -n "$SERVICE_NAME" ]; then
@@ -147,6 +187,10 @@ function launchctl-start() {
 }
 
 function launchctl-stop() {
+	if ! isBrewed peco; then
+		return 1
+	fi
+
 	local SERVICE_NAME=$(launchctl list | grep -v "^-" | peco | head -n 1 | cut -f 3)
 
 	if [ -n "$SERVICE_NAME" ]; then
@@ -176,6 +220,10 @@ precmd () {
 
 # find and cd
 function fcd() {
+	if ! isBrewed peco; then
+		return 1
+	fi
+
 	if [ -z "$1" ]; then
 		return 1
 	fi
