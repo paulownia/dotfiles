@@ -30,6 +30,7 @@ Plugin 'digitaltoad/vim-jade'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'Shougo/vimfiler.vim'
 Plugin 'heavenshell/vim-jsdoc'
+Plugin 'rhysd/vim-crystal'
 
 if has('lua')
 	Plugin 'Shougo/neocomplete'
