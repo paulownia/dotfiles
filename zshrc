@@ -31,6 +31,9 @@ export HISTSIZE=1000
 export SAVEHIST=1000
 setopt hist_ignore_dups
 setopt EXTENDED_HISTORY
+setopt AUTO_CD
+
+cdpath=(.. ~ ~/projects.localized)
 
 # zsh binding style
 bindkey -v
@@ -47,6 +50,10 @@ bindkey -v '' vi-beginning-of-line
 bindkey -v '' vi-end-of-line
 bindkey -a '' history-incremental-search-backward
 bindkey -v '' history-incremental-search-backward
+
+alias -s rb="ruby"
+alias -s js="node"
+alias -s txt="edit"
 
 
 function isInstalled() {
