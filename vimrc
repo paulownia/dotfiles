@@ -188,8 +188,8 @@ nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
 
 
 "" --- Syntastic
-" JavaScript / jshintを使う
-let g:syntastic_javascript_checkers = ['jshint', 'jscs']
+" JavaScript / eslintを使う
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_auto_loc_list = 1
 
 " C++ / include pathを指定
