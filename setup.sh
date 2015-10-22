@@ -1,39 +1,41 @@
 #!/bin/bash
 
 SCRIPT_FILE=${0##*/}
-DOTFILE_DIR=$(cd $(dirname $0); pwd)
+DOTFILE_RELATIVE_DIR=$(dirname "$0")
+DOTFILE_DIR=$(cd "$DOTFILE_RELATIVE_DIR"; pwd)
 
 
 # --- functions
 
 log() {
-	echo $@
+	echo "$@"
 } >&2
 
-
 # --- copy dotfile
+for DOTFILE_PATH in ${DOTFILE_DIR}/*; do
+	DOTFILE_NAME=$(basename "$DOTFILE_PATH")
 
-FILE_LIST=$(ls $DOTFILE_DIR | grep -v $SCRIPT_FILE)
-
-for i in $FILE_LIST; do
-
-	FILE_SRC=${DOTFILE_DIR}/${i}
-	FILE_DST=${HOME}/.${i}
-
-	if [ -L $FILE_DST ]; then
-		rm $FILE_DST && log "${FILE_DST} is symbolic link, remove it."
-
-	elif [ -e $FILE_DST ]; then
-		mv $FILE_DST $FILE_DST.org && log "${FILE_DST} already exists, rename it."
+	if [ "$DOTFILE_NAME" = "$SCRIPT_FILE" ]; then
+		continue
 	fi
-	
-	ln -s $FILE_SRC $FILE_DST
+
+	FILE_SRC=${DOTFILE_PATH}
+	FILE_DST=${HOME}/.${DOTFILE_NAME}
+
+	if [ -L "$FILE_DST" ]; then
+		rm "$FILE_DST" && log "${FILE_DST} is symbolic link, remove it."
+
+	elif [ -e "$FILE_DST" ]; then
+		mv "$FILE_DST" "$FILE_DST.org" && log "${FILE_DST} already exists, rename it."
+	fi
+
+	ln -s "$FILE_SRC" "$FILE_DST"
 done
 
 
 # --- install vundle.vim
 
-cd ${DOTFILE_DIR}
+cd "${DOTFILE_DIR}"
 git submodule init
 git submodule update
 
