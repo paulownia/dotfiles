@@ -86,8 +86,10 @@ set wildmenu
 " CJK記号の幅調整（iTermでは Profile > Text > Double-Width Characters > Treat ambiguous-width characters as double widthのチェックも必要）
 set ambiwidth=double
 
-" 文法で折りたたみ
-set foldmethod=syntax
+" 折りたたみ
+set foldmethod=indent
+set foldlevel=0
+set foldnestmax=1
 
 " カーソルに下線
 set cursorline
