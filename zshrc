@@ -33,8 +33,6 @@ setopt hist_ignore_dups
 setopt EXTENDED_HISTORY
 setopt AUTO_CD
 
-cdpath=(.. ~ ~/projects.localized)
-
 # zsh binding style
 bindkey -v
 
