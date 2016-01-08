@@ -156,8 +156,6 @@ augroup vimrc
 	autocmd!
 	" auto trim
 	autocmd BufWritePre * :%s/\s\+$//ge
-	" filetype
-	autocmd BufRead,BufNewFile *.md set filetype=markdown
 augroup END
 
 "" --- Tagbar
