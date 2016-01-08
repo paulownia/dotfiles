@@ -240,3 +240,11 @@ function fcd() {
 	cd $(mdfind -onlyin ~ "$MD_QUERY" | peco)
 }
 
+function title() {
+	if [ -z "$1" ]; then
+		return 1;
+	fi
+
+	echo -en "\033];$1\007"
+}
+
