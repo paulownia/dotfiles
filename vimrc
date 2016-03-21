@@ -77,8 +77,10 @@ set noswapfile
 set laststatus=2
 "set statusline=%f%m%r%h%w\ %{fugitive#statusline()}\ (%Y)%=\ %l/%L
 
-" 検索結果をハイライト
+" 検索
 set hlsearch
+set ignorecase
+set smartcase
 
 " コマンド補完
 set wildmenu
