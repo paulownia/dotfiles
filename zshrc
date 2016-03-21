@@ -17,10 +17,6 @@ export EDITOR=vim
 alias javac="javac -J-Dfile.encoding=UTF-8"
 alias java="java -Dfile.encoding=UTF-8"
 
-# homebrew path
-export PATH=/usr/local/bin:$PATH
-export MANPATH=/usr/local/share/man:$MANPATH
-
 # user path
 export PATH=~/apps/bin:$PATH
 
