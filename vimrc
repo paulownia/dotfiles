@@ -34,6 +34,7 @@ Plugin 'rhysd/vim-crystal'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'editorconfig/editorconfig-vim'
 
 if has('lua')
 	Plugin 'Shougo/neocomplete'
