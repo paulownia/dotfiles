@@ -1,3 +1,4 @@
 --regex-javascript=/describe\(\'(.+)\', function/\1/d,describe/
 --regex-javascript=/it\(\'(.+)\', function/\1/t,testcase/
+--regex-javascript=/class[ \t]+([A-Za-z0-9._$]+)[ \t]*/\1/c,class/
 
