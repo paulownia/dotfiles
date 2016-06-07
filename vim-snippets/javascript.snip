@@ -1,10 +1,10 @@
 snippet waterfall
   async.warterfall([
-    function(next) {
+    (next) => {
       ${0:TARGET}
       next();
     },
-  ], function(err) {
+  ], (err) => {
     if (err) {
 
     }
@@ -12,7 +12,7 @@ snippet waterfall
 
 snippet callback
 alias cb
-  function(err, result) {
+  (err, result) => {
     if (err) {
       callback(err);
       return;
@@ -22,21 +22,18 @@ alias cb
 
 snippet describe
 alias desc
-  describe('${1:#:describe}', function() {
-    it('${2:#test_case}', function(done) {
-      ${0:TARGET}
-      done();
-    });
+  describe('${1:#:describe}', () =>{
+    ${0:TARGET}
   });
 
 snippet before
-  before(function(done) {
+  before((done) => {
     ${0:TARGET}
     done();
   });
 
 snippet it
-  it('${1:#:test_case}', function(done) {
+  it('${1:#:test_case}', (done) => {
     ${0:TARGET}
     done();
   });
