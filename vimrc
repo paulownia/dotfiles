@@ -35,6 +35,7 @@ Plugin 'elixir-lang/vim-elixir'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'tomtom/tcomment_vim'
 
 if has('lua')
 	Plugin 'Shougo/neocomplete'
