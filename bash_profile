@@ -9,7 +9,7 @@ alias home="open ~/"
 alias edit="open -a CotEditor"
 alias al="ag --pager 'less -R'"
 
-PS1="\[[0;35m\]\u@\h\[[m\]:\[[0;34m\]\W\[[m\] \$ "
+PS1="\[[0;35m\]\u@\h\[[m\]:\[[0;34m\]\w\[[m\] \$ "
 
 # for svn and git editor
 export EDITOR=vim
