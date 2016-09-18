@@ -9,16 +9,16 @@ alias home="open ~/"
 alias edit="open -a CotEditor"
 alias al="ag --pager 'less -R'"
 
-PS1="\[[0;32m\]\h:\W\[[m\] \[[0;35m\]\u\$\[[m\] "
+PS1="\[[0;35m\]\u@\h\[[m\]:\[[0;34m\]\W\[[m\] \$ "
 
-# for svn and git editor 
+# for svn and git editor
 export EDITOR=vim
 
 # java
 alias javac="javac -J-Dfile.encoding=UTF-8"
 alias java="java -Dfile.encoding=UTF-8"
 
-# homebrew path 
+# homebrew path
 export PATH=/usr/local/bin:$PATH
 export MANPATH=/usr/local/share/man:$MANPATH
 
