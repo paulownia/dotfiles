@@ -21,7 +21,14 @@ alias java="java -Dfile.encoding=UTF-8"
 export PATH=~/apps/bin:$PATH
 
 # zsh setting
-export PROMPT="%{[0;32m%}${HOST%%.*}:%1~%{[m%} %{[0;35m%}${USER}%(!.#.$)%{[m%} "
+case "${OSTYPE}" in
+	darwin*)
+		export PROMPT="%{[0;32m%}${USER}@${HOST%%.*}%{[m%}:%{[0;34m%}%1~%{[m%}%(!.#.$) "
+		;;
+	linux*)
+		export PROMPT="%{[0;35m%}${USER}@${HOST%%.*}%{[m%}:%{[0;34m%}%1~%{[m%}%(!.#.$) "
+		;;
+esac
 export HISTFILE=${HOME}/.zsh_history
 export HISTSIZE=1000
 export SAVEHIST=1000
