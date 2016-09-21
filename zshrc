@@ -236,7 +236,8 @@ function fcd() {
 		return 1
 	fi
 
-	local MD_QUERY="kMDItemContentType == 'public.folder' && kMDItemDisplayName == '*$1*'c"
+    # https://developer.apple.com/library/mac/documentation/Carbon/Conceptual/SpotlightQuery/Concepts/QueryFormat.html
+    local MD_QUERY="kMDItemContentType == 'public.folder' && kMDItemDisplayName == '$1'"
 
 	cd $(mdfind -onlyin ~ "$MD_QUERY" | peco)
 }
