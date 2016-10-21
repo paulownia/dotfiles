@@ -250,3 +250,56 @@ function title() {
 	echo -en "\033];$1\007"
 }
 
+# -- dev command
+function dev() {
+	local MODE KEY OPT OPTARG OPTIND
+	local CD_LIST CD_PATH
+
+	MODE="move"
+	while getopts s:l OPT
+	do
+		case $OPT in
+			s)
+				MODE="set"
+				KEY=$OPTARG
+				;;
+			l)
+				cat ~/.dev
+				return 0
+				;;
+		esac
+	done
+
+	# echo $MODE
+
+	if [ "$MODE" == "set" ]; then
+		if [ ! -f ~/.dev ]; then
+			echo "$KEY\t$(pwd)" > ~/.dev
+		else
+			CD_LIST=$(cat ~/.dev | grep -v "$KEY")
+			echo "$CD_LIST\n$KEY\t$(pwd)" > ~/.dev
+		fi
+
+	else
+		KEY=default
+		if [ -n "$1" ]; then
+			KEY=$1
+		fi
+
+		CD_PATH=$(cat ~/.dev | grep "^$KEY" | cut -f2)
+		if [ -z $CD_PATH ]; then
+			return 1
+		fi
+
+		cd $CD_PATH
+		pwd
+	fi
+}
+
+function _dev() {
+	local -a CD_LIST
+	CD_LIST=( $(cat ~/.dev | cut -f 1) )
+	_describe "Projects" CD_LIST
+}
+
+compdef _dev dev
