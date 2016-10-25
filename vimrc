@@ -1,49 +1,52 @@
 " vundle
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
+"set nocompatible
+"filetype off
+"set rtp+=~/.vim/bundle/Vundle.vim/
+"call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'mattn/emmet-vim'
-Plugin 'unite.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'othree/html5-syntax.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'tpope/vim-rails'
-Plugin 'dag/vim2hs'
-Plugin 'jQuery'
-Plugin 'nginx.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'thinca/vim-quickrun'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'rking/ag.vim'
-Plugin 'elzr/vim-json'
-Plugin 'sudo.vim'
-Plugin 'moll/vim-node'
-Plugin 'osyo-manga/vim-anzu'
-Plugin 'itchyny/lightline.vim'
-Plugin 'closetag.vim'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'Shougo/vimfiler.vim'
-Plugin 'heavenshell/vim-jsdoc'
-Plugin 'rhysd/vim-crystal'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'tomtom/tcomment_vim'
+call plug#begin('~/.vim/plugged')
+Plug 'gmarik/Vundle.vim'
+Plug 'scrooloose/syntastic'
+Plug 'mattn/emmet-vim'
+Plug 'unite.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'othree/html5-syntax.vim'
+Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-rails'
+Plug 'dag/vim2hs'
+Plug 'jQuery'
+Plug 'nginx.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'thinca/vim-quickrun'
+Plug 'derekwyatt/vim-scala'
+Plug 'rking/ag.vim'
+Plug 'elzr/vim-json'
+Plug 'sudo.vim'
+Plug 'moll/vim-node'
+Plug 'osyo-manga/vim-anzu'
+Plug 'itchyny/lightline.vim'
+Plug 'closetag.vim'
+Plug 'digitaltoad/vim-jade'
+Plug 'kchmck/vim-coffee-script'
+Plug 'Shougo/vimfiler.vim'
+Plug 'heavenshell/vim-jsdoc'
+Plug 'rhysd/vim-crystal'
+Plug 'elixir-lang/vim-elixir'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tomtom/tcomment_vim'
 
 if has('lua')
-	Plugin 'Shougo/neocomplete'
-	Plugin 'Shougo/neosnippet'
-	Plugin 'Shougo/neosnippet-snippets'
+	Plug 'Shougo/neocomplete'
+	Plug 'Shougo/neosnippet'
+	Plug 'Shougo/neosnippet-snippets'
 endif
 
-call vundle#end()
+call plug#end()
+
+"call vundle#end()
 
 " golang vim
 if executable('/usr/local/opt/go/libexec/bin/go')
