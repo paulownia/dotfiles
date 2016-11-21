@@ -280,6 +280,7 @@ function dev() {
 			echo "$CD_LIST\n$KEY\t$(pwd)" > ~/.dev
 		fi
 
+		title $key
 	else
 		KEY=default
 		if [ -n "$1" ]; then
@@ -290,6 +291,8 @@ function dev() {
 		if [ -z $CD_PATH ]; then
 			return 1
 		fi
+
+		title "default"
 
 		cd $CD_PATH
 		pwd
