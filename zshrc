@@ -279,8 +279,6 @@ function dev() {
 			CD_LIST=$(cat ~/.dev | grep -v "$KEY")
 			echo "$CD_LIST\n$KEY\t$(pwd)" > ~/.dev
 		fi
-
-		title $key
 	else
 		KEY=default
 		if [ -n "$1" ]; then
@@ -292,9 +290,8 @@ function dev() {
 			return 1
 		fi
 
-		title "default"
-
 		cd $CD_PATH
+		title $KEY
 		pwd
 	fi
 }
