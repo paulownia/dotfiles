@@ -23,7 +23,7 @@ export PATH=~/apps/bin:$PATH
 # zsh setting
 case "${OSTYPE}" in
 	darwin*)
-		export PROMPT="%{[0;32m%}${USER}@${HOST%%.*}%{[m%}:%{[0;34m%}%1~%{[m%}%(!.#.$) "
+		export PROMPT="%{[0;32m%}${USER}@${HOST%%.*}%{[m%}:%{[0;34m%}%3~%{[m%}%(!.#.$) "
 		;;
 	linux*)
 		export PROMPT="%{[0;35m%}${USER}@${HOST%%.*}%{[m%}:%{[0;34m%}%1~%{[m%}%(!.#.$) "
