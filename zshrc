@@ -237,9 +237,16 @@ function fcd() {
 	fi
 
     # https://developer.apple.com/library/mac/documentation/Carbon/Conceptual/SpotlightQuery/Concepts/QueryFormat.html
-    local MD_QUERY="kMDItemContentType == 'public.folder' && kMDItemDisplayName == '$1'"
+    local MD_QUERY="kMDItemContentType == 'public.folder' && kMDItemFSName == '$1*'"
 
-	cd $(mdfind -onlyin ~ "$MD_QUERY" | peco)
+	local RESULT=$(mdfind -onlyin ~ "$MD_QUERY" | peco)
+
+	if [ -z "$RESULT" ]; then
+		return 1
+	fi
+
+	echo $RESULT
+	cd $RESULT
 }
 
 function title() {
