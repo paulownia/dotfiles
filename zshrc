@@ -317,3 +317,8 @@ function print_known_hosts (){
     fi
 }
 _cache_hosts=($(print_known_hosts))
+
+
+function darkness () {
+    node -e 'var d=(Date.now()-1467752400000)/86400000|0;console.log({レグナード: (d+2)%4+1,ダークキング: (d%4)+1});'
+}
