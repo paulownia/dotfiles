@@ -320,5 +320,5 @@ _cache_hosts=($(print_known_hosts))
 
 
 function sacred-war-in-the-eternal-darkness () {
-    node -e 'var d=(Date.now()-1467752400000)/86400000|0;console.log({レグナード: (d+2)%4+1,ダークキング: (d%4)+1});'
+  node -e 'var d=(Date.now()-1467752400000)/86400000|0;console.log(JSON.stringify({レグナード: (d+2)%4+1,ダークキング: (d%4)+1}));'
 }
