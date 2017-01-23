@@ -1,11 +1,4 @@
-" vundle
-"set nocompatible
-"filetype off
-"set rtp+=~/.vim/bundle/Vundle.vim/
-"call vundle#begin()
-
 call plug#begin('~/.vim/plugged')
-Plug 'gmarik/Vundle.vim'
 Plug 'scrooloose/syntastic'
 Plug 'mattn/emmet-vim'
 Plug 'unite.vim'
@@ -45,8 +38,6 @@ if has('lua')
 endif
 
 call plug#end()
-
-"call vundle#end()
 
 " golang vim
 if executable('/usr/local/opt/go/libexec/bin/go')
