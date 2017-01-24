@@ -85,31 +85,6 @@ function isBrewed() {
 	return 1
 }
 
-
-# homebrew zsh completion
-() {
-	if ! isInstalled brew; then
-		return 1
-	fi
-
-	local BREW_HOME=$(brew --prefix)
-
-	# completion installed by homebrew
-	fpath=($BREW_HOME/share/zsh/site-functions $fpath)
-
-	local BREW_COMP_SRC=$BREW_HOME/Library/Contributions/brew_zsh_completion.zsh
-	local BREW_COMP_DST=$BREW_HOME/share/zsh/site-functions/_brew
-
-	local BREW_COMP_DST_DIR=$(dirname $BREW_COMP_DST)
-	if [[ ! -d $BREW_COMP_DST_DIR ]]; then
-		mkdir -p $BREW_COMP_DST_DIR
-	fi
-
-	if [[ ! ($BREW_COMP_SRC -ef $BREW_COMP_DST) ]]; then
-		ln -s $BREW_COMP_SRC $BREW_COMP_DST
-	fi
-}
-
 # zsh completion
 autoload -U compinit
 compinit
