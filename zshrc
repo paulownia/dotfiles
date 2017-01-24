@@ -88,7 +88,7 @@ function isBrewed() {
 
 # homebrew zsh completion
 () {
-	if isInstalled brew; then
+	if ! isInstalled brew; then
 		return 1
 	fi
 
