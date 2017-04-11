@@ -17,6 +17,9 @@ export EDITOR=vim
 alias javac="javac -J-Dfile.encoding=UTF-8"
 alias java="java -Dfile.encoding=UTF-8"
 
+# brew extra path
+export PATH=/usr/local/sbin:$PATH
+
 # user path
 export PATH=~/apps/bin:$PATH
 
@@ -268,7 +271,7 @@ function dev() {
 		fi
 
 		CD_PATH=$(cat ~/.dev | grep "^$KEY" | cut -f2)
-		if [ -z $CD_PATH ]; then
+		if [ -z $CD_PATH -o ! -d $CD_PATH ]; then
 			return 1
 		fi
 
