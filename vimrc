@@ -73,6 +73,9 @@ set noswapfile
 set laststatus=2
 "set statusline=%f%m%r%h%w\ %{fugitive#statusline()}\ (%Y)%=\ %l/%L
 
+" 8進数インクリメントの設定を解除
+set nrformats=bin,hex
+
 " 検索
 set hlsearch
 set ignorecase
