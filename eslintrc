@@ -9,7 +9,7 @@
 	"rules": {
 		"semi": 2,
 		"no-console": 1,
-		"comma-dangle": [2, "always-multiline"],
+		"comma-dangle": [2, "only-multiline"],
 		"quotes": [2, "single"],
 		"no-irregular-whitespace": 2,
 		"no-spaced-func": 2,
