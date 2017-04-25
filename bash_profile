@@ -1,5 +1,11 @@
 # vim: set ft=sh :
 
+# loading default bash setting for ubuntu server
+if [ -f "$HOME/.profile" ]; then
+	. "$HOME/.profile"
+	return
+fi
+
 # basic aliases
 alias ls="ls -G"
 alias ll="ls -lF"
