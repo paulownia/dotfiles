@@ -1,3 +1,7 @@
+if exists('$VIMRUNTIME/defaults.vim')
+	source $VIMRUNTIME/defaults.vim
+endif
+
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/syntastic'
 Plug 'mattn/emmet-vim'
