@@ -1,4 +1,4 @@
-if exists('$VIMRUNTIME/defaults.vim')
+if filereadable('$VIMRUNTIME/defaults.vim')
 	source $VIMRUNTIME/defaults.vim
 endif
 
