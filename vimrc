@@ -61,9 +61,6 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
-" 折り返ししない
-set nolinebreak
-set nowrap
 
 " スワップファイル、バックアップを作らない
 set nobackup
@@ -74,10 +71,23 @@ set laststatus=2
 "set statusline=%f%m%r%h%w\ %{fugitive#statusline()}\ (%Y)%=\ %l/%L
 
 if v:version >= 800
-  " 8進数インクリメントの設定を解除
-  set nrformats=bin,hex
+	" 8進数インクリメントの設定を解除
+	set nrformats=bin,hex
+
+	" 折り返し表示オプション
+	set linebreak
+	set showbreak=>
+	set breakindent
+	set breakindentopt=shift:6,sbr
+
+	" 絵文字を全角幅で表示
+	set emoji
 else
-  set nrformats=hex
+	" 8進数インクリメントの設定を解除
+	set nrformats=hex
+
+	" 折り返ししない
+	set nowrap
 endif
 
 " 検索
