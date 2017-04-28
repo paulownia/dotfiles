@@ -80,9 +80,9 @@ function isBrewed() {
 	fi
 
 	if isInstalled brew; then
-		echo "Command '$1' is required. please type 'brew install $1'"
+		echo "'$1' is not installed. Type 'brew install $1'"
 	else
-		echo "Command '$1' is required. please install homebrew and type 'brew install $1'"
+		echo "'$1' is not installed. Set up homebrew and then type 'brew install $1'"
 	fi
 
 	return 1
