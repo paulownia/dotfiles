@@ -1,0 +1,25 @@
+#
+# vim: set ft=zsh :
+
+# for homebrew
+export HOMEBREW_GITHUB_API_TOKEN=your_github_api_key
+
+# nvm setting
+if [ -f ~/.nvm/nvm.sh ]; then
+	nvm use v6
+fi
+
+# aws sdk
+export PATH=$PATH:~/.local/lib/aws/bin
+
+# brewed commands first
+export PATH=/usr/local/bin:$PATH
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/Users/xxxxx/google-cloud-sdk/path.zsh.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/Users/xxxxx/google-cloud-sdk/completion.zsh.inc'
+
+# to play nyan voice
+function nyan() { afplay ~/Music/nyan.mp4; }
