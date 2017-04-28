@@ -310,10 +310,15 @@ function sacred-war-in-the-eternal-darkness () {
 	node -e 'var d=(Date.now()-1467752400000)/86400000|0;console.log(JSON.stringify({レグナード: (d+2)%4+1, ダークキング: (d%4)+1,メイヴ: (d-1)%4+1}));'
 }
 
-# if mocha is not installed in global
+# Use local mocha if mocha is not installed in global
 if ! isInstalled mocha; then
 	function mocha() {
-		$(npm bin)/mocha "$@"
+		local _mocha=$(npm bin)/mocha
+		if [ -x ${_mocha} ]; then
+			${_mocha} "$@"
+		else
+			echo "mocha not found" >&2
+		fi
 	}
 fi
 
