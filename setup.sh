@@ -32,10 +32,3 @@ for DOTFILE_PATH in ${DOTFILE_DIR}/*; do
 	ln -s "$FILE_SRC" "$FILE_DST"
 done
 
-
-# --- install vundle.vim
-
-cd "${DOTFILE_DIR}"
-git submodule init
-git submodule update
-
