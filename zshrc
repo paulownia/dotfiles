@@ -121,9 +121,18 @@ fi
 
 # loading local setting
 if [ -f ~/.zshrc.local ]; then
+	echo "Please rename .zshrc.local to .zshrc_local"
 	source ~/.zshrc.local
 fi
 
+if [ -f ~/.zshrc_local ]; then
+	source ~/.zshrc_local
+fi
+
+# enable direnv
+if isBrewed direnv; then
+	eval "$(direnv hook zsh)"
+fi
 
 # functions
 function jl() {
@@ -307,3 +316,12 @@ if ! isInstalled mocha; then
 		$(npm bin)/mocha "$@"
 	}
 fi
+
+# to open this git repo in sourcetree
+function sourcetree() {
+	local dir=$(git rev-parse --show-cdup)
+	if [ -z "${dir}" ]; then
+		dir="."
+	fi
+	open -a SourceTree ${dir}
+}
