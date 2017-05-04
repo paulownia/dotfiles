@@ -5,25 +5,25 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/syntastic'
 Plug 'mattn/emmet-vim'
-Plug 'unite.vim'
+Plug 'Shougo/unite.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'othree/html5-syntax.vim'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-rails'
 Plug 'dag/vim2hs'
-Plug 'jQuery'
-Plug 'nginx.vim'
+Plug 'nono/jquery.vim'
+Plug 'vim-scripts/nginx.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'thinca/vim-quickrun'
 Plug 'derekwyatt/vim-scala'
 Plug 'rking/ag.vim'
 Plug 'elzr/vim-json'
-Plug 'sudo.vim'
+Plug 'vim-scripts/sudo.vim'
 Plug 'moll/vim-node'
 Plug 'osyo-manga/vim-anzu'
 Plug 'itchyny/lightline.vim'
-Plug 'closetag.vim'
+Plug 'vim-scripts/closetag.vim'
 Plug 'digitaltoad/vim-jade'
 Plug 'kchmck/vim-coffee-script'
 Plug 'Shougo/vimfiler.vim'
@@ -121,7 +121,7 @@ set modelines=5
 set backspace=start,eol,indent
 
 " yankをclipboardへ
-set clipboard+=unnamed
+set clipboard=unnamed,autoselect
 
 " diffopt追加、デフォルト縦分割にする
 set diffopt+=vertical
