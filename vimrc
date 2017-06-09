@@ -34,6 +34,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tomtom/tcomment_vim'
+Plug 'rust-lang/rust.vim'
 
 if has('lua')
 	Plug 'Shougo/neocomplete'
