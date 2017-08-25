@@ -34,6 +34,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tomtom/tcomment_vim'
+Plug 'rust-lang/rust.vim'
+Plug 'fatih/vim-go'
 
 if has('lua')
 	Plug 'Shougo/neocomplete'
@@ -189,6 +191,34 @@ let g:tagbar_type_javascript = {
 \			'd:describe'
 \		]
 \	}
+
+let g:tagbar_type_go = {
+\	'ctagstype' : 'go',
+\	'kinds'     : [
+\ 		'p:package',
+\ 		'i:imports:1',
+\ 		'c:constants',
+\ 		'v:variables',
+\		't:types',
+\ 		'n:interfaces',
+\ 		'w:fields',
+\ 		'e:embedded',
+\ 		'm:methods',
+\ 		'r:constructor',
+\ 		'f:functions'
+\ 	],
+\ 	'sro' : '.',
+\ 	'kind2scope' : {
+\ 		't' : 'ctype',
+\   	'n' : 'ntype'
+\   },
+\ 	'scope2kind' : {
+\ 		'ctype' : 't',
+\ 		'ntype' : 'n'
+\ 	},
+\ 		'ctagsbin'  : 'gotags',
+\		'ctagsargs' : '-sort -silent'
+\ }
 
 
 "" --- Unite
