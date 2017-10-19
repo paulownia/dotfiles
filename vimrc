@@ -112,8 +112,8 @@ set foldmethod=indent
 set foldlevel=0
 set foldnestmax=1
 
-" カーソルに下線
-set cursorline
+" カーソルに下線（動作が重くなるので解除）
+" set cursorline
 
 " モードライン
 set modeline
