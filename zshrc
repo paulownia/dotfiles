@@ -309,7 +309,7 @@ _cache_hosts=($(print_known_hosts))
 function sacred-war-in-the-eternal-darkness () {
 	local millis_for_a_day=86400000
 	local base_point=1467752400000   # 2016-07-06 06:00:00
-	node -e "var d=(Date.now()-${base_point})/${millis_for_a_day}|0;console.log(JSON.stringify({レグナード: (d+2)%4+1, ダークキング: (d%4)+1,メイヴ: (d-1)%4+1}));"
+	node -p -e "var d=(Date.now()-${base_point})/${millis_for_a_day}|0;JSON.stringify({レグナード: (d+2)%4+1, ダークキング: (d%4)+1,メイヴ: (d-1)%4+1});"
 }
 
 # Use local mocha if mocha is not installed in global
