@@ -312,6 +312,11 @@ function sacred-war-in-the-eternal-darkness () {
 	node -p -e "var d=(Date.now()-${base_point})/${millis_for_a_day}|0;JSON.stringify({レグナード: (d+2)%4+1, ダークキング: (d%4)+1,メイヴ: (d-1)%4+1});"
 }
 
+function astoltia-defense-force () {
+	node -p -e "var d=new Date();['闇朱の獣牙兵団','紫炎の鉄機兵団','深碧の造魔兵団','ランダム'][((d.getDay()*24+d.getHours()+1)%7)/2|0];"
+}
+
+
 # Use local mocha if mocha is not installed in global
 if ! isInstalled mocha; then
 	function mocha() {
