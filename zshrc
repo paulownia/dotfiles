@@ -134,6 +134,11 @@ if isBrewed direnv; then
 	eval "$(direnv hook zsh)"
 fi
 
+# alias for hub command
+if isBrewed hub; then
+   eval "$(hub alias -s)"
+fi
+
 # functions
 function jl() {
 	if ! isBrewed jq; then
