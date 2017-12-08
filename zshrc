@@ -284,7 +284,7 @@ function dev() {
 			KEY=$1
 		fi
 
-		CD_PATH=$(awk -F "\t" -v "key=$KEY" "{ if (\$1 == key) { print \$2; exit } }" ~/.dev)
+		CD_PATH=$(awk -F "\t" -v "key=$KEY" '{ if ($1 == key) { print $2; exit } }' ~/.dev)
 
 		if [ -z $CD_PATH -o ! -d $CD_PATH ]; then
 			return 1
