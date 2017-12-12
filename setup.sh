@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 SCRIPT_FILE=${0##*/}
 DOTFILE_RELATIVE_DIR=$(dirname "$0")
@@ -16,6 +16,10 @@ for DOTFILE_PATH in ${DOTFILE_DIR}/*; do
 	DOTFILE_NAME=$(basename "$DOTFILE_PATH")
 
 	if [ "$DOTFILE_NAME" = "$SCRIPT_FILE" ]; then
+		continue
+	fi
+
+	if [ "$DOTFILE_NAME" = "zsh" ]; then
 		continue
 	fi
 
