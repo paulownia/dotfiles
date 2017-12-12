@@ -2,7 +2,7 @@
 
 # dev command
 
-function dev_set() {
+function dev_save() {
 	local KEY=$1
 	local CD_PATH=$(pwd)
 
@@ -51,7 +51,7 @@ function dev() {
 				return 0
 				;;
 			s)
-				dev_set "$OPTARG"
+				dev_save "$OPTARG"
 				return $!
 				;;
 			d)
