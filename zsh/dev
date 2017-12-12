@@ -1,0 +1,73 @@
+#!/bin/zsh
+
+# dev command
+
+function dev_set() {
+	local KEY=$1
+	local CD_PATH=$(pwd)
+
+	if [ ! -f ~/.dev ]; then
+		printf "%s\t%s" "$KEY" "$CD_PATH" > ~/.dev
+	else awk -F "\t" -v "key=$KEY" '{ if ($1 != key) { print $0 } }' ~/.dev > ~/.dev_tmp
+		printf "%s\t%s\n" "$KEY" "$CD_PATH" >> ~/.dev_tmp
+		mv ~/.dev_tmp ~/.dev
+	fi
+}
+
+function dev_delete() {
+	local KEY=$1
+
+	if [ ! -f ~/.dev ]; then
+		return 1
+	fi
+
+	awk -F "\t" -v "key=$KEY" '{ if ($1 != key) { print $0 } }' ~/.dev > ~/.dev_tmp
+	mv ~/.dev_tmp ~/.dev
+}
+
+function dev_cd() {
+	KEY=$1
+	if [ -z "$KEY" ]; then
+		KEY=default
+	fi
+
+	local CD_PATH=$(awk -F "\t" -v "key=$KEY" '{ if ($1 == key) { print $2; exit } }' ~/.dev)
+
+	if [ -z "$CD_PATH" ] || [ ! -d "$CD_PATH" ]; then
+		return 1
+	fi
+
+	cd "$CD_PATH" || return 1
+	echo -en "\033];$KEY\007"
+	pwd
+}
+
+function dev() {
+	while getopts d:s:l OPT
+	do
+		case $OPT in
+			l)
+				cat ~/.dev
+				return 0
+				;;
+			s)
+				dev_set "$OPTARG"
+				return $!
+				;;
+			d)
+				dev_delete "$OPTARG"
+				return $!
+				;;
+		esac
+	done
+	dev_cd $1
+}
+
+function _dev() {
+	local -a CD_LIST
+	CD_LIST=( $(cat ~/.dev | cut -f 1) )
+	_describe "Projects" CD_LIST
+}
+
+compdef _dev dev
+

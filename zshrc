@@ -250,60 +250,7 @@ function title() {
 }
 
 # -- dev command
-function dev() {
-	local MODE KEY OPT OPTARG OPTIND
-	local CD_PATH
-
-	MODE="move"
-	while getopts s:l OPT
-	do
-		case $OPT in
-			s)
-				MODE="set"
-				KEY=$OPTARG
-				;;
-			l)
-				cat ~/.dev
-				return 0
-				;;
-		esac
-	done
-
-	# echo $MODE
-
-	if [ "$MODE" == "set" ]; then
-		CD_PATH=$(pwd)
-		if [ ! -f ~/.dev ]; then
-			echo "$KEY\t$CD_PATH" > ~/.dev
-		else
-			local CD_LIST=$(awk -F "\t" -v "key=$KEY" '{ if ($1 != key) { print $0 } }' ~/.dev)
-			echo "$CD_LIST\n$KEY\t$CD_PATH" > ~/.dev
-		fi
-	else
-		KEY=default
-		if [ -n "$1" ]; then
-			KEY=$1
-		fi
-
-		CD_PATH=$(awk -F "\t" -v "key=$KEY" '{ if ($1 == key) { print $2; exit } }' ~/.dev)
-
-		if [ -z $CD_PATH -o ! -d $CD_PATH ]; then
-			return 1
-		fi
-
-		cd $CD_PATH
-		title $KEY
-		pwd
-	fi
-}
-
-function _dev() {
-	local -a CD_LIST
-	CD_LIST=( $(cat ~/.dev | cut -f 1) )
-	_describe "Projects" CD_LIST
-}
-
-compdef _dev dev
+source ~/.dotfiles/zsh/dev
 
 function print_known_hosts (){
     if [ -f $HOME/.ssh/known_hosts ]; then
