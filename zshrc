@@ -252,7 +252,7 @@ function title() {
 # -- dev command
 function dev() {
 	local MODE KEY OPT OPTARG OPTIND
-	local CD_LIST CD_PATH
+	local CD_PATH
 
 	MODE="move"
 	while getopts s:l OPT
@@ -272,11 +272,12 @@ function dev() {
 	# echo $MODE
 
 	if [ "$MODE" == "set" ]; then
+		CD_PATH=$(pwd)
 		if [ ! -f ~/.dev ]; then
-			echo "$KEY\t$(pwd)" > ~/.dev
+			echo "$KEY\t$CD_PATH" > ~/.dev
 		else
-			CD_LIST=$(cat ~/.dev | grep -v "$KEY")
-			echo "$CD_LIST\n$KEY\t$(pwd)" > ~/.dev
+			local CD_LIST=$(awk -F "\t" -v "key=$KEY" '{ if ($1 != key) { print $0 } }' ~/.dev)
+			echo "$CD_LIST\n$KEY\t$CD_PATH" > ~/.dev
 		fi
 	else
 		KEY=default
