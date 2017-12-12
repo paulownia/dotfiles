@@ -267,7 +267,7 @@ function sacred-war-in-the-eternal-darkness () {
 }
 
 function astoltia-defense-force () {
-	node -p -e "var d=new Date();['闇朱の獣牙兵団','紫炎の鉄機兵団','深碧の造魔兵団','ランダム'][((d.getDay()*24+d.getHours()+1)%7)/2|0];"
+	node ~/.dotfiles/zsh/dq10_df.js $1
 }
 
 
