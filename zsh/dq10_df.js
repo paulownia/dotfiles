@@ -40,11 +40,7 @@ if (0 <= h && h < 24) {
     const d = new Date();
     d.setMinutes(0);
     d.setSeconds(0)
-    const h2 = d.getHours();
-    if (h < h2) {
-        d.setDate(d.getDate() + 1)
-    }
-    d.setHours(h);
+    d.setHours((h < d.getHours()) ? h + 24 : h);
 
     const {current, next, nextAfter} = defenseForce(d);
     console.log(`${d.getMonth() + 1}月${d.getDate()}日${d.getHours()}時の敵は${current}です`);
