@@ -1,13 +1,10 @@
 'use strict';
 
-function c(n, str) {
-    return '\u001b[' + n + 'm' + str + '\u001b[0m';
-}
-
-const magenta = c.bind(null, 35)
-const red = c.bind(null, 31)
-const green = c.bind(null, 32)
-const bold = c.bind(null, 1)
+const [magenta, red, green, bold] = [35, 31, 32, 1].map(n => {
+    return function(str) {
+        return `\u001b[${n}m${str}\u001b[0m`;
+    }
+});
 
 function defenseForce(d = new Date()) {
     const e = [
