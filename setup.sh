@@ -2,7 +2,7 @@
 
 SCRIPT_FILE=${0##*/}
 DOTFILE_RELATIVE_DIR=$(dirname "$0")
-DOTFILE_DIR=$(cd "$DOTFILE_RELATIVE_DIR"; pwd)
+DOTFILE_DIR=$(cd "$DOTFILE_RELATIVE_DIR" && pwd)
 
 
 # --- functions
