@@ -38,7 +38,6 @@ function dev_cd() {
 	fi
 
 	cd "$CD_PATH" || return 1
-	echo -en "\033];$KEY\007"
 	pwd
 }
 
