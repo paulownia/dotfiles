@@ -2,6 +2,7 @@
 
 # loading default bash setting for ubuntu server
 if [ -f "$HOME/.profile" ]; then
+	# shellcheck source=/dev/null
 	. "$HOME/.profile"
 	return
 fi
@@ -33,39 +34,21 @@ export PATH=~/apps/bin:$PATH
 
 # nvm
 if [ -f ~/.nvm/nvm.sh ]; then
-  . ~/.nvm/nvm.sh
+	# shellcheck source=/dev/null
+	. ~/.nvm/nvm.sh
 fi
 
 # rbenv
 if [ -d ~/.rbenv ]; then
-  export PATH=~/.rbenv/bin:$PATH
-  eval "$(rbenv init -)"
+	export PATH=~/.rbenv/bin:$PATH
+	eval "$(rbenv init -)"
 fi
 
 # loading local setting
 if [ -f ~/.bash_local ]; then
-  . ~/.bash_local
+	# shellcheck source=/dev/null
+	. ~/.bash_local
 fi
-
-# functions
-function jl() {
-
-  if [ -p /dev/stdin ]; then
-		if [ -n "$1" ]; then
-		  QL=$1
-    else
-      QL="."
-    fi
-    jq "$QL" -C 2>&1 - | less -R
-  else
-		if [ -n "$2" ]; then
-		  QL=$2
-    else
-      QL="."
-    fi
-    cat "$1" | jq "$QL" -C 2>&1 | less -R
-  fi
-}
 
 # git
 alias git-vimdiff="git difftool --tool=vimdiff --no-prompt"
