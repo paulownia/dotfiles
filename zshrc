@@ -149,13 +149,15 @@ function jl() {
 	local FILE
 
 	if [ -p /dev/stdin ]; then
+		# pipe: cat hoge.json | jl .
 		if [ $# -eq 0 ]; then
 			QUERY="."
 		else
 			QUERY="$1"
 		fi
 		FILE="-"
-	else
+	elif [ -t 0 ]; then
+		# file: jl . hoge.json
 		if [ $# -eq 1 ]; then
 			QUERY="."
 			FILE=$1
@@ -165,6 +167,14 @@ function jl() {
 		else
 			return 1
 		fi
+	else
+		# redirect stdin: jl . <hoge.json
+		if [ $# -eq 0 ]; then
+			QUERY="."
+		else
+			QUERY="$1"
+		fi
+		FILE="-"
 	fi
 
 	jq "$QUERY" -C 2>&1 $FILE | less -R
