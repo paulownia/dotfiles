@@ -8,7 +8,7 @@ alias here="open ."
 alias home="open ~/"
 alias edit="open -a CotEditor"
 alias al="ag --pager 'less -R'"
-
+alias twitter="open -na 'Google Chrome' --args --app=https://mobile.twitter.com/"
 
 # for svn and git editor
 export EDITOR=vim
