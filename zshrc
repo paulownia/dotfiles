@@ -280,6 +280,10 @@ function astoltia-defense-force () {
 	node ~/.dotfiles/zsh/dq10_df.js $1
 }
 
+function record-of-the-holy-gardians-war () {
+	node -p -e "Math.trunc((Date.now() - 1523480400000) / 86400000) % 2 + 1"
+}
+
 
 # Use local mocha if mocha is not installed in global
 if ! isInstalled mocha; then
