@@ -281,7 +281,9 @@ function astoltia-defense-force () {
 }
 
 function record-of-the-holy-gardians-war () {
-	node -p -e "Math.trunc((Date.now() - 1523480400000) / 86400000) % 2 + 1"
+	local millis_for_a_day=86400000
+	local base_point=1524171600000  # 2016-04-20 06:00:00
+	node -p -e "Math.trunc((Date.now() - ${base_point}) / ${millis_for_a_day}) % 3 + 1"
 }
 
 
