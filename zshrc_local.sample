@@ -1,19 +1,17 @@
 #
 # vim: set ft=zsh :
 
-# for homebrew
+# for github api calling by homebrew
 export HOMEBREW_GITHUB_API_TOKEN=your_github_api_key
-
-# nvm setting
-if [ -f ~/.nvm/nvm.sh ]; then
-	nvm use v6
-fi
 
 # aws sdk
 export PATH=$PATH:~/.local/lib/aws/bin
 
 # brewed commands first
 export PATH=/usr/local/bin:$PATH
+
+# postgresql cli
+export PATH=$PATH:/Library/PostgreSQL/10/bin
 
 # The next line updates PATH for the Google Cloud SDK.
 source '/Users/xxxxx/google-cloud-sdk/path.zsh.inc'
@@ -23,3 +21,17 @@ source '/Users/xxxxx/google-cloud-sdk/completion.zsh.inc'
 
 # to play nyan voice
 function nyan() { afplay ~/Music/nyan.mp4; }
+
+# setting golang
+if isInstalled go;  then
+	export GOPATH=$HOME/go
+	export PATH=$PATH:$GOPATH/bin
+fi
+
+# setting node.js by nvm
+if [ -f ~/.nvm/nvm.sh ]; then
+	nvm use v8
+fi
+
+# aliasing github enterprise
+alias ghe='GITHUB_HOST=your.github.enterprise.site.domain hub'
