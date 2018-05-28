@@ -1,6 +1,6 @@
 'use strict';
 
-const [magenta, red, green, bold] = [35, 31, 32, 1].map(n => {
+const [magenta, red, green, blue, bold] = [35, 31, 32, 34, 1].map(n => {
     return function(str) {
         return `\u001b[${n}m${str}\u001b[0m`;
     }
@@ -11,16 +11,21 @@ function defenseForce(d = new Date()) {
         red`闇朱の獣牙兵団`,
         magenta`紫炎の鉄機兵団`,
         green`深碧の造魔兵団`,
+        // blue`蒼炎の屍獄兵団`,
         bold`ランダム`];
-    const min = (d.getDay() * 1440 + d.getHours() * 60 + d.getMinutes() + 60) % 420;
+
+    const pattern = e.length;
+    const timeSpan = (pattern - 1) * 120 + 60;
+
+    const min = (d.getDay() * 1440 + d.getHours() * 60 + d.getMinutes() + 60) % timeSpan;
 
     const current = (min / 120) | 0;
-    const next = (current + 1) % 4;
+    const next = (current + 1) % pattern;
 
     return {
         current: e[current],
         next: e[next],
-        nextAfter: (current === 3) ? 60 - min % 60 : 120 - min % 120
+        nextAfter: (current === pattern - 1) ? 60 - min % 60 : 120 - min % 120
     };
 }
 
