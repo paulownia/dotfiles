@@ -11,13 +11,13 @@ function defenseForce(d = new Date()) {
         red`闇朱の獣牙兵団`,
         magenta`紫炎の鉄機兵団`,
         green`深碧の造魔兵団`,
-        // blue`蒼炎の屍獄兵団`,
+        blue`蒼炎の屍獄兵団`,
         bold`ランダム`];
 
     const pattern = e.length;
     const timeSpan = (pattern - 1) * 120 + 60;
 
-    const min = (d.getDay() * 1440 + d.getHours() * 60 + d.getMinutes() + 60) % timeSpan;
+    const min = (d.getDay() * 1440 + d.getHours() * 60 + d.getMinutes() + 360) % timeSpan;
 
     const current = (min / 120) | 0;
     const next = (current + 1) % pattern;
