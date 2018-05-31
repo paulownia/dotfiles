@@ -17,7 +17,7 @@ function defenseForce(d = new Date()) {
     const pattern = e.length;
     const timeSpan = (pattern - 1) * 120 + 60;
 
-    const min = (d.getDay() * 1440 + d.getHours() * 60 + d.getMinutes() + 360) % timeSpan;
+    const min = (((d.getTime() - 1527616800000) / 60000) | 0) % timeSpan;
 
     const current = (min / 120) | 0;
     const next = (current + 1) % pattern;

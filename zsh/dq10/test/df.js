@@ -6,4 +6,16 @@ test(t => {
     t.true(x.current.includes('闇朱の獣牙兵団'));
     t.true(x.next.includes('紫炎の鉄機兵団'));
     t.is(x.nextAfter, 57);
-})
+});
+test(t => {
+    const x = df.defenseForce(new Date('2018-06-01 00:00:00'));
+    t.true(x.current.includes('闇朱の獣牙兵団'));
+    t.true(x.next.includes('紫炎の鉄機兵団'));
+    t.is(x.nextAfter, 120);
+});
+test(t => {
+    const x = df.defenseForce(new Date('2018-06-13 00:00:00'));
+    t.true(x.current.includes('闇朱の獣牙兵団'));
+    t.true(x.next.includes('紫炎の鉄機兵団'));
+    t.is(x.nextAfter, 120);
+});
