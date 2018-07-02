@@ -104,14 +104,27 @@ zstyle ':completion:*' group-name ''
 
 
 # nvm
+export NVM_DIR="$HOME/.nvm"
+
 if [ -f ~/.nvm/nvm.sh ]; then
+	# installed manually
 	source ~/.nvm/nvm.sh
 
+elif [ -f /usr/local/opt/nvm/nvm.sh ]; then
+	# installed by homebrew
+	if [ ! -d $HOME/.nvm ]; then
+		mkdir $HOME/.nvm
+	fi
+	source /usr/local/opt/nvm/nvm.sh
+fi
+
+if isInstalled npm; then
 	if [ ! -f ~/.npm_completion ]; then
 		npm completion > ~/.npm_completion
 	fi
 	source ~/.npm_completion
 fi
+
 
 # rbenv
 if [ -d ~/.rbenv ]; then
