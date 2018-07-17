@@ -134,8 +134,12 @@ fi
 
 # rbenv
 if [ -d ~/.rbenv ]; then
-	export PATH=~/.rbenv/bin:$PATH
 	eval "$(rbenv init - zsh)"
+fi
+
+# pyenv
+if [ -d ~/.pyenv ]; then
+	eval "$(pyenv init -)"
 fi
 
 # loading local setting
