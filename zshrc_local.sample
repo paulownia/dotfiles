@@ -4,13 +4,10 @@
 # for github api calling by homebrew
 export HOMEBREW_GITHUB_API_TOKEN=your_github_api_key
 
-# aws sdk
+# add path to aws-sdk bin
 export PATH=$PATH:~/.local/lib/aws/bin
 
-# brewed commands first
-export PATH=/usr/local/bin:$PATH
-
-# postgresql cli
+# add path to postgresql cli
 export PATH=$PATH:/Library/PostgreSQL/10/bin
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -28,10 +25,18 @@ if isInstalled go;  then
 	export PATH=$PATH:$GOPATH/bin
 fi
 
+# auto cd to golang project
+if [[ -n $GOPATH ]]; then
+	export cdpath=($GOAPTH/src/github.com/your_github_user/ $cdpath)
+fi
+
 # setting node.js by nvm
 if [ -f ~/.nvm/nvm.sh ]; then
 	nvm use v8
 fi
 
-# aliasing github enterprise
+# make alias of hub using github enterprise
 alias ghe='GITHUB_HOST=your.github.enterprise.site.domain hub'
+
+
+
