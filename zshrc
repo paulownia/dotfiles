@@ -103,6 +103,12 @@ zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*' group-name ''
 
 
+# settings for java
+if [[ -e /usr/libexec/java_home ]]; then
+	export JAVA_HOME=$(/usr/libexec/java_home)
+fi
+
+
 # nvm
 export NVM_DIR="$HOME/.nvm"
 
