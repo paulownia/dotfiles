@@ -19,7 +19,7 @@ source '/Users/xxxxx/google-cloud-sdk/completion.zsh.inc'
 # to play nyan voice
 function nyan() { afplay ~/Music/nyan.mp4; }
 
-# setting golang
+# settings for golang
 if isInstalled go;  then
 	export GOPATH=$HOME/go
 	export PATH=$PATH:$GOPATH/bin
@@ -30,13 +30,10 @@ if [[ -n $GOPATH ]]; then
 	export cdpath=($GOAPTH/src/github.com/your_github_user/ $cdpath)
 fi
 
-# setting node.js by nvm
+# settings for node.js
 if [ -f ~/.nvm/nvm.sh ]; then
 	nvm use v8
 fi
 
 # make alias of hub using github enterprise
 alias ghe='GITHUB_HOST=your.github.enterprise.site.domain hub'
-
-
-
