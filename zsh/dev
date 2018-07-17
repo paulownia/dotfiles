@@ -38,6 +38,9 @@ function dev_cd() {
 	fi
 
 	cd "$CD_PATH" || return 1
+
+	title $KEY
+
 	pwd
 }
 
