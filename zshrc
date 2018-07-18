@@ -134,7 +134,7 @@ fi
 
 # rbenv
 if [ -d ~/.rbenv ]; then
-	eval "$(rbenv init - zsh)"
+	eval "$(rbenv init -)"
 fi
 
 # pyenv
