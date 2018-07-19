@@ -62,7 +62,7 @@ alias -s txt="edit"
 
 function isInstalled() {
 	if [ $# -ne 1 ]; then
-		return 1
+		return 2
 	fi
 
 	type "$1" 1>/dev/null 2>/dev/null
@@ -71,6 +71,15 @@ function isInstalled() {
 
 
 function isBrewed() {
+	if [ $# -ne 1 ]; then
+		return 2
+	fi
+
+	test -e "/usr/local/bin/$1";
+	return $?
+}
+
+function checkCommand() {
 	if [ $# -ne 1 ]; then
 		return 2
 	fi
@@ -159,18 +168,18 @@ if [ -f ~/.zshrc_local ]; then
 fi
 
 # enable direnv
-if isBrewed direnv; then
+if checkCommand direnv; then
 	eval "$(direnv hook zsh)"
 fi
 
 # alias for hub command
-if isBrewed hub; then
+if checkCommand hub; then
    eval "$(hub alias -s)"
 fi
 
 # functions
 function jl() {
-	if ! isBrewed jq; then
+	if ! checkCommand jq; then
 		return 1
 	fi
 
@@ -211,7 +220,7 @@ function jl() {
 
 # launchctl
 function launchctl-start() {
-	if ! isBrewed peco; then
+	if ! checkCommand peco; then
 		return 1
 	fi
 
@@ -226,7 +235,7 @@ function launchctl-start() {
 }
 
 function launchctl-stop() {
-	if ! isBrewed peco; then
+	if ! checkCommand peco; then
 		return 1
 	fi
 
@@ -259,7 +268,7 @@ precmd () {
 
 # find and cd
 function fcd() {
-	if ! isBrewed peco; then
+	if ! checkCommand peco; then
 		return 1
 	fi
 
