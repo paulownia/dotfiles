@@ -4,12 +4,6 @@
 # for github api calling by homebrew
 export HOMEBREW_GITHUB_API_TOKEN=your_github_api_key
 
-# add path to aws-sdk bin
-export PATH=$PATH:~/.local/lib/aws/bin
-
-# add path to postgresql cli
-export PATH=$PATH:/Library/PostgreSQL/10/bin
-
 # The next line updates PATH for the Google Cloud SDK.
 source '/Users/xxxxx/google-cloud-sdk/path.zsh.inc'
 
@@ -20,8 +14,8 @@ source '/Users/xxxxx/google-cloud-sdk/completion.zsh.inc'
 function nyan() { afplay ~/Music/nyan.mp4; }
 
 # settings for node.js
-if [ -f ~/.nvm/nvm.sh ]; then
-	nvm use v8
+if isInstalled nvm; then
+	nvm use v10
 fi
 
 # make alias of hub using github enterprise
