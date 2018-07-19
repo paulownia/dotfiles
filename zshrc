@@ -13,9 +13,6 @@ alias twitter="open -na 'Google Chrome' --args --app=https://mobile.twitter.com/
 # for svn and git editor
 export EDITOR=vim
 
-# java
-alias javac="javac -J-Dfile.encoding=UTF-8"
-alias java="java -Dfile.encoding=UTF-8"
 
 # brew extra path
 export PATH=/usr/local/sbin:$PATH
@@ -113,9 +110,12 @@ zstyle ':completion:*' group-name ''
 
 
 # settings for java
-if [[ -e /usr/libexec/java_home ]]; then
-	export JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME=$(/usr/libexec/java_home)
+if [[ -n $JAVA_HOME ]]; then
+	alias javac="javac -J-Dfile.encoding=UTF-8"
+	alias java="java -Dfile.encoding=UTF-8"
 fi
+
 
 # vim
 if isBrewed vim; then
