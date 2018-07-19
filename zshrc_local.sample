@@ -19,17 +19,6 @@ source '/Users/xxxxx/google-cloud-sdk/completion.zsh.inc'
 # to play nyan voice
 function nyan() { afplay ~/Music/nyan.mp4; }
 
-# settings for golang
-if isInstalled go;  then
-	export GOPATH=$HOME/go
-	export PATH=$PATH:$GOPATH/bin
-fi
-
-# auto cd to golang project
-if [[ -n $GOPATH ]]; then
-	export cdpath=($GOAPTH/src/github.com/your_github_user/ $cdpath)
-fi
-
 # settings for node.js
 if [ -f ~/.nvm/nvm.sh ]; then
 	nvm use v8

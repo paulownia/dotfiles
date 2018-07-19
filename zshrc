@@ -131,6 +131,12 @@ if isInstalled npm; then
 	source ~/.npm_completion
 fi
 
+# golang
+if isInstalled go;  then
+	export GOPATH=$HOME/go
+	export PATH=$PATH:$GOPATH/bin
+	export cdpath=($GOAPTH/src/github.com/your_github_user/ $cdpath)
+fi
 
 # rbenv
 if [ -d ~/.rbenv ]; then
