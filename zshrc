@@ -117,6 +117,11 @@ if [[ -e /usr/libexec/java_home ]]; then
 	export JAVA_HOME=$(/usr/libexec/java_home)
 fi
 
+# vim
+if isBrewed vim; then
+	alias vi=/usr/local/bin/vim
+fi
+
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
