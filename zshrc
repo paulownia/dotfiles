@@ -149,7 +149,6 @@ fi
 if isInstalled go;  then
 	export GOPATH=$HOME/go
 	export PATH=$PATH:$GOPATH/bin
-	export cdpath=($GOAPTH/src/github.com/your_github_user/ $cdpath)
 fi
 
 # rbenv
