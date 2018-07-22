@@ -1,1 +1,1 @@
-module.exports = require('./lib/df')
+module.exports.defenceForce = require('./lib/defence_force');

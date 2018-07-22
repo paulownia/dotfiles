@@ -6,7 +6,7 @@ const [magenta, red, green, blue, bold] = [35, 31, 32, 34, 1].map(n => {
     };
 });
 
-function defenseForce(d = new Date()) {
+function getCurrent(d = new Date()) {
     const e = [
         red`闇朱の獣牙兵団`,
         magenta`紫炎の鉄機兵団`,
@@ -29,11 +29,11 @@ function defenseForce(d = new Date()) {
     };
 }
 
-module.exports.defenseForce = defenseForce;
+module.exports.getCurrent = getCurrent;
 
 function printEnemy(arg) {
     if (arg == null) {
-        const {current, next, nextAfter} = defenseForce();
+        const {current, next, nextAfter} = getCurrent();
         puts(`現在の敵は${current}です`);
         puts(`${nextAfter}分後に${next}に変わります`);
         process.exit(0);
@@ -46,7 +46,7 @@ function printEnemy(arg) {
         d.setSeconds(0);
         d.setHours((h < d.getHours()) ? h + 24 : h);
 
-        const {current, next, nextAfter} = defenseForce(d);
+        const {current, next, nextAfter} = getCurrent(d);
         puts(`${d.getMonth() + 1}月${d.getDate()}日${d.getHours()}時の敵は${current}です`);
         d.setMinutes(nextAfter + d.getMinutes());
         puts(`${d.getHours()}時に${next}に変わります`);

@@ -1,1 +1,1 @@
-require('./dq10').printEnemy(process.argv[2]);
+require('./dq10').defenceForce.printEnemy(process.argv[2]);
