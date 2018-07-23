@@ -2,13 +2,7 @@
 # vim: set ft=zsh :
 
 # for github api calling by homebrew
-export HOMEBREW_GITHUB_API_TOKEN=your_github_api_key
-
-# add path to aws-sdk bin
-export PATH=$PATH:~/.local/lib/aws/bin
-
-# add path to postgresql cli
-export PATH=$PATH:/Library/PostgreSQL/10/bin
+export HOMEBREW_GITHUB_API_TOKEN=**your_github_api_key**
 
 # The next line updates PATH for the Google Cloud SDK.
 source '/Users/xxxxx/google-cloud-sdk/path.zsh.inc'
@@ -19,21 +13,15 @@ source '/Users/xxxxx/google-cloud-sdk/completion.zsh.inc'
 # to play nyan voice
 function nyan() { afplay ~/Music/nyan.mp4; }
 
-# settings for golang
-if isInstalled go;  then
-	export GOPATH=$HOME/go
-	export PATH=$PATH:$GOPATH/bin
-fi
-
-# auto cd to golang project
-if [[ -n $GOPATH ]]; then
-	export cdpath=($GOAPTH/src/github.com/your_github_user/ $cdpath)
-fi
-
 # settings for node.js
-if [ -f ~/.nvm/nvm.sh ]; then
-	nvm use v8
+if isInstalled nvm; then
+	nvm use v10
+fi
+
+# add your golang project on github to the auto cd path
+if [[ -n $GOPATH ]]; then
+	export cdpath=("$GOPATH/src/github.com/**your_github_account**")
 fi
 
 # make alias of hub using github enterprise
-alias ghe='GITHUB_HOST=your.github.enterprise.site.domain hub'
+alias ghe='GITHUB_HOST=**your.github.enterprise.site.domain** hub'
