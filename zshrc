@@ -309,6 +309,9 @@ function record-of-the-holy-gardians-war () {
 	node -p -e "Math.trunc((Date.now() - ${base_point}) / ${millis_for_a_day}) % 3 + 1"
 }
 
+function astoltia-standard-time() {
+	node ~/.dotfiles/zsh/dq10_ast.js
+}
 
 # Use local mocha if mocha is not installed in global
 if ! isInstalled mocha; then
