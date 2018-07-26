@@ -20,7 +20,7 @@ fi
 
 # add your golang project on github to the auto cd path
 if [[ -n $GOPATH ]]; then
-	export cdpath=("$GOPATH/src/github.com/**your_github_account**")
+	export cdpath=("$GOPATH/src/github.com/**your_github_account**" $cdpath)
 fi
 
 # make alias of hub using github enterprise
