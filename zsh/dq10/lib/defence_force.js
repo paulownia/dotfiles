@@ -7,25 +7,28 @@ const [magenta, red, green, blue, bold] = [35, 31, 32, 34, 1].map(n => {
 });
 
 function getCurrent(d = new Date()) {
-    const e = [
-        red`闇朱の獣牙兵団`,
-        magenta`紫炎の鉄機兵団`,
-        green`深碧の造魔兵団`,
-        blue`蒼炎の屍獄兵団`,
-        bold`ランダム`];
+    const b = blue`蒼怨の屍獄兵団`;
+    const r = red`闇朱の獣牙兵団`;
+    const m = magenta`紫炎の鉄機兵団`;
+    const g = green`深碧の造魔兵団`;
+    const k = bold`ランダム`;
 
-    const pattern = e.length;
-    const timeSpan = (pattern - 1) * 120 + 60;
+    const e = [b, m, g, b, k, k, r];
+    const timeSpan = 60;
 
-    const min = (((d.getTime() - 1527616800000) / 60000) | 0) % timeSpan;
+    const current = ((d.getDay() * 24) + d.getHours()) % e.length;
 
-    const current = (min / 120) | 0;
-    const next = (current + 1) % pattern;
+    let nextAfter = 60 - d.getMinutes();
+    let next = (current + 1) % e.length;
+    if (e[current] === e[next]) {
+        next = (current + 2) % e.length;
+        nextAfter = nextAfter + 60;
+    }
 
     return {
         current: e[current],
         next: e[next],
-        nextAfter: (current === pattern - 1) ? 60 - min % 60 : 120 - min % 120
+        nextAfter: nextAfter
     };
 }
 
