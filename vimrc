@@ -238,27 +238,6 @@ nmap # <Plug>(anzu-sharp-with-echo)
 nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
 
 
-"" --- Syntastic
-" JavaScript / eslintを使う
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_auto_loc_list = 1
-
-" C++ / include pathを指定
-let g:syntastic_cpp_include_dirs = [ 'include/']
-let g:syntastic_cpp_check_header = 1
-let g:syntastic_cpp_remove_include_errors = 1
-
-" Java / javac設定
-let g:syntastic_java_javac_options = '-Xlint -J-Dfile.encoding=UTF-8'
-" let g:syntastic_java_javac_delete_output = 0
-" let g:syntastic_java_javac_temp_dir = '/tmp'
-
-" HTML / Angularの属性をチェックしない
-let g:syntastic_html_tidy_ignore_errors=[' proprietary attribute "ng-']
-
-" json
-let g:syntastic_json_checkers=['jsonlint']
-
 "" --- QuickRun
 " 結果を上下分割で表示
 let g:quickrun_config = {}
