@@ -304,3 +304,6 @@ if has('conceal')
 	set conceallevel=2 concealcursor=i
 endif
 
+if filereadable(expand('~/.vimrc_local'))
+	source ~/.vimrc_local
+endif

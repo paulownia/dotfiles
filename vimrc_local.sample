@@ -1,0 +1,2 @@
+" ruby / syntax check by rubocop
+let g:syntastic_ruby_checkers = ['rubocop']
