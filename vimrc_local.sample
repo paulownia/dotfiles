@@ -22,3 +22,10 @@ let g:syntastic_html_tidy_ignore_errors=[' proprietary attribute "ng-']
 
 " json
 let g:syntastic_json_checkers=['jsonlint']
+
+
+""" -- ale
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'json': ['jsonlint'],
+\}

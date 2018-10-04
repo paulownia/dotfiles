@@ -3,7 +3,6 @@ if filereadable('$VIMRUNTIME/defaults.vim')
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/syntastic'
 Plug 'mattn/emmet-vim'
 Plug 'Shougo/unite.vim'
 Plug 'tpope/vim-fugitive'
@@ -36,6 +35,12 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go'
+
+if has('job') && has('channel') && has('timers')
+	Plug 'w0rp/ale'
+else
+	Plug 'scrooloose/syntastic'
+endif
 
 if has('lua')
 	Plug 'Shougo/neocomplete'
