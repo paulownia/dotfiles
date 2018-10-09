@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 
 SCRIPT_FILE=${0##*/}
 DOTFILE_RELATIVE_DIR=$(dirname "$0")
