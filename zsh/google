@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+function google() {
+	if [[ ${#*} -eq 0 ]]; then return 1; fi
+	Q=$(node -p -e 'encodeURIComponent(process.argv.slice(1).join(" "))' $*)
+	#Q=$(echo "$*" | nkf -WwMQ | tr = %)
+	#Q=$(echo "${(j/%20/)*}")
+	open "https://www.google.com/search?q=$Q"
+}

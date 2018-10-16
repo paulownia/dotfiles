@@ -301,6 +301,9 @@ function title() {
 	echo -en "\033];$1\007"
 }
 
+# -- google search
+source ~/.dotfiles/zsh/google
+
 # -- dev command
 source ~/.dotfiles/zsh/dev
 
