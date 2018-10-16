@@ -1,8 +1,6 @@
 # if you type "brew bundle --global", homebrew uses .Brewfile
 
-brew "ansible"
 brew "gnupg"
-brew "mysql"
 brew "nvm"
 brew "peco"
 brew "rbenv"
@@ -15,3 +13,7 @@ brew "vim"
 brew "jq"
 brew "shellcheck"
 brew "jsonlint"
+brew "hub"
+
+# brew "mysql"
+# brew "ansible"
