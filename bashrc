@@ -7,8 +7,8 @@ if [ -f "$HOME/.bash_profile" ]; then
 	. "$HOME/.bash_profile"
 fi
 
-c_blue="\\[[0;34m\\]"
-c_magenta="\\[[0;35m\\]"
-c_bright_yellow="\\[[0;33;1m\\]"
-c_default="\\[[m\\]"
-PS1="${c_magenta}\\u@\\h${c_default}:${c_blue}\\w${c_default} ${c_bright_yellow}bash${c_default}\$ "
+c_blue="[34m"
+c_magenta="[35m"
+c_bold_yellow="[1;33m"
+c_reset="[m"
+PS1="${c_magenta}\\u@\\h${c_reset}:${c_blue}\\w${c_reset} ${c_bold_yellow}bash${c_reset}\$ "
