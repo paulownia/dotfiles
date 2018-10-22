@@ -56,6 +56,7 @@ alias -s rb="ruby"
 alias -s js="node"
 alias -s txt="edit"
 
+alias bash="HISTFILE=${HOME}/.bash_history /bin/bash"
 
 function isInstalled() {
 	if [ $# -ne 1 ]; then
