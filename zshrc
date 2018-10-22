@@ -9,6 +9,7 @@ alias home="open ~/"
 alias edit="open -a CotEditor"
 alias al="ag --pager 'less -R'"
 alias twitter="open -na 'Google Chrome' --args --app=https://mobile.twitter.com/"
+alias bash="HISTFILE=${HOME}/.bash_history /bin/bash"
 
 # for svn and git editor
 export EDITOR=vim
@@ -55,8 +56,6 @@ bindkey -v '' history-incremental-search-backward
 alias -s rb="ruby"
 alias -s js="node"
 alias -s txt="edit"
-
-alias bash="HISTFILE=${HOME}/.bash_history /bin/bash"
 
 function isInstalled() {
 	if [ $# -ne 1 ]; then
