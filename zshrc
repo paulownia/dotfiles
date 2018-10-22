@@ -293,6 +293,11 @@ function fcd() {
 	cd $RESULT
 }
 
+# find regular files (excludes invisible files)
+funcrion ff() {
+	mdfind -onlyin . "(kMDItemFSName == $1)"
+}
+
 function title() {
 	if [ -z "$1" ]; then
 		return 1;
