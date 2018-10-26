@@ -298,6 +298,13 @@ function ff() {
 	mdfind -onlyin . -name "$1"
 }
 
+function fvi() {
+	local F=$(ff "$1" | peco)
+	if [[ -n $F ]]; then
+		vi $F
+	fi
+}
+
 function title() {
 	if [ -z "$1" ]; then
 		return 1;
