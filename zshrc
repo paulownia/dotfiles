@@ -294,8 +294,8 @@ function fcd() {
 }
 
 # find regular files (excludes invisible files)
-funcrion ff() {
-	mdfind -onlyin . "(kMDItemFSName == $1)"
+function ff() {
+	mdfind -onlyin . -name "$1"
 }
 
 function title() {
