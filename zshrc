@@ -330,7 +330,7 @@ _cache_hosts=($(print_known_hosts))
 function sacred-war-in-the-eternal-darkness () {
 	local millis_for_a_day=86400000
 	local base_point=1467752400000   # 2016-07-06 06:00:00
-	node -p -e "var d=(Date.now()-${base_point})/${millis_for_a_day}|0;JSON.stringify({レグナード: (d+2)%4+1, ダークキング: (d%4)+1,メイヴ: (d-1)%4+1});"
+	node -p -e "var d=(Date.now()-${base_point})/${millis_for_a_day}|0;JSON.stringify({レグナード: (d+2)%4+1, ダークキング: (d%4)+1,メイヴ: (d+3)%4+1});"
 }
 
 function astoltia-defense-force () {
@@ -340,7 +340,7 @@ function astoltia-defense-force () {
 function record-of-the-holy-gardians-war () {
 	local millis_for_a_day=86400000
 	local base_point=1524171600000  # 2016-04-20 06:00:00
-	node -p -e "Math.trunc((Date.now() - ${base_point}) / ${millis_for_a_day}) % 3 + 1"
+	node -p -e "var d=(Date.now()-${base_point})/${millis_for_a_day}|0;JSON.stringify({レギルラッゾたち: d%3+1, スコルパイド: (d+2)%3+1});"
 }
 
 function astoltia-standard-time() {
