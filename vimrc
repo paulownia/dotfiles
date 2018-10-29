@@ -35,6 +35,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go'
+Plug 'AndrewRadev/switch.vim'
 
 if has('job') && has('channel') && has('timers')
 	Plug 'w0rp/ale'

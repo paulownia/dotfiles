@@ -18,10 +18,7 @@ function print(jst = new Date()) {
 
     // フォーマットして出力
     const pad = function(s, ...v) {
-        return s.reduce((r, e, i) => {
-            r = r + v[i - 1].toString().padStart(2, '0') + e;
-            return r;
-        });
+        return String.raw(s, ...v.map(i => i.toString().padStart(2, '0')));
     };
     const h = ast.getHours();
     const m = ast.getMinutes();
