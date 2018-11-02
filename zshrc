@@ -310,7 +310,7 @@ function title() {
 		return 1;
 	fi
 
-	echo -en "\033];$1\007"
+	echo -en "\033];$@\007"
 }
 
 # -- google search
