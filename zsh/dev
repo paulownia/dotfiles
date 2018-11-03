@@ -11,7 +11,8 @@ function dev_save() {
 	else awk -F "\t" -v "key=$KEY" '{ if ($1 != key) { print $0 } }' ~/.dev > ~/.dev_tmp
 		printf "%s\t%s\n" "$KEY" "$CD_PATH" >> ~/.dev_tmp
 		mv ~/.dev_tmp ~/.dev
-	fi }
+	fi
+}
 
 function dev_delete() {
 	local KEY=$1
