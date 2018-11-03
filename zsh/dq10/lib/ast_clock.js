@@ -23,22 +23,23 @@ function print(jst = new Date()) {
     const h = ast.getHours();
     const m = ast.getMinutes();
     const s = ast.getSeconds();
+    const {minutes, next} = calcMinutesToNext(h, m ,s);
 
-    // eslint-disable-next-line no-console
+    /* eslint-disable no-console */
     console.log(pad`現在のアストルティア時刻は${h}時${m}分${s}秒`);
-
-    let t = 0;
-    if (6 <= h && h < 18) {
-        t = Math.round(((18 - h) * 3600 - m * 60 - s) / 1200);
-
-        // eslint-disable-next-line no-console
-        console.log(`約${t}分で夜になります`);
-    } else {
-        const xh = (h + 6) % 24;
-        t = Math.round(((12 - xh) * 3660 - m * 60 - s) / 1200);
-
-        // eslint-disable-next-line no-console
-        console.log(`約${t}分で朝になります`);
-    }
+    console.log(`約${minutes}分で${next}になります`);
+    /* eslint-enable no-console */
 }
 module.exports.print = print;
+
+function calcMinutesToNext(h, m, s) {
+    const next = (6 <= h && h < 18) ? '夜' : '朝';
+
+    const dh = (29 - h) % 12 + 1;
+    const minutes = Math.round((dh * 3600 - m * 60 - s) / 1200);
+
+    return {minutes, next};
+}
+
+module.exports.calcMinutesToNext = calcMinutesToNext;
+
