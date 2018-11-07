@@ -7,23 +7,14 @@ if [ -f "$HOME/.profile" ]; then
 	return
 fi
 
-# basic aliases
-alias ls="ls -G"
-alias ll="ls -lF"
-alias la="ls -A"
-alias here="open ."
-alias home="open ~/"
-alias edit="open -a CotEditor"
-alias al="ag --pager 'less -R'"
+# loading custom bash settings
+if [ -f "$HOME/.bashrc" ]; then
+	# shellcheck source=/dev/null
+	. "$HOME/.bashrc"
+fi
 
-PS1="\[[0;35m\]\u@\h\[[m\]:\[[0;34m\]\w\[[m\] \$ "
+PS1="\\[[0;35m\\]\\u@\\h\\[[m\\]:\\[[0;34m\\]\\w\\[[m\\] \$ "
 
-# for svn and git editor
-export EDITOR=vim
-
-# java
-alias javac="javac -J-Dfile.encoding=UTF-8"
-alias java="java -Dfile.encoding=UTF-8"
 
 # homebrew path
 export PATH=/usr/local/bin:$PATH
@@ -40,7 +31,6 @@ fi
 
 # rbenv
 if [ -d ~/.rbenv ]; then
-	export PATH=~/.rbenv/bin:$PATH
 	eval "$(rbenv init -)"
 fi
 
@@ -50,5 +40,3 @@ if [ -f ~/.bash_local ]; then
 	. ~/.bash_local
 fi
 
-# git
-alias git-vimdiff="git difftool --tool=vimdiff --no-prompt"
