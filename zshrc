@@ -14,7 +14,6 @@ alias bash="HISTFILE=${HOME}/.bash_history /bin/bash"
 # for svn and git editor
 export EDITOR=vim
 
-
 # brew extra path
 export PATH=/usr/local/sbin:$PATH
 
@@ -32,8 +31,9 @@ case "${OSTYPE}" in
 esac
 export HISTFILE=${HOME}/.zsh_history
 export HISTSIZE=1000
-export SAVEHIST=1000
-setopt hist_ignore_dups
+export SAVEHIST=10000
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
 setopt EXTENDED_HISTORY
 setopt AUTO_CD
 
