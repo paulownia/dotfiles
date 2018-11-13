@@ -1,7 +1,7 @@
 # vim: set ft=zsh :
 
 # basic aliases
-alias ls="ls -G"
+alias ls=" ls -G"
 alias ll="ls -lF"
 alias la="ls -A"
 alias here="open ."
