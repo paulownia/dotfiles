@@ -4,7 +4,11 @@
 		"es6": true,
 		"browser": true,
 		"node": true,
-		"mocha": true
+		"mocha": true,
+		"mongo": true
+	},
+	"parserOptions": {
+		"ecmaVersion": 9
 	},
 	"rules": {
 		"semi": 2,
@@ -15,5 +19,6 @@
 		"no-spaced-func": 2,
 		"block-spacing": 2,
 		"indent": ["error", 2]
+		"no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
 	}
 }
