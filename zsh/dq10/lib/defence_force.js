@@ -1,6 +1,6 @@
 'use strict';
 
-const [magenta, red, green, blue, bold] = [35, 31, 32, 34, 1].map(n => {
+const [magenta, red, green, blue, silver, bold] = [35, 31, 32, 34, 33, 1].map(n => {
     return function(str) {
         return `\u001b[${n}m${str}\u001b[0m`;
     };
@@ -11,10 +11,10 @@ function getCurrent(d = new Date()) {
     const r = red`闇朱の獣牙兵団`;
     const m = magenta`紫炎の鉄機兵団`;
     const g = green`深碧の造魔兵団`;
+    const s = silver`銀甲の凶蟲兵団`;
     const k = bold`ランダム`;
 
-    const e = [b, m, g, b, k, k, r];
-    const timeSpan = 60;
+    const e = [m, s, g, b, s, k, r];
 
     const current = ((d.getDay() * 24) + d.getHours()) % e.length;
 
