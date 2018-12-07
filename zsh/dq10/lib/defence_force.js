@@ -1,34 +1,64 @@
 'use strict';
 
-const [magenta, red, green, blue, silver, bold] = [35, 31, 32, 34, 33, 1].map(n => {
-  return function(str) {
-    return `\u001b[${n}m${str}\u001b[0m`;
-  };
-});
+const 獣 = '闇朱の獣牙兵団';
+const マシン = '紫炎の鉄機兵団';
+const ゴーレム = '深碧の造魔兵団';
+const ゾンビ ='蒼怨の屍獄兵団';
+const 虫 = '銀甲の凶蟲兵団';
+const ランダム = 'ランダム';
+
+const nameToAnsiColorCode = {
+  [獣]: 31,        // red
+  [マシン]: 35,    // magenta
+  [ゴーレム]: 32,  // green
+  [ゾンビ]: 34,    // blue
+  [虫]: 33,        // yellow
+  [ランダム]: 1    // bolf
+};
+
+// サイクル、日曜日の0時スタートでサイクルを定義、1時間毎の敵を記述
+const cycle = [
+  マシン,
+  虫,
+  ゴーレム,
+  ゾンビ,
+  虫,
+  ランダム,
+  獣,
+];
+
+function printColor(strings, ...values) {
+  const colored = values.map(val => {
+    const code = nameToAnsiColorCode[val];
+    if (code) {
+      return `\u001b[${code}m${val}\u001b[0m`;
+    } else {
+      return val;
+    }
+  });
+  process.stdout.write(String.raw(strings, ...colored));
+  process.stdout.write('\n');
+}
 
 function getCurrent(d = new Date()) {
-  const b = blue`蒼怨の屍獄兵団`;
-  const r = red`闇朱の獣牙兵団`;
-  const m = magenta`紫炎の鉄機兵団`;
-  const g = green`深碧の造魔兵団`;
-  const s = silver`銀甲の凶蟲兵団`;
-  const k = bold`ランダム`;
 
-  const e = [m, s, g, b, s, k, r];
+  const current = ((d.getDay() * 24) + d.getHours()) % cycle.length;
 
-  const current = ((d.getDay() * 24) + d.getHours()) % e.length;
 
-  let nextAfter = 60 - d.getMinutes();
-  let next = (current + 1) % e.length;
-  if (e[current] === e[next]) {
-    next = (current + 2) % e.length;
-    nextAfter = nextAfter + 60;
+  let nextInMinutes = 60 - d.getMinutes();
+  let next = (current + 1) % cycle.length;
+  if (cycle[current] === cycle[next]) {
+    next = (next + 1) % cycle.length;
+    nextInMinutes += 60;
   }
 
+  var nextChangedAt = new Date(d.getTime() + nextInMinutes * 60 * 1000);
+
   return {
-    current: e[current],
-    next: e[next],
-    nextAfter: nextAfter
+    current: cycle[current],
+    next: cycle[next],
+    nextInMinutes,
+    nextChangedAt,
   };
 }
 
@@ -36,9 +66,9 @@ module.exports.getCurrent = getCurrent;
 
 function printEnemy(arg) {
   if (arg == null) {
-    const {current, next, nextAfter} = getCurrent();
-    puts(`現在の敵は${current}です`);
-    puts(`${nextAfter}分後に${next}に変わります`);
+    const {current, next, nextInMinutes} = getCurrent();
+    printColor`現在の敵は${current}です`;
+    printColor`${nextInMinutes}分後に${next}に変わります`;
     process.exit(0);
   }
 
@@ -49,10 +79,9 @@ function printEnemy(arg) {
     d.setSeconds(0);
     d.setHours((h < d.getHours()) ? h + 24 : h);
 
-    const {current, next, nextAfter} = getCurrent(d);
-    puts(`${d.getMonth() + 1}月${d.getDate()}日${d.getHours()}時の敵は${current}です`);
-    d.setMinutes(nextAfter + d.getMinutes());
-    puts(`${d.getHours()}時に${next}に変わります`);
+    const {current, next, nextChangedAt} = getCurrent(d);
+    printColor`${d.getMonth() + 1}月${d.getDate()}日${d.getHours()}時の敵は${current}です`;
+    printColor`${nextChangedAt.getHours()}時に${next}に変わります`;
 
     process.exit(0);
   } else {
@@ -62,7 +91,3 @@ function printEnemy(arg) {
 
 module.exports.printEnemy = printEnemy;
 
-function puts(str) {
-  process.stdout.write(str);
-  process.stdout.write('\n');
-}
