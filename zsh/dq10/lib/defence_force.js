@@ -41,13 +41,12 @@ function printColor(strings, ...values) {
 }
 
 function getCurrent(d = new Date()) {
-
   const current = ((d.getDay() * 24) + d.getHours()) % cycle.length;
-
 
   let nextInMinutes = 60 - d.getMinutes();
   let next = (current + 1) % cycle.length;
-  if (cycle[current] === cycle[next]) {
+
+  while (cycle[current] === cycle[next]) {
     next = (next + 1) % cycle.length;
     nextInMinutes += 60;
   }
