@@ -110,8 +110,9 @@ zstyle ':completion:*' group-name ''
 
 
 # settings for java
-export JAVA_HOME=$(/usr/libexec/java_home)
+JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
 if [[ -n $JAVA_HOME ]]; then
+	export JAVA_HOME
 	alias javac="javac -J-Dfile.encoding=UTF-8"
 	alias java="java -Dfile.encoding=UTF-8"
 fi
