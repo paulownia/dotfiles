@@ -108,6 +108,9 @@ zstyle ':completion:*:corrections' format "%{[1;33m%}%d %{[1;31m%}(errors: %e)
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*' group-name ''
 
+# add cdpath here
+cdpath=(~ $cdpath)
+export cdpath
 
 # settings for java
 JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
@@ -368,3 +371,5 @@ function sourcetree() {
 	fi
 	open -a SourceTree ${dir}
 }
+
+
