@@ -59,6 +59,11 @@ alias -s rb="ruby"
 alias -s js="node"
 alias -s txt="edit"
 
+# beep
+setopt no_hist_beep
+setopt no_list_beep
+
+
 function isInstalled() {
 	if [ $# -ne 1 ]; then
 		return 2
