@@ -35,6 +35,8 @@ export SAVEHIST=10000
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 setopt EXTENDED_HISTORY
+setopt SHARE_HISTORY
+
 setopt AUTO_CD
 
 # zsh binding style
