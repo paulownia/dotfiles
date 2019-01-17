@@ -37,8 +37,6 @@ setopt HIST_IGNORE_SPACE
 setopt EXTENDED_HISTORY
 setopt SHARE_HISTORY
 
-setopt AUTO_CD
-
 # zsh binding style
 bindkey -v
 
@@ -63,6 +61,15 @@ alias -s txt="edit"
 setopt no_hist_beep
 setopt no_list_beep
 
+# cd extention
+setopt auto_cd
+setopt auto_pushd
+
+cdpath=(~ $cdpath)
+export cdpath
+
+
+# ---
 
 function isInstalled() {
 	if [ $# -ne 1 ]; then
@@ -72,7 +79,6 @@ function isInstalled() {
 	type "$1" 1>/dev/null 2>/dev/null
 	return $?;
 }
-
 
 function isBrewed() {
 	if [ $# -ne 1 ]; then
@@ -115,9 +121,6 @@ zstyle ':completion:*:corrections' format "%{[1;33m%}%d %{[1;31m%}(errors: %e)
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*' group-name ''
 
-# add cdpath here
-cdpath=(~ $cdpath)
-export cdpath
 
 # settings for java
 JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
