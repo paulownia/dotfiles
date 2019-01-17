@@ -270,18 +270,19 @@ let g:lightline = {
 
 "" --- neosnippet
 if has('lua')
-	imap <Nul> <Plug>(neosnippet_expand_or_jump)
-	smap <Nul> <Plug>(neosnippet_expand_or_jump)
-	xmap <Nul> <Plug>(neosnippet_expand_target)
+	imap <C-k> <Plug>(neosnippet_expand_or_jump)
+	smap <C-k> <Plug>(neosnippet_expand_or_jump)
+	xmap <C-k> <Plug>(neosnippet_expand_target)
 
-	imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-				\ "\<Plug>(neosnippet_expand_or_jump)"
-				\: pumvisible() ? "\<C-n>" : "\<TAB>"
-	smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-				\ "\<Plug>(neosnippet_expand_or_jump)"
-				\: "\<TAB>"
+  imap <expr><TAB>
+  \    pumvisible() ? "\<C-n>" :
+  \    neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" :
+  \    "\<TAB>"
 
-	"let g:neosnippet#enable_snipmate_compatibility = 1
+  smap <expr><TAB>
+  \    neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" :
+  \    "\<TAB>"
+
 	let g:neosnippet#snippets_directory='~/.vim-snippets'
 endif
 
