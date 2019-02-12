@@ -246,7 +246,10 @@ nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
 "" --- QuickRun
 " 結果を上下分割で表示
 let g:quickrun_config = {}
-let g:quickrun_config._ = { 'split': '' }
+let g:quickrun_config._ = {
+\   'outputter/buffer/split' : ':botright 12sp',
+\   'outputter/buffer/close_on_empty' : 1
+\}
 
 
 "" --- lightline
