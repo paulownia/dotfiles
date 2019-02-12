@@ -340,27 +340,6 @@ function print_known_hosts (){
 }
 _cache_hosts=($(print_known_hosts))
 
-
-function sacred-war-in-the-eternal-darkness () {
-	local millis_for_a_day=86400000
-	local base_point=1467752400000   # 2016-07-06 06:00:00
-	node -p -e "var d=(Date.now()-${base_point})/${millis_for_a_day}|0;JSON.stringify({レグナード: (d+2)%4+1, ダークキング: (d%4)+1,メイヴ: (d+3)%4+1});"
-}
-
-function astoltia-defense-force () {
-	node ~/.dotfiles/zsh/dq10_df.js $1
-}
-
-function record-of-the-holy-gardians-war () {
-	local millis_for_a_day=86400000
-	local base_point=1524171600000  # 2016-04-20 06:00:00
-	node -p -e "var d=(Date.now()-${base_point})/${millis_for_a_day}|0;JSON.stringify({レギルラッゾたち: d%3+1, スコルパイド: (d+2)%3+1});"
-}
-
-function astoltia-standard-time() {
-	node ~/.dotfiles/zsh/dq10_ast.js
-}
-
 # Use local mocha if mocha is not installed in global
 if ! isInstalled mocha; then
 	function mocha() {
