@@ -18,7 +18,7 @@
 		"no-irregular-whitespace": 2,
 		"no-spaced-func": 2,
 		"block-spacing": 2,
-		"indent": ["error", 2]
+		"indent": ["error", 2],
 		"no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
 	}
 }
