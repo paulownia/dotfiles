@@ -20,15 +20,34 @@ export PATH=/usr/local/sbin:$PATH
 # user path
 export PATH=~/apps/bin:$PATH
 
-# zsh setting
+# prompt setting
 case "${OSTYPE}" in
 	darwin*)
-		export PROMPT="%{[0;32m%}${USER}@${HOST%%.*}%{[m%}:%{[0;34m%}%3~%{[m%}%(!.#.$) "
+		X_PROMPT="%{[0;32m%}${USER}@${HOST%%.*}%{[m%}:%{[0;34m%}%3~%{[m%}"
 		;;
 	linux*)
-		export PROMPT="%{[0;35m%}${USER}@${HOST%%.*}%{[m%}:%{[0;34m%}%1~%{[m%}%(!.#.$) "
+		X_PROMPT="%{[0;35m%}${USER}@${HOST%%.*}%{[m%}:%{[0;34m%}%1~%{[m%}"
 		;;
 esac
+
+function zle-line-init zle-keymap-select {
+  case $KEYMAP in
+    main|viins)
+    PROMPT="${X_PROMPT} %{[0;36m%}i%{[m%}%(!.#.$) "
+    ;;
+    vicmd)
+    PROMPT="${X_PROMPT} %{[0;31m%}n%{[m%}%(!.#.$) "
+    ;;
+  vivis|vivli)
+    PROMPT="${X_PROMPT} %{[0;31m%}v%{[m%}%(!.#.$) "
+    ;;
+  esac
+  zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+# history
 export HISTFILE=${HOME}/.zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
@@ -53,6 +72,7 @@ bindkey -v '' vi-end-of-line
 bindkey -a '' history-incremental-search-backward
 bindkey -v '' history-incremental-search-backward
 
+# script alias
 alias -s rb="ruby"
 alias -s js="node"
 alias -s txt="edit"
