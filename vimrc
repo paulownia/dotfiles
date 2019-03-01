@@ -1,5 +1,5 @@
 if filereadable('$VIMRUNTIME/defaults.vim')
-	source $VIMRUNTIME/defaults.vim
+  source $VIMRUNTIME/defaults.vim
 endif
 
 call plug#begin('~/.vim/plugged')
@@ -37,25 +37,25 @@ Plug 'AndrewRadev/switch.vim'
 Plug 'hashivim/vim-terraform'
 
 if has('job') && has('channel') && has('timers')
-	Plug 'w0rp/ale'
+  Plug 'w0rp/ale'
 else
-	Plug 'scrooloose/syntastic'
+  Plug 'scrooloose/syntastic'
 endif
 
 if has('lua')
-	Plug 'Shougo/neocomplete'
-	Plug 'Shougo/neosnippet'
-	Plug 'Shougo/neosnippet-snippets'
+  Plug 'Shougo/neocomplete'
+  Plug 'Shougo/neosnippet'
+  Plug 'Shougo/neosnippet-snippets'
 endif
 
 call plug#end()
 
 " golang vim
 if executable('/usr/local/opt/go/libexec/bin/go')
-	set rtp+=/usr/local/opt/go/libexec/misc/vim
+  set rtp+=/usr/local/opt/go/libexec/misc/vim
 endif
 "if executable('go')
-"	 exe 'set rtp+=' . system('echo -n $(go env GOROOT)/misc/vim')
+"   exe 'set rtp+=' . system('echo -n $(go env GOROOT)/misc/vim')
 "endif
 
 filetype plugin indent on
@@ -82,23 +82,23 @@ set laststatus=2
 "set statusline=%f%m%r%h%w\ %{fugitive#statusline()}\ (%Y)%=\ %l/%L
 
 if v:version >= 800
-	" 8進数インクリメントの設定を解除
-	set nrformats=bin,hex
+  " 8進数インクリメントの設定を解除
+  set nrformats=bin,hex
 
-	" 折り返し表示オプション
-	set linebreak
-	set showbreak=>
-	set breakindent
-	set breakindentopt=shift:6,sbr
+  " 折り返し表示オプション
+  set linebreak
+  set showbreak=>
+  set breakindent
+  set breakindentopt=shift:6,sbr
 
-	" 絵文字を全角幅で表示
-	set emoji
+  " 絵文字を全角幅で表示
+  set emoji
 else
-	" 8進数インクリメントの設定を解除
-	set nrformats=hex
+  " 8進数インクリメントの設定を解除
+  set nrformats=hex
 
-	" 折り返ししない
-	set nowrap
+  " 折り返ししない
+  set nowrap
 endif
 
 " 検索
@@ -179,50 +179,50 @@ hi! PmenuThumb ctermfg=4
 hi! Search ctermbg=58 ctermfg=15
 
 augroup vimrc
-	autocmd!
-	" auto trim
-	autocmd BufWritePre * :%s/\s\+$//ge
+  autocmd!
+  " auto trim
+  autocmd BufWritePre * :%s/\s\+$//ge
 augroup END
 
 "" --- Tagbar
 nnoremap t :TagbarToggle<CR>
 let g:tagbar_type_javascript = {
-\		'ctagtype': 'JavaScript',
-\		'kinds': [
-\			'c:classes',
-\			'm:methods',
-\			'f:functions',
-\			't:testcase',
-\			'd:describe'
-\		]
-\	}
+\    'ctagtype': 'JavaScript',
+\    'kinds': [
+\      'c:classes',
+\      'm:methods',
+\      'f:functions',
+\      't:testcase',
+\      'd:describe'
+\    ]
+\  }
 
 let g:tagbar_type_go = {
-\	'ctagstype' : 'go',
-\	'kinds'     : [
-\ 		'p:package',
-\ 		'i:imports:1',
-\ 		'c:constants',
-\ 		'v:variables',
-\		't:types',
-\ 		'n:interfaces',
-\ 		'w:fields',
-\ 		'e:embedded',
-\ 		'm:methods',
-\ 		'r:constructor',
-\ 		'f:functions'
-\ 	],
-\ 	'sro' : '.',
-\ 	'kind2scope' : {
-\ 		't' : 'ctype',
-\   	'n' : 'ntype'
+\  'ctagstype' : 'go',
+\  'kinds'     : [
+\     'p:package',
+\     'i:imports:1',
+\     'c:constants',
+\     'v:variables',
+\     't:types',
+\     'n:interfaces',
+\     'w:fields',
+\     'e:embedded',
+\     'm:methods',
+\     'r:constructor',
+\     'f:functions'
+\   ],
+\   'sro' : '.',
+\   'kind2scope' : {
+\     't' : 'ctype',
+\     'n' : 'ntype'
 \   },
-\ 	'scope2kind' : {
-\ 		'ctype' : 't',
-\ 		'ntype' : 'n'
-\ 	},
-\ 		'ctagsbin'  : 'gotags',
-\		'ctagsargs' : '-sort -silent'
+\   'scope2kind' : {
+\     'ctype' : 't',
+\     'ntype' : 'n'
+\   },
+\     'ctagsbin'  : 'gotags',
+\    'ctagsargs' : '-sort -silent'
 \ }
 
 
@@ -254,27 +254,27 @@ let g:quickrun_config._ = {
 
 "" --- lightline
 let g:lightline = {
-\		'colorscheme': 'wombat',
-\		'active': {
-\			'left': [
-\				[ 'mode', 'paste' ],
-\				[ 'filename', 'fugitive', 'readonly', 'modified']
-\			]
-\		},
-\		'component': {
-\			'fugitive': '%{fugitive#statusline()}'
-\		},
-\		'component_visible_condition': {
-\			'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
-\		}
-\	}
+\    'colorscheme': 'wombat',
+\    'active': {
+\      'left': [
+\        [ 'mode', 'paste' ],
+\        [ 'filename', 'fugitive', 'readonly', 'modified']
+\      ]
+\    },
+\    'component': {
+\      'fugitive': '%{fugitive#statusline()}'
+\    },
+\    'component_visible_condition': {
+\      'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+\    }
+\  }
 
 
 "" --- neosnippet
 if has('lua')
-	imap <C-k> <Plug>(neosnippet_expand_or_jump)
-	smap <C-k> <Plug>(neosnippet_expand_or_jump)
-	xmap <C-k> <Plug>(neosnippet_expand_target)
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_target)
 
   imap <expr><TAB>
   \    pumvisible() ? "\<C-n>" :
@@ -285,13 +285,21 @@ if has('lua')
   \    neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" :
   \    "\<TAB>"
 
-	let g:neosnippet#snippets_directory='~/.vim-snippets'
+  let g:neosnippet#snippets_directory='~/.vim-snippets'
 endif
 
 if has('conceal')
-	set conceallevel=2 concealcursor=i
+  set conceallevel=2 concealcursor=i
 endif
 
 if filereadable(expand('~/.vimrc_local'))
-	source ~/.vimrc_local
+  source ~/.vimrc_local
 endif
+
+"" --- ale
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'json': ['jsonlint'],
+\   'ruby': ['rubocop']
+\}
+
