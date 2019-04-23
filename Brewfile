@@ -16,6 +16,8 @@ brew "shellcheck"
 brew "jsonlint"
 brew "hub"
 brew "universal-ctags", args: ["HEAD"]
+brew "pipenv"
 
 # brew "mysql"
 # brew "ansible"
+# brew "mono"
