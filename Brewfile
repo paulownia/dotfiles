@@ -14,9 +14,10 @@ brew "vim"
 brew "jq"
 brew "shellcheck"
 brew "jsonlint"
-brew "hub"
+# brew "hub"
 brew "universal-ctags", args: ["HEAD"]
 brew "pipenv"
+# brew "direnv"
 
 # brew "mysql"
 # brew "ansible"
