@@ -18,6 +18,7 @@ brew "jsonlint"
 brew "universal-ctags", args: ["HEAD"]
 brew "pipenv"
 # brew "direnv"
+brew "git"
 
 # brew "mysql"
 # brew "ansible"
