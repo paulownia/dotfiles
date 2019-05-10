@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+current_name=$(git rev-parse --abbrev-ref HEAD)
+git stash save tmp
 git fetch origin
 git remote prune origin
 
@@ -16,3 +18,6 @@ git for-each-ref --format="%(refname:short) %(upstream:short)" refs/heads/ | gre
   git checkout "$local_name"
   git reset --hard "$remote_name"
 done
+
+git checkout "$current_name"
+git stash pop
