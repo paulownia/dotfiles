@@ -1,7 +1,8 @@
 #!/bin/bash -e
 
 current_name=$(git rev-parse --abbrev-ref HEAD)
-git stash save tmp
+key=$(shasum <(ls -al) | cut -d " " -f 1)
+git stash save "$key"
 git fetch origin
 git remote prune origin
 
@@ -20,4 +21,7 @@ git for-each-ref --format="%(refname:short) %(upstream:short)" refs/heads/ | gre
 done
 
 git checkout "$current_name"
-git stash pop
+
+if git stash list | head -n 1 | grep -q "$key"; then
+  git stash pop
+fi
