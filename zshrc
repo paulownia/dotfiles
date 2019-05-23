@@ -261,7 +261,7 @@ function launchctl-start() {
 		return 1
 	fi
 
-	local SERVICE_NAME=$(launchctl list | grep "^-" | peco | head -n 1 | cut -f 3)
+	local SERVICE_NAME=$(launchctl list | grep "^-" | fzf | head -n 1 | cut -f 3)
 
 	if [ -n "$SERVICE_NAME" ]; then
 		echo "Start ${SERVICE_NAME}"
@@ -276,7 +276,7 @@ function launchctl-stop() {
 		return 1
 	fi
 
-	local SERVICE_NAME=$(launchctl list | grep -v "^-" | peco | head -n 1 | cut -f 3)
+	local SERVICE_NAME=$(launchctl list | grep -v "^-" | fzf | head -n 1 | cut -f 3)
 
 	if [ -n "$SERVICE_NAME" ]; then
 		echo "Stop ${SERVICE_NAME}"

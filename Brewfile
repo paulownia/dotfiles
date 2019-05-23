@@ -19,6 +19,7 @@ brew "universal-ctags", args: ["HEAD"]
 brew "pipenv"
 # brew "direnv"
 brew "git"
+brew "fzf"
 
 # brew "mysql"
 # brew "ansible"
