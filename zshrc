@@ -255,37 +255,6 @@ function jl() {
 	jq "$QUERY" -C 2>&1 $FILE | less -R
 }
 
-# launchctl
-function launchctl-start() {
-	if ! checkCommand peco; then
-		return 1
-	fi
-
-	local SERVICE_NAME=$(launchctl list | grep "^-" | fzf | head -n 1 | cut -f 3)
-
-	if [ -n "$SERVICE_NAME" ]; then
-		echo "Start ${SERVICE_NAME}"
-		launchctl start $SERVICE_NAME
-	else
-		return 1
-	fi
-}
-
-function launchctl-stop() {
-	if ! checkCommand peco; then
-		return 1
-	fi
-
-	local SERVICE_NAME=$(launchctl list | grep -v "^-" | fzf | head -n 1 | cut -f 3)
-
-	if [ -n "$SERVICE_NAME" ]; then
-		echo "Stop ${SERVICE_NAME}"
-		launchctl stop $SERVICE_NAME
-	else
-		return 1
-	fi
-}
-
 # git
 alias git-vimdiff="git difftool --tool=vimdiff --no-prompt"
 
@@ -351,6 +320,9 @@ source ~/.dotfiles/zsh/google
 
 # -- dev command
 source ~/.dotfiles/zsh/dev
+
+# -- launchctl utilities
+source ~/.dotfiles/zsh/launchctl
 
 function print_known_hosts (){
     if [ -f $HOME/.ssh/known_hosts ]; then
