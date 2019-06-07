@@ -179,46 +179,6 @@ if checkCommand hub; then
 fi
 
 # functions
-function jl() {
-	if ! checkCommand jq; then
-		return 1
-	fi
-
-	local QUERY
-	local FILE
-
-	if [ -p /dev/stdin ]; then
-		# pipe: cat hoge.json | jl .
-		if [ $# -eq 0 ]; then
-			QUERY="."
-		else
-			QUERY="$1"
-		fi
-		FILE="-"
-	elif [ -t 0 ]; then
-		# file: jl . hoge.json
-		if [ $# -eq 1 ]; then
-			QUERY="."
-			FILE=$1
-		elif [ $# -eq 2 ]; then
-			QUERY="$1"
-			FILE="$2"
-		else
-			return 1
-		fi
-	else
-		# redirect stdin: jl . <hoge.json
-		if [ $# -eq 0 ]; then
-			QUERY="."
-		else
-			QUERY="$1"
-		fi
-		FILE="-"
-	fi
-
-	jq "$QUERY" -C 2>&1 $FILE | less -R
-}
-
 # git
 alias git-vimdiff="git difftool --tool=vimdiff --no-prompt"
 
@@ -235,52 +195,9 @@ precmd () {
 	RPROMPT='${vcs_info_msg_0_}'
 }
 
+# load functions
+source ~/.dotfiles/zsh/*
 
-# find and cd
-function fcd() {
-	if ! checkCommand peco; then
-		return 1
-	fi
-
-	if [ -z "$1" ]; then
-		return 1
-	fi
-
-    # https://developer.apple.com/library/mac/documentation/Carbon/Conceptual/SpotlightQuery/Concepts/QueryFormat.html
-    local MD_QUERY="kMDItemContentType == 'public.folder' && kMDItemFSName == '$1*'"
-
-	local RESULT=$(mdfind -onlyin ~ "$MD_QUERY" | peco)
-
-	if [ -z "$RESULT" ]; then
-		return 1
-	fi
-
-	echo $RESULT
-	cd $RESULT
-}
-
-# find regular files (excludes invisible files)
-function ff() {
-	mdfind -onlyin . -name "$1"
-}
-
-function fvi() {
-	local F=$(ff "$1" | peco)
-	if [[ -n $F ]]; then
-		vi $F
-	fi
-}
-
-function title() {
-	if [ -z "$1" ]; then
-		return 1;
-	fi
-
-	echo -en "\033];$@\007"
-}
-
-# -- google search
-source ~/.dotfiles/zsh/google
 
 # -- dev command
 source ~/.dotfiles/zsh/dev
@@ -288,6 +205,10 @@ source ~/.dotfiles/zsh/dev
 # -- launchctl utilities
 source ~/.dotfiles/zsh/launchctl
 
+# -- fuctions
+source ~/.dotfiles/zsh/functions
+
+# completion ssh hosts
 function print_known_hosts (){
     if [ -f $HOME/.ssh/known_hosts ]; then
         cat $HOME/.ssh/known_hosts | tr ',' ' ' | cut -d ' ' -f 1
@@ -307,11 +228,3 @@ if ! isInstalled mocha; then
 	}
 fi
 
-# to open this git repo in sourcetree
-function sourcetree() {
-	local dir=$(git rev-parse --show-cdup)
-	if [ -z "${dir}" ]; then
-		dir="."
-	fi
-	open -a SourceTree ${dir}
-}
