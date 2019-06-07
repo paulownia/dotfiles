@@ -1,11 +1,4 @@
-#
 # vim: set ft=zsh :
-
-# for github api calling by homebrew
-export HOMEBREW_GITHUB_API_TOKEN=**your_github_api_key**
-
-# The next line updates PATH for the Google Cloud SDK.
-source '/Users/xxxxx/google-cloud-sdk/path.zsh.inc'
 
 # The next line enables shell command completion for gcloud.
 source '/Users/xxxxx/google-cloud-sdk/completion.zsh.inc'
@@ -16,11 +9,6 @@ function nyan() { afplay ~/Music/nyan.mp4; }
 # settings for node.js
 if isInstalled nvm; then
 	nvm use v10
-fi
-
-# add your golang project on github to the auto cd path
-if [[ -n $GOPATH ]]; then
-	export cdpath=("$GOPATH/src/github.com/**your_github_account**" $cdpath)
 fi
 
 # make alias of hub using github enterprise

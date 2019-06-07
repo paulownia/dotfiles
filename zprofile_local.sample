@@ -1,0 +1,14 @@
+# vim: set ft=zsh :
+
+# set environment variables specific to this host in this
+
+# for github api calling by homebrew
+export HOMEBREW_GITHUB_API_TOKEN=**your_github_api_key**
+
+# The next line updates PATH for the Google Cloud
+source '/Users/xxxxx/google-cloud-sdk/path.zsh.inc'
+
+# add your golang project on github to the auto cd path
+if [[ -n $GOPATH ]]; then
+	export cdpath=("$GOPATH/src/github.com/**your_github_account**" $cdpath)
+fi
