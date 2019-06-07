@@ -75,45 +75,6 @@ setopt no_list_beep
 setopt auto_cd
 setopt auto_pushd
 
-
-# ---
-
-function isInstalled() {
-	if [ $# -ne 1 ]; then
-		return 2
-	fi
-
-	type "$1" 1>/dev/null 2>/dev/null
-	return $?;
-}
-
-function isBrewed() {
-	if [ $# -ne 1 ]; then
-		return 2
-	fi
-
-	test -e "/usr/local/bin/$1";
-	return $?
-}
-
-function checkCommand() {
-	if [ $# -ne 1 ]; then
-		return 2
-	fi
-
-	if isInstalled "$1"; then
-		return 0
-	fi
-
-	if isInstalled brew; then
-		echo "'$1' is not installed. Type 'brew install $1'"
-	else
-		echo "'$1' is not installed. Set up homebrew and then type 'brew install $1'"
-	fi
-
-	return 1
-}
-
 # zsh completion
 autoload -U compinit
 compinit
@@ -128,6 +89,16 @@ zstyle ':completion:*:corrections' format "%{[1;33m%}%d %{[1;31m%}(errors: %e)
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*' group-name ''
 
+
+function isInstalled() {
+	if [ $# -ne 1 ]; then
+		return 2
+	fi
+
+	type "$1" 1>/dev/null 2>/dev/null
+	return $?;
+}
+
 # settings for java
 if [[ -n $JAVA_HOME ]]; then
 	alias javac="javac -J-Dfile.encoding=UTF-8"
@@ -135,7 +106,7 @@ if [[ -n $JAVA_HOME ]]; then
 fi
 
 # vim
-if isBrewed vim; then
+if [ -e /usr/local/bin/vim ]; then
 	alias vi=/usr/local/bin/vim
 fi
 
@@ -165,12 +136,12 @@ if [ -f ~/.zshrc_local ]; then
 fi
 
 # enable direnv
-if checkCommand direnv; then
+if isInstalled direnv; then
 	eval "$(direnv hook zsh)"
 fi
 
 # alias for hub command
-if checkCommand hub; then
+if isInstalled hub; then
    eval "$(hub alias -s)"
 fi
 
