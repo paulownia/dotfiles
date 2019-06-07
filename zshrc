@@ -11,15 +11,6 @@ alias al="ag --pager 'less -R'"
 alias twitter="open -na 'Google Chrome' --args --app=https://mobile.twitter.com/"
 alias bash="HISTFILE=${HOME}/.bash_history /bin/bash"
 
-# for svn and git editor
-export EDITOR=vim
-
-# brew path
-export PATH=/usr/local/sbin:$PATH
-
-# user path
-export PATH=~/apps/bin:$PATH
-
 # prompt setting
 case "${OSTYPE}" in
 	darwin*)
@@ -48,9 +39,6 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 # history
-export HISTFILE=${HOME}/.zsh_history
-export HISTSIZE=10000
-export SAVEHIST=10000
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 setopt EXTENDED_HISTORY
@@ -79,13 +67,10 @@ alias -s txt="edit"
 # beep
 setopt no_hist_beep
 setopt no_list_beep
-
+# history
 # cd extention
 setopt auto_cd
 setopt auto_pushd
-
-cdpath=(~ $cdpath)
-export cdpath
 
 
 # ---
@@ -142,9 +127,7 @@ zstyle ':completion:*' group-name ''
 
 
 # settings for java
-JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
 if [[ -n $JAVA_HOME ]]; then
-	export JAVA_HOME
 	alias javac="javac -J-Dfile.encoding=UTF-8"
 	alias java="java -Dfile.encoding=UTF-8"
 fi
@@ -157,8 +140,6 @@ fi
 
 
 # nvm
-export NVM_DIR="$HOME/.nvm"
-
 if [ -f ~/.nvm/nvm.sh ]; then
 	# installed manually
 	source ~/.nvm/nvm.sh
@@ -178,28 +159,7 @@ if isInstalled npm; then
 	source ~/.npm_completion
 fi
 
-# golang
-if isInstalled go;  then
-	export GOPATH=$HOME/go
-	export PATH=$PATH:$GOPATH/bin
-fi
-
-# rbenv
-if [ -d ~/.rbenv ]; then
-	eval "$(rbenv init -)"
-fi
-
-# pyenv
-if [ -d ~/.pyenv ]; then
-	eval "$(pyenv init -)"
-fi
-
 # loading local setting
-if [ -f ~/.zshrc.local ]; then
-	echo "Please rename .zshrc.local to .zshrc_local"
-	source ~/.zshrc.local
-fi
-
 if [ -f ~/.zshrc_local ]; then
 	source ~/.zshrc_local
 fi
@@ -351,5 +311,3 @@ function sourcetree() {
 	fi
 	open -a SourceTree ${dir}
 }
-
-
