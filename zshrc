@@ -161,10 +161,6 @@ precmd () {
 	RPROMPT='${vcs_info_msg_0_}'
 }
 
-# load functions
-source ~/.dotfiles/zsh/*
-
-
 # -- dev command
 source ~/.dotfiles/zsh/dev
 
