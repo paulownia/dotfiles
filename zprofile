@@ -30,14 +30,8 @@ export PATH=/usr/local/sbin:$PATH
 # user path
 export PATH=~/apps/bin:$PATH
 
-
 # for svn and git editor
 export EDITOR=vim
-
-# history
-export HISTFILE=${HOME}/.zsh_history
-export HISTSIZE=10000
-export SAVEHIST=10000
 
 # cdpath
 cdpath=(~ $cdpath)
