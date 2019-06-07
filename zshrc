@@ -39,7 +39,6 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 # history
-# history
 HISTFILE=${HOME}/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -71,7 +70,7 @@ alias -s txt="edit"
 # beep
 setopt no_hist_beep
 setopt no_list_beep
-# history
+
 # cd extention
 setopt auto_cd
 setopt auto_pushd
@@ -129,19 +128,16 @@ zstyle ':completion:*:corrections' format "%{[1;33m%}%d %{[1;31m%}(errors: %e)
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*' group-name ''
 
-
 # settings for java
 if [[ -n $JAVA_HOME ]]; then
 	alias javac="javac -J-Dfile.encoding=UTF-8"
 	alias java="java -Dfile.encoding=UTF-8"
 fi
 
-
 # vim
 if isBrewed vim; then
 	alias vi=/usr/local/bin/vim
 fi
-
 
 # nvm
 if [ -f ~/.nvm/nvm.sh ]; then
@@ -178,7 +174,6 @@ if checkCommand hub; then
    eval "$(hub alias -s)"
 fi
 
-# functions
 # git
 alias git-vimdiff="git difftool --tool=vimdiff --no-prompt"
 
