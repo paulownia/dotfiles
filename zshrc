@@ -75,6 +75,8 @@ setopt no_list_beep
 setopt auto_cd
 setopt auto_pushd
 
+cdpath=(~ $cdpath)
+
 # zsh completion
 autoload -U compinit
 compinit

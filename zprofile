@@ -33,10 +33,6 @@ export PATH=~/apps/bin:$PATH
 # for svn and git editor
 export EDITOR=vim
 
-# cdpath
-cdpath=(~ $cdpath)
-export cdpath
-
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
