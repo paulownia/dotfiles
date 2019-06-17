@@ -1,11 +1,15 @@
 #!/bin/zsh
 
+function mute() {
+	"$@" 1>/dev/null 2>&1
+}
+
 function google() {
-  if [[ ${#*} -eq 0 ]]; then return 1; fi
-  Q=$(node -p -e 'process.argv.slice(1).map(q => encodeURIComponent(q)).join("+")' "$@")
-  #Q=$(echo "$*" | nkf -WwMQ | tr = %)
-  #Q=$(echo "${(j/%20/)*}")
-  open "https://www.google.com/search?q=$Q"
+	if [[ ${#*} -eq 0 ]]; then return 1; fi
+	Q=$(node -p -e 'process.argv.slice(1).map(q => encodeURIComponent(q)).join("+")' "$@")
+	#Q=$(echo "$*" | nkf -WwMQ | tr = %)
+	#Q=$(echo "${(j/%20/)*}")
+	open "https://www.google.com/search?q=$Q"
 }
 
 function fcd() {
@@ -17,8 +21,8 @@ function fcd() {
 		return 1
 	fi
 
-    # https://developer.apple.com/library/mac/documentation/Carbon/Conceptual/SpotlightQuery/Concepts/QueryFormat.html
-    local MD_QUERY="kMDItemContentType == 'public.folder' && kMDItemFSName == '$1*'"
+	# https://developer.apple.com/library/mac/documentation/Carbon/Conceptual/SpotlightQuery/Concepts/QueryFormat.html
+	local MD_QUERY="kMDItemContentType == 'public.folder' && kMDItemFSName == '$1*'"
 
 	local RESULT=$(mdfind -onlyin ~ "$MD_QUERY" | peco)
 
