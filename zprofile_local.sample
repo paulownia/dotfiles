@@ -6,7 +6,7 @@
 export HOMEBREW_GITHUB_API_TOKEN=**your_github_api_key**
 
 # The next line updates PATH for the Google Cloud
-source '/Users/xxxxx/google-cloud-sdk/path.zsh.inc'
+source "${HOME}/google-cloud-sdk/path.zsh.inc"
 
 # add your golang project on github to the auto cd path
 if [[ -n $GOPATH ]]; then

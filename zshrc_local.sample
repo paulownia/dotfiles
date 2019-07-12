@@ -1,15 +1,19 @@
 # vim: set ft=zsh :
 
-# The next line enables shell command completion for gcloud.
-source '/Users/xxxxx/google-cloud-sdk/completion.zsh.inc'
-
 # to play nyan voice
 function nyan() { afplay ~/Music/nyan.mp4; }
 
-# settings for node.js
-if isInstalled nvm; then
-	nvm use v10
-fi
+# The next line enables shell command completion for gcloud.
+source "${HOME}/google-cloud-sdk/completion.zsh.inc"
 
 # make alias of hub using github enterprise
 alias ghe='GITHUB_HOST=**your.github.enterprise.site.domain** hub'
+
+# boot vscode
+alias code="open -a 'Visual Studio Code'"
+
+# boot slack on chrome as app
+alias slack="open -na 'Google Chrome' --args --app='https://XXXXX.slack.com/messages/XXXXX/'"
+
+
+
