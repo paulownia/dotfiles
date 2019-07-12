@@ -14,7 +14,7 @@ function google() {
 
 function fcd() {
 	if ! isInstalled peco; then
-		echo "peco required"
+		echo "[ERROR] peco is not installed. type 'brew install peco'"
 		return 1
 	fi
 
@@ -66,7 +66,8 @@ function sourcetree() {
 
 # jq + less
 function jl() {
-	if ! checkCommand jq; then
+	if ! isInstalled jq; then
+		echo "[ERROR] jq is not installed. type 'brew install jq'"
 		return 1
 	fi
 
