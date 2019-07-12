@@ -132,10 +132,6 @@ if isInstalled npm; then
 	source ~/.npm_completion
 fi
 
-# loading local setting
-if [ -f ~/.zshrc_local ]; then
-	source ~/.zshrc_local
-fi
 
 # enable direnv
 if isInstalled direnv; then
@@ -192,3 +188,7 @@ if ! isInstalled mocha; then
 	}
 fi
 
+# loading local setting
+if [ -f ~/.zshrc_local ]; then
+	source ~/.zshrc_local
+fi
