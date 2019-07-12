@@ -9,6 +9,7 @@ alias home="open ~/"
 alias edit="open -a CotEditor"
 alias al="ag --pager 'less -R'"
 alias twitter="open -na 'Google Chrome' --args --app=https://mobile.twitter.com/"
+alias gmail="open -na 'Google Chrome' --args --app='https://mail.google.com/mail/u/0/#inbox'"
 alias bash="HISTFILE=${HOME}/.bash_history /bin/bash"
 
 # prompt setting
