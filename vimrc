@@ -304,5 +304,7 @@ let g:ale_linters = {
 \}
 
 " let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_delay = 1500
 " let g:ale_lint_on_insert_leave = '1'
+let g:ale_lint_delay = 1500
+highlight ALEError ctermbg=none cterm=underline,bold
+highlight ALEWarning ctermbg=none cterm=underline
