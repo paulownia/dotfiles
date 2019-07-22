@@ -2,7 +2,7 @@
 
 SCRIPT_FILE=${0##*/}
 DOTFILE_RELATIVE_DIR=$(dirname "$0")
-DOTFILE_DIR=$(cd "$DOTFILE_RELATIVE_DIR" && pwd)
+DOTFILE_DIR=$(cd "${DOTFILE_RELATIVE_DIR}" && pwd)
 
 
 # --- functions
@@ -13,7 +13,7 @@ log() {
 
 # --- copy dotfile
 for DOTFILE_PATH in ${DOTFILE_DIR}/*; do
-	DOTFILE_NAME=$(basename "$DOTFILE_PATH")
+	DOTFILE_NAME=$(basename "${DOTFILE_PATH}")
 
 	if [[ $DOTFILE_NAME == $SCRIPT_FILE ]]; then
 		continue
@@ -30,14 +30,13 @@ for DOTFILE_PATH in ${DOTFILE_DIR}/*; do
 	FILE_SRC=${DOTFILE_PATH}
 	FILE_DST=${HOME}/.${DOTFILE_NAME}
 
-	if [ -L "$FILE_DST" ]; then
-		rm "$FILE_DST" && log "${FILE_DST} is symbolic link, remove it."
-
-	elif [ -e "$FILE_DST" ]; then
-		mv "$FILE_DST" "$FILE_DST.org" && log "${FILE_DST} already exists, rename it."
+	if [[ -L $FILE_DST ]]; then
+		rm "${FILE_DST}" && log "${FILE_DST} is symbolic link, remove it."
+	elif [[ -e $FILE_DST ]]; then
+		mv "${FILE_DST}" "${FILE_DST}.org" && log "${FILE_DST} already exists, rename it."
 	fi
 
-	ln -s "$FILE_SRC" "$FILE_DST"
+	ln -s "${FILE_SRC}" "${FILE_DST}"
 done
 
 # --- copy commands
@@ -49,11 +48,11 @@ for CMD_PATH in ${DOTFILE_DIR}/bin/*; do
 	FILE_SRC=$CMD_PATH
 	FILE_DST=${HOME}/apps/bin/$(basename "$CMD_PATH")
 
-	if [ -L "$FILE_DST" ]; then
-		rm "$FILE_DST" && log "${FILE_DST} is symbolic link, remove it."
-	elif [ -e "$FILE_DST" ]; then
-		mv "$FILE_DST" "$FILE_DST.org" && log "${FILE_DST} already exists, rename it."
+	if [[ -L $FILE_DST ]]; then
+		rm "${FILE_DST}" && log "${FILE_DST} is symbolic link, remove it."
+	elif [[ -e $FILE_DST ]]; then
+		mv "${FILE_DST}" "${FILE_DST}.org" && log "${FILE_DST} already exists, rename it."
 	fi
 
-	ln -s "$FILE_SRC" "$FILE_DST"
+	ln -s "${FILE_SRC}" "${FILE_DST}"
 done
