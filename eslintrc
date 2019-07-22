@@ -5,7 +5,8 @@
 		"browser": true,
 		"node": true,
 		"mocha": true,
-		"mongo": true
+		"mongo": true,
+		"jquery": true
 	},
 	"parserOptions": {
 		"ecmaVersion": 9
@@ -19,6 +20,7 @@
 		"no-spaced-func": 2,
 		"block-spacing": 2,
 		"indent": ["error", 2],
-		"no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+		"no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+		"no-var": ["error"]
 	}
 }
