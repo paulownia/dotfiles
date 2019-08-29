@@ -108,6 +108,7 @@ set smartcase
 
 " コマンド補完
 set wildmenu
+set wildmode=longest:full,full
 
 " CJK記号の幅調整（iTermでは Profile > Text > Double-Width Characters > Treat ambiguous-width characters as double widthのチェックも必要）
 set ambiwidth=double
