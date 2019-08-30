@@ -41,7 +41,7 @@ function ff() {
 }
 
 function fvi() {
-	local F=$(ff "$1" | peco)
+	local F=$(ff "$1" | fzf)
 	if [[ -n $F ]]; then
 		vi $F
 	fi
