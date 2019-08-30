@@ -1,7 +1,11 @@
 #!/bin/zsh
 
 function launchctl-start() {
-	if ! checkCommand peco; then
+	if ! isInstalled fzf; then
+		{
+			echo "fzf not found"
+			echo "type 'brew install fzf'"
+		} >&2
 		return 1
 	fi
 
@@ -16,7 +20,11 @@ function launchctl-start() {
 }
 
 function launchctl-stop() {
-	if ! checkCommand peco; then
+	if ! isInstalled fzf; then
+		{
+			echo "fzf not found"
+			echo "type 'brew install fzf'"
+		} >&2
 		return 1
 	fi
 
