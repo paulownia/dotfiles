@@ -42,12 +42,6 @@ else
   Plug 'scrooloose/syntastic'
 endif
 
-if has('lua')
-  Plug 'Shougo/neocomplete'
-  Plug 'Shougo/neosnippet'
-  Plug 'Shougo/neosnippet-snippets'
-endif
-
 call plug#end()
 
 " golang vim
@@ -269,25 +263,6 @@ let g:lightline = {
 \      'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
 \    }
 \  }
-
-
-"" --- neosnippet
-if has('lua')
-  imap <C-k> <Plug>(neosnippet_expand_or_jump)
-  smap <C-k> <Plug>(neosnippet_expand_or_jump)
-  xmap <C-k> <Plug>(neosnippet_expand_target)
-
-  imap <expr><TAB>
-  \    pumvisible() ? "\<C-n>" :
-  \    neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" :
-  \    "\<TAB>"
-
-  smap <expr><TAB>
-  \    neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" :
-  \    "\<TAB>"
-
-  let g:neosnippet#snippets_directory='~/.vim-snippets'
-endif
 
 if has('conceal')
   set conceallevel=2 concealcursor=i
