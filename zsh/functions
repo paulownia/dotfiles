@@ -41,7 +41,7 @@ function ff() {
 }
 
 function fvi() {
-	local F=$(ff "$1" | fzf)
+	local F=$(ff "$1" | fzf -e --exit-0 --select-1)
 	if [[ -n $F ]]; then
 		vi $F
 	fi
