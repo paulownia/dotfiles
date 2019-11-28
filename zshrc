@@ -15,7 +15,14 @@ alias bash="HISTFILE=${HOME}/.bash_history /bin/bash"
 # prompt setting
 case "${OSTYPE}" in
 	darwin*)
-		X_PROMPT="%{[0;32m%}${USER}@${HOST%%.*}%{[m%}:%{[0;34m%}%3~%{[m%}"
+		case "${LC_TERMINAL}" in
+			iTerm2)
+				X_PROMPT="%{[1;36m%}%3~%{[m%}"
+				;;
+			*)
+				X_PROMPT="%{[0;32m%}${USER}@${HOST%%.*}%{[m%}:%{[0;34m%}%3~%{[m%}"
+				;;
+		esac
 		;;
 	linux*)
 		X_PROMPT="%{[0;35m%}${USER}@${HOST%%.*}%{[m%}:%{[0;34m%}%1~%{[m%}"
