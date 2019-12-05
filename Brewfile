@@ -16,6 +16,7 @@ brew "jsonlint"
 brew "universal-ctags", args: ["HEAD"]
 brew "git"
 brew "fzf"
+brew "xsv"
 
 # brew "mysql"
 # brew "ansible"
