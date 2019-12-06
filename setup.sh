@@ -1,9 +1,6 @@
 #!/bin/zsh
 
-SCRIPT_FILE=${0##*/}
-DOTFILE_RELATIVE_DIR=$(dirname "$0")
-DOTFILE_DIR=$(cd "${DOTFILE_RELATIVE_DIR}" && pwd)
-
+DOTFILE_DIR=$(cd "$(dirname "$0")" && pwd)
 
 # --- functions
 
@@ -12,20 +9,8 @@ log() {
 } >&2
 
 # --- copy dotfile
-for DOTFILE_PATH in ${DOTFILE_DIR}/*; do
+for DOTFILE_PATH in ${DOTFILE_DIR}/files/*; do
 	DOTFILE_NAME=$(basename "${DOTFILE_PATH}")
-
-	if [[ $DOTFILE_NAME == $SCRIPT_FILE ]]; then
-		continue
-	fi
-
-	if [[ $DOTFILE_NAME == zsh ]]; then
-		continue
-	fi
-
-	if [[ $DOTFILE_NAME == bin ]]; then
-		continue
-	fi
 
 	FILE_SRC=${DOTFILE_PATH}
 	FILE_DST=${HOME}/.${DOTFILE_NAME}
