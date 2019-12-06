@@ -4,7 +4,6 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'mattn/emmet-vim'
-Plug 'Shougo/unite.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'othree/html5-syntax.vim'
 Plug 'majutsushi/tagbar'
@@ -24,7 +23,6 @@ Plug 'osyo-manga/vim-anzu'
 Plug 'itchyny/lightline.vim'
 Plug 'vim-scripts/closetag.vim'
 Plug 'digitaltoad/vim-pug'
-Plug 'Shougo/vimfiler.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'rhysd/vim-crystal'
 Plug 'elixir-lang/vim-elixir'
