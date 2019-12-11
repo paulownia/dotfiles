@@ -46,9 +46,11 @@ function fvi() {
 		return 1
 	fi
 
-	print -S $F
-	vi $F
+	print -S "vim $F"
+	vim $F
 }
+
+alias fv=fvi
 
 function title() {
 	if [ -z "$1" ]; then
