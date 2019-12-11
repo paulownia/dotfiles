@@ -42,9 +42,12 @@ function ff() {
 
 function fvi() {
 	local F=$(ff "$1" | fzf -e --exit-0 --select-1)
-	if [[ -n $F ]]; then
-		vi $F
+	if [[ -z $F ]]; then
+		return 1
 	fi
+
+	print -S $F
+	vi $F
 }
 
 function title() {
