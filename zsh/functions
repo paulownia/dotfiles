@@ -37,11 +37,24 @@ function fcd() {
 
 # find regular files (excludes invisible files)
 function ff() {
-	mdfind -onlyin . -name "$1"
+	F="./"
+	if [[ -n $2 ]]; then
+	  F="$2"
+	fi
+
+	mdfind -onlyin "$F" -name "$1"
+}
+
+function fo() {
+	local F=$(ff "$1" "$2" | fzf -e --exit-0 --select-1)
+	if [[ -z $F ]]; then
+		return 1
+	fi
+	open $F
 }
 
 function fvi() {
-	local F=$(ff "$1" | fzf -e --exit-0 --select-1)
+	local F=$(ff "$1" "$2" | fzf -e --exit-0 --select-1)
 	if [[ -z $F ]]; then
 		return 1
 	fi
