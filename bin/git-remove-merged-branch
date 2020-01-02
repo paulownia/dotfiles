@@ -1,0 +1,5 @@
+#!/bin/bash -e
+
+git fetch origin
+git remote prune origin
+git branch --merged master | grep feature | xargs git branch -d
