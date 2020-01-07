@@ -1,5 +1,4 @@
 # vim: set ft=zsh :
-
 # basic aliases
 alias ls=" ls -G"
 alias ll="ls -lF"
@@ -200,4 +199,10 @@ fi
 # loading local setting
 if [ -f ~/.zshrc_local ]; then
 	source ~/.zshrc_local
+fi
+
+# change bg color on ssh login
+if [[ $LC_TERMINAL == 'iTerm2' ]] && [[ -x ~/apps/bin/ssh-bg ]]; then
+	alias ssh=ssh-bg
+	compdef ssh-bg=ssh
 fi
