@@ -9,6 +9,9 @@ source "${HOME}/google-cloud-sdk/completion.zsh.inc"
 # make alias of hub using github enterprise
 alias ghe='GITHUB_HOST=**your.github.enterprise.site.domain** hub'
 
+# homebrew (https://github.com/settings/tokens)
+export HOMEBREW_GITHUB_API_TOKEN=xxxxx
+
 # boot vscode
 alias code="open -a 'Visual Studio Code'"
 
