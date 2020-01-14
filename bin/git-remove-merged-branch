@@ -1,5 +1,11 @@
 #!/bin/bash -e
 
+BRANCH=${1}
+
+if [[ -z $BRANCH ]]; then
+	BRANCH=$(git symbolic-ref --short HEAD)
+fi
+
 git fetch origin
 git remote prune origin
-git branch --merged master | grep feature | xargs git branch -d
+git branch --merged "${BRANCH}" | grep feature | xargs git branch -d
