@@ -9,7 +9,7 @@ log() {
 } >&2
 
 # --- copy dotfile
-for DOTFILE_PATH in ${DOTFILE_DIR}/files/*; do
+for DOTFILE_PATH in ${DOTFILE_DIR}/dots/*; do
 	DOTFILE_NAME=$(basename "${DOTFILE_PATH}")
 
 	FILE_SRC=${DOTFILE_PATH}
