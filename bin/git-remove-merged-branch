@@ -8,4 +8,4 @@ fi
 
 git fetch origin
 git remote prune origin
-git branch --merged "${BRANCH}" | grep feature | xargs git branch -d
+git branch --merged "${BRANCH}" | grep -v '\*' | grep "/" | xargs git branch -d
