@@ -1,0 +1,6 @@
+#!/bin/bash -e
+
+repo=${1:-origin}
+git_url=$(git config -l | grep "remote.${repo}.url")
+page_url=$(ruby -e 'puts ARGV[0].split("=").last.gsub(":", "/").gsub("git@", "https://").gsub(".git", "")' -- "${git_url}")
+open "$page_url"
