@@ -5,5 +5,14 @@ git_url=$(git config -l | grep "remote.${repo}.url")
 if [[ -z $git_url ]]; then
 	exit 1
 fi
-page_url=$(ruby -e 'puts ARGV[0].split("=").last.gsub(":", "/").gsub("git@", "https://").gsub(".git", "")' -- "${git_url}")
+
+ruby_script=$(cat << 'EOF'
+url = ARGV[0].split("=").last
+url = url.gsub(":", "/").gsub("git@", "https://") if url.start_with?("git@")
+url = url.gsub(".git", "")
+puts url
+EOF
+)
+
+page_url=$(ruby -e "${ruby_script}" -- "${git_url}")
 open "$page_url"
