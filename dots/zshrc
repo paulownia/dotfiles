@@ -206,3 +206,5 @@ if [[ $LC_TERMINAL == 'iTerm2' ]] && [[ -x ~/apps/bin/ssh-bg ]]; then
 	alias ssh=ssh-bg
 	compdef ssh-bg=ssh
 fi
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
