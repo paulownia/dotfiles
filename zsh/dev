@@ -49,9 +49,13 @@ function dev() {
 	do
 		case $OPT in
 			l)
-				tabs -"$(ruby -e 'puts (ARGF.map{ |x| x.split.first.size }.max / 8 + 1) * 8' < ~/.dev)"
-				cat ~/.dev
-				tabs
+				ruby_script=$(cat <<- 'EOF'
+					lines = $stdin.readlines
+					width = (lines.map{ |line| line.split.first.size }.max / 8 + 1) * 8
+					lines.map(&:split).each { |a, b| puts "#{a.ljust(width)}#{b}" }
+					EOF
+				)
+				ruby -e "${ruby_script}" < ~/.dev
 				return 0
 				;;
 			s)
