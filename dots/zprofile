@@ -1,5 +1,7 @@
 # vim: set ft=zsh :
 
+# zprofile is loaded only when zsh is run as login shell
+
 JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
 if [[ -n $JAVA_HOME ]]; then
 	export JAVA_HOME
@@ -35,3 +37,5 @@ export PATH="$HOME/.cargo/bin:$PATH"
 if [ -f ~/.zprofile_local ]; then
 	source ~/.zprofile_local
 fi
+
+# next, zshrc is loaded

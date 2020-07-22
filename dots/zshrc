@@ -1,4 +1,7 @@
 # vim: set ft=zsh :
+
+# zshrc is loaded in interactive mode.
+
 # basic aliases
 alias ls=" ls -G"
 alias ll="ls -lF"
