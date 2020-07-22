@@ -49,7 +49,9 @@ function dev() {
 	do
 		case $OPT in
 			l)
+				tabs -"$(ruby -e 'puts (ARGF.map{ |x| x.split.first.size }.max / 8 + 1) * 8' < ~/.dev)"
 				cat ~/.dev
+				tabs
 				return 0
 				;;
 			s)
