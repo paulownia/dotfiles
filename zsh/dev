@@ -49,13 +49,12 @@ function dev() {
 	do
 		case $OPT in
 			l)
-				ruby_script=$(cat <<- 'EOF'
+				ruby <(cat <<- 'EOF'
 					lines = $stdin.readlines
 					width = (lines.map{ |line| line.split.first.size }.max / 8 + 1) * 8
 					lines.map(&:split).each { |a, b| puts "#{a.ljust(width)}#{b}" }
 					EOF
-				)
-				ruby -e "${ruby_script}" < ~/.dev
+				) < ~/.dev
 				return 0
 				;;
 			s)
