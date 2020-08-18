@@ -18,14 +18,11 @@ alias reload="exec ${SHELL} -l"
 # prompt setting
 case "${OSTYPE}" in
 	darwin*)
-		case "${LC_TERMINAL}" in
-			iTerm2)
-				X_PROMPT="%{[1;36m%}%3~%{[m%}"
-				;;
-			*)
-				X_PROMPT="%{[0;32m%}${USER}@${HOST%%.*}%{[m%}:%{[0;34m%}%3~%{[m%}"
-				;;
-		esac
+		if [[ ${LC_TERMINAL} == iTerm2 ]] || [[ ${TERM_PROGRAM} == vscode ]] || [[ ${TERMINAL_EMULATOR} == *JediTerm ]]; then
+			X_PROMPT="%{[1;36m%}%3~%{[m%}"
+		else
+			X_PROMPT="%{[0;32m%}${USER}@${HOST%%.*}%{[m%}:%{[0;34m%}%3~%{[m%}"
+		fi
 		;;
 	linux*)
 		X_PROMPT="%{[0;35m%}${USER}@${HOST%%.*}%{[m%}:%{[0;34m%}%1~%{[m%}"
