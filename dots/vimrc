@@ -32,6 +32,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go'
 Plug 'AndrewRadev/switch.vim'
 Plug 'hashivim/vim-terraform'
+Plug 'cespare/vim-toml'
 
 if has('job') && has('channel') && has('timers')
   Plug 'w0rp/ale'
