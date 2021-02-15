@@ -3,9 +3,6 @@
 # zshrc is loaded in interactive mode.
 
 # basic aliases
-alias ls=" ls -G"
-alias ll="ls -lF"
-alias la="ls -A"
 alias here="open ."
 alias home="open ~/"
 alias edit="open -a CotEditor"
@@ -14,6 +11,7 @@ alias twitter="open -na 'Google Chrome' --args --app=https://mobile.twitter.com/
 alias gmail="open -na 'Google Chrome' --args --app='https://mail.google.com/mail/u/0/#inbox'"
 alias bash="HISTFILE=${HOME}/.bash_history /bin/bash"
 alias reload="exec ${SHELL} -l"
+
 
 # prompt setting
 case "${OSTYPE}" in
@@ -108,6 +106,20 @@ function isInstalled() {
 	type "$1" 1>/dev/null 2>/dev/null
 	return $?;
 }
+
+# alias another basic command
+if isInstalled exa; then
+	alias ls=" exa"
+	alias ll="ls -lF"
+	alias la="ls -a"
+	alias lla="ls -alF"
+else
+	alias ls=" ls -G"
+	alias ll="ls -lF"
+	alias la="ls -A"
+	alias lla="ls -AlF"
+fi
+isInstalled bat && alias cat=bat
 
 # settings for java
 if [[ -n $JAVA_HOME ]]; then
