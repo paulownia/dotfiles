@@ -22,6 +22,7 @@ brew "ssh-copy-id"
 brew "exa"
 brew "fd"
 brew "bat"
+brew "git-delta"
 
 # brew "mysql"
 # brew "ansible"
