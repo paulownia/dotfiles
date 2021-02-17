@@ -110,9 +110,9 @@ function isInstalled() {
 # alias another basic command
 if isInstalled exa; then
 	alias ls=" exa"
-	alias ll="ls -lF"
+	alias ll="ls -lF --time-style=long-iso"
 	alias la="ls -a"
-	alias lla="ls -alF"
+	alias lla="ls -alF --time-style=long-iso"
 else
 	alias ls=" ls -G"
 	alias ll="ls -lF"
