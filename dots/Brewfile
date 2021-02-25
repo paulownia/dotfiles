@@ -23,6 +23,7 @@ brew "exa"
 brew "fd"
 brew "bat"
 brew "git-delta"
+brew "webp"
 
 # brew "mysql"
 # brew "ansible"
