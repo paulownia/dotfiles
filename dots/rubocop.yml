@@ -1,5 +1,11 @@
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: comma
 
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: comma
+
+Style/AsciiComments:
+  Enabled: false
