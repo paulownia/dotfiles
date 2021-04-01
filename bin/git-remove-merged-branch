@@ -6,6 +6,9 @@ if [[ -z $BRANCH ]]; then
 	BRANCH=$(git symbolic-ref --short HEAD)
 fi
 
-git fetch origin
-git remote prune origin
-git branch --merged "${BRANCH}" | grep -v '\*' | grep "/" | xargs git branch -d
+for REMOTE in $(git remote); do
+	git fetch "${REMOTE}"
+	git remote prune "${REMOTE}"
+	git branch --merged "${BRANCH}" | grep -v '\*' | grep "/" | xargs git branch -d
+done
+
