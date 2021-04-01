@@ -49,12 +49,7 @@ function dev() {
 	do
 		case $OPT in
 			l)
-				ruby <(cat <<- 'EOF'
-					lines = $stdin.readlines
-					width = (lines.map{ |line| line.split.first.size }.max / 8 + 1) * 8
-					lines.map(&:split).each { |a, b| puts "#{a.ljust(width)}#{b}" }
-					EOF
-				) < ~/.dev
+				column -t < ~/.dev
 				return 0
 				;;
 			s)
