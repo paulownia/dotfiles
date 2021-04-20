@@ -9,6 +9,6 @@ fi
 for REMOTE in $(git remote); do
 	git fetch "${REMOTE}"
 	git remote prune "${REMOTE}"
-	git branch --merged "${BRANCH}" | grep -v '^ ' | grep "/" | xargs git branch -d
+	git branch --merged "${BRANCH}" | grep '^ ' | grep "/" | xargs git branch -d
 done
 
