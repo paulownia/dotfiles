@@ -1,0 +1,13 @@
+# vim: ft=gitconfig
+#
+# add following setting to .gitconfig
+#
+# [include]
+#   path = ~/.gitconfig_global
+#
+
+[pull]
+	ff = only
+
+[merge]
+	ff = false
