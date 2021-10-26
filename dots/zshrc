@@ -78,7 +78,8 @@ setopt no_list_beep
 
 # cd extention
 setopt auto_cd
-# setopt auto_pushd
+setopt auto_pushd
+DIRSTACKSIZE=2
 
 cdpath=(~ ../ $cdpath)
 
