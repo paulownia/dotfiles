@@ -3,7 +3,6 @@
 tap "universal-ctags/universal-ctags"
 
 brew "gnupg"
-brew "peco"
 brew "rbenv"
 brew "ruby-build"
 brew "tig"
