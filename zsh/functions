@@ -13,7 +13,7 @@ function google() {
 }
 
 function fcd() {
-	if ! isInstalled peco; then
+	if ! isInstalled fzf; then
 		echo "[ERROR] peco is not installed. type 'brew install peco'"
 		return 1
 	fi
@@ -25,7 +25,7 @@ function fcd() {
 	# https://developer.apple.com/library/mac/documentation/Carbon/Conceptual/SpotlightQuery/Concepts/QueryFormat.html
 	local MD_QUERY="kMDItemContentType == 'public.folder' && kMDItemFSName == '$1*'"
 
-	local RESULT=$(mdfind -onlyin ~ "$MD_QUERY" | peco)
+	local RESULT=$(mdfind -onlyin ~ "$MD_QUERY" | fzf)
 
 	if [ -z "$RESULT" ]; then
 		return 1
