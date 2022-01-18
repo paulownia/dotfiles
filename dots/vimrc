@@ -34,7 +34,7 @@ Plug 'AndrewRadev/switch.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'cespare/vim-toml'
 
-if has('job') && has('channel') && has('timers')
+if (has('job') && has('channel') && has('timers')) || has('nvim')
   Plug 'w0rp/ale'
 else
   Plug 'scrooloose/syntastic'
@@ -121,7 +121,11 @@ set modelines=5
 set backspace=start,eol,indent
 
 " yankをclipboardへ
-set clipboard=unnamed,autoselect
+if has('nvim')
+  set clipboard=unnamedplus
+else
+  set clipboard=unnamed,autoselect
+endif
 
 " diffopt追加、デフォルト縦分割にする
 set diffopt+=vertical
