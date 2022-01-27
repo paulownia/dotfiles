@@ -178,6 +178,10 @@ augroup vimrc
   autocmd BufWritePre * :%s/\s\+$//ge
 augroup END
 
+if has('conceal')
+  set conceallevel=2 concealcursor=nvc
+endif
+
 "" --- Tagbar
 nnoremap t :TagbarToggle<CR>
 let g:tagbar_type_javascript = {
@@ -256,14 +260,6 @@ let g:lightline = {
 \    }
 \  }
 
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
-if filereadable(expand('~/.vimrc_local'))
-  source ~/.vimrc_local
-endif
-
 "" --- ale
 let g:ale_linters = {
 \   'javascript': ['eslint'],
@@ -276,3 +272,8 @@ let g:ale_linters = {
 let g:ale_lint_delay = 1500
 highlight ALEError ctermbg=none cterm=underline,bold
 highlight ALEWarning ctermbg=none cterm=underline
+
+
+if filereadable(expand('~/.vimrc_local'))
+  source ~/.vimrc_local
+endif
