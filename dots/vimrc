@@ -3,25 +3,25 @@ if filereadable('$VIMRUNTIME/defaults.vim')
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'					" Ctrl-y -> , on ins-mode
 Plug 'tpope/vim-fugitive'
 Plug 'othree/html5-syntax.vim'
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'				" t on nor-mode
 Plug 'tpope/vim-rails'
 Plug 'vim-scripts/nginx.vim'
-Plug 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'					" Ctrl-p on nor-mode
 Plug 'leafgarland/typescript-vim'
 Plug 'thinca/vim-quickrun'
 Plug 'derekwyatt/vim-scala'
 Plug 'elzr/vim-json'
-Plug 'vim-scripts/sudo.vim'
-Plug 'osyo-manga/vim-anzu'
+Plug 'vim-scripts/sudo.vim'             " open a file follow command `vim sudo:/etc/passwd`
+Plug 'osyo-manga/vim-anzu'				" /<search-word> on nor-mode
 Plug 'itchyny/lightline.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'pangloss/vim-javascript'
-Plug 'tomtom/tcomment_vim'
+Plug 'tomtom/tcomment_vim'				" gcc on nor-mode, gc with selection on vis-mode
 Plug 'rust-lang/rust.vim'
-Plug 'AndrewRadev/switch.vim'
+Plug 'AndrewRadev/switch.vim'			" gs on nor-mode
 Plug 'cespare/vim-toml'
 
 " Plug 'moll/vim-node'
