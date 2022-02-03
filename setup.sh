@@ -41,3 +41,21 @@ for CMD_PATH in ${DOTFILE_DIR}/bin/*; do
 
 	ln -s "${FILE_SRC}" "${FILE_DST}"
 done
+
+# --- copy config
+if [[ ! -d ${HOME}/.config ]]; then
+	mkdir ${HOME}/.config
+fi
+
+for CONFIG_PATH in ${DOTFILE_DIR}/config/*; do
+	SRC=${CONFIG_PATH}
+	DST=${HOME}/.config/$(basename "$CONFIG_PATH")
+
+	if [[ -L $DST ]]; then
+		rm "${DST}" && log "${DST} is symbolic link, remove it."
+	elif [[ -e $DST ]]; then
+		mv "${DST}" "${DST}.org" && log "${DST} already exists, rename it."
+	fi
+
+	ln -s "${SRC}" "${DST}"
+done

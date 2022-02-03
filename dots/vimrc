@@ -19,7 +19,6 @@ Plug 'osyo-manga/vim-anzu'									" * or # on search word on nor-mode
 Plug 'itchyny/lightline.vim'
 Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'tomtom/tcomment_vim'									" gcc on nor-mode, gc with selection on vis-mode
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'AndrewRadev/switch.vim'								" gs on nor-mode
 Plug 'cespare/vim-toml', { 'for': 'toml' }
@@ -36,6 +35,12 @@ if (has('job') && has('channel') && has('timers')) || has('nvim')
 else
   Plug 'scrooloose/syntastic'
 endif
+
+if has('nvim')
+	Plug 'b3nj5m1n/kommentary'
+else
+	Plug 'tomtom/tcomment_vim'									" gcc on nor-mode, gc with selection on vis-mode
+end
 
 call plug#end()
 
