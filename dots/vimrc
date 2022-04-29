@@ -5,27 +5,21 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'mattn/emmet-vim'										" Ctrl-y -> , on ins-mode
 Plug 'tpope/vim-fugitive'
-Plug 'othree/html5-syntax.vim', { 'for': 'html' }
 Plug 'majutsushi/tagbar'									" t on nor-mode
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
-Plug 'vim-scripts/nginx.vim', { 'for': 'nginx' }
 Plug 'kien/ctrlp.vim'										" Ctrl-p on nor-mode
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'thinca/vim-quickrun', { 'on': 'QuickRun' }
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
-Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'vim-scripts/sudo.vim'									" open a file follow command `vim sudo:/etc/passwd`
 Plug 'osyo-manga/vim-anzu'									" * or # on search word on nor-mode
 Plug 'itchyny/lightline.vim'
 Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'AndrewRadev/switch.vim'								" gs on nor-mode
-Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 " Plug 'moll/vim-node'
 " Plug 'digitaltoad/vim-pug'
-" Plug 'fatih/vim-go'
 " Plug 'hashivim/vim-terraform'
 " Plug 'rhysd/vim-crystal'
 " Plug 'elixir-lang/vim-elixir'
