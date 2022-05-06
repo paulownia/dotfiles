@@ -27,18 +27,18 @@ case "${OSTYPE}" in
 esac
 
 function zle-line-init zle-keymap-select {
-  case $KEYMAP in
-    main|viins)
-    PROMPT="${X_PROMPT} %{[0;36m%}i%{[m%}%(!.#.$) "
-    ;;
-    vicmd)
-    PROMPT="${X_PROMPT} %{[0;31m%}n%{[m%}%(!.#.$) "
-    ;;
-  vivis|vivli)
-    PROMPT="${X_PROMPT} %{[0;31m%}v%{[m%}%(!.#.$) "
-    ;;
-  esac
-  zle reset-prompt
+	case $KEYMAP in
+		main|viins)
+			PROMPT="${X_PROMPT} %{[0;36m%}i%{[m%}%(!.#.$) "
+			;;
+		vicmd)
+			PROMPT="${X_PROMPT} %{[0;31m%}n%{[m%}%(!.#.$) "
+			;;
+		vivis|vivli)
+			PROMPT="${X_PROMPT} %{[0;31m%}v%{[m%}%(!.#.$) "
+			;;
+	esac
+	zle reset-prompt
 }
 zle -N zle-line-init
 zle -N zle-keymap-select
@@ -162,7 +162,7 @@ fi
 
 # alias for hub command
 if isInstalled hub; then
-   eval "$(hub alias -s)"
+	eval "$(hub alias -s)"
 fi
 
 # git
@@ -192,9 +192,9 @@ source ~/.dotfiles/zsh/functions
 
 # completion ssh hosts
 function print_known_hosts (){
-    if [ -f $HOME/.ssh/known_hosts ]; then
-        cat $HOME/.ssh/known_hosts | tr ',' ' ' | cut -d ' ' -f 1
-    fi
+	if [ -f $HOME/.ssh/known_hosts ]; then
+		cat $HOME/.ssh/known_hosts | tr ',' ' ' | cut -d ' ' -f 1
+	fi
 }
 _cache_hosts=($(print_known_hosts))
 
