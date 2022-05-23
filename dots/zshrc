@@ -198,18 +198,6 @@ function print_known_hosts (){
 }
 _cache_hosts=($(print_known_hosts))
 
-# Use local mocha if mocha is not installed in global
-if ! isInstalled mocha; then
-	function mocha() {
-		local _mocha=$(npm bin)/mocha
-		if [ -x ${_mocha} ]; then
-			${_mocha} "$@"
-		else
-			echo "mocha not found" >&2
-		fi
-	}
-fi
-
 # loading local setting
 if [ -f ~/.zshrc_local ]; then
 	source ~/.zshrc_local
