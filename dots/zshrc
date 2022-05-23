@@ -98,17 +98,8 @@ zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*' group-name ''
 
 
-function isInstalled() {
-	if [ $# -ne 1 ]; then
-		return 2
-	fi
-
-	type "$1" 1>/dev/null 2>/dev/null
-	return $?;
-}
-
 # alias another basic command
-if isInstalled exa; then
+if type exa 1>/dev/null 2>&1; then
 	alias ls=" exa"
 	alias ll="ls -lF --time-style=long-iso"
 	alias la="ls -a"
@@ -119,7 +110,10 @@ else
 	alias la="ls -A"
 	alias lla="ls -AlF"
 fi
-isInstalled bat && alias cat=bat
+
+if type bat 1>/dev/null 2>&1; then
+	alias cat=bat
+fi
 
 # settings for java
 if [[ -n $JAVA_HOME ]]; then
