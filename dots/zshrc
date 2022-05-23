@@ -134,16 +134,6 @@ elif [ -e /usr/local/bin/vim ]; then
 	alias vi=/usr/local/bin/vim
 fi
 
-# enable direnv
-if isInstalled direnv; then
-	eval "$(direnv hook zsh)"
-fi
-
-# alias for hub command
-if isInstalled hub; then
-	eval "$(hub alias -s)"
-fi
-
 # git
 alias git-vimdiff="git difftool --tool=vimdiff --no-prompt"
 
