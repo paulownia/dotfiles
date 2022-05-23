@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-trap 'echo -ne "\033]1337;SetColors=bg=000\a"; echo -en "\033];\007"' EXIT
+trap 'echo -ne "\033]1337;SetColors=bg=000\a"; echo -en "\033];\007"' SIGINT EXIT
 
 if [[ $@ == *prd* ]]; then
 	echo -ne '\033]1337;SetColors=bg=200\a'
