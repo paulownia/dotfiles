@@ -155,14 +155,14 @@ source ~/.dotfiles/zsh/functions
 
 # completion ssh hosts
 function print_known_hosts (){
-	if [ -f $HOME/.ssh/known_hosts ]; then
+	if [[ -f $HOME/.ssh/known_hosts ]]; then
 		cat $HOME/.ssh/known_hosts | tr ',' ' ' | cut -d ' ' -f 1
 	fi
 }
 _cache_hosts=($(print_known_hosts))
 
 # loading local setting
-if [ -f ~/.zshrc_local ]; then
+if [[ -f ~/.zshrc_local ]]; then
 	source ~/.zshrc_local
 fi
 
