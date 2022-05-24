@@ -161,11 +161,6 @@ function print_known_hosts (){
 }
 _cache_hosts=($(print_known_hosts))
 
-# loading local setting
-if [[ -f ~/.zshrc_local ]]; then
-	source ~/.zshrc_local
-fi
-
 # change bg color on ssh login
 if [[ $LC_TERMINAL == 'iTerm2' ]] && [[ -x ~/apps/bin/ssh-bg ]]; then
 	alias ssh=ssh-bg
