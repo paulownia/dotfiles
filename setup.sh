@@ -59,3 +59,11 @@ for CONFIG_PATH in ${DOTFILE_DIR}/config/*; do
 
 	ln -s "${SRC}" "${DST}"
 done
+
+
+# -- copy nvim config
+: "nvim setting"; {
+	NVIM_AUTOLOAD_PATH="${HOME}/.local/share/nvim/site/autoload"
+	mkdir -p "${NVIM_AUTOLOAD_PATH}"
+	ln -s "${DOTFILE_DIR}/dots/vim/autoload/plug.vim" "${NVIM_AUTOLOAD_PATH}/plug.vim"
+}
