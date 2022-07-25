@@ -2,6 +2,10 @@
 
 # zprofile is loaded only when zsh is run as login shell
 
+
+# brew path
+export PATH=/opt/homebrew/bin:/usr/local/sbin:$PATH
+
 JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
 if [[ -n $JAVA_HOME ]]; then
 	export JAVA_HOME
@@ -23,9 +27,6 @@ if type go 1>/dev/null 2>/dev/null; then
 	export PATH=$PATH:$GOPATH/bin
 fi
 
-# brew path
-export PATH=/usr/local/sbin:$PATH
-
 # user path
 export PATH=~/apps/bin:$PATH
 
@@ -45,20 +46,35 @@ if [[ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]]; then
 	. "${HOME}/google-cloud-sdk/completion.zsh.inc";
 fi
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
 
-if [[ -f ~/.nvm/nvm.sh ]]; then
+# node manager
+if [[ -d $HOME/.volta ]]; then
+	# use volta instead of nvm
+	export VOLTA_HOME="$HOME/.volta"
+	export PATH="$VOLTA_HOME/bin:$PATH"
+
+elif [[ -f ~/.nvm/nvm.sh ]]; then
 	# installed manually
+	export NVM_DIR="$HOME/.nvm"
 	source ~/.nvm/nvm.sh
 
 elif [[ -f /usr/local/opt/nvm/nvm.sh ]]; then
-	# installed by homebrew
+	# installed by homebrew (x86 mac)
 	if [[ ! -d $HOME/.nvm ]]; then
 		mkdir $HOME/.nvm
 	fi
+	export NVM_DIR="$HOME/.nvm"
 	source /usr/local/opt/nvm/nvm.sh
+
+elif [[ -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
+	# installed by homebrew (arm64 mac)
+	if [[ ! -d $HOME/.nvm ]]; then
+		mkdir $HOME/.nvm
+	fi
+	export NVM_DIR="$HOME/.nvm"
+	source /opt/homebrew/opt/nvm/nvm.sh
 fi
+
 
 # npm
 if type npm 1>/dev/null 2>&1; then
