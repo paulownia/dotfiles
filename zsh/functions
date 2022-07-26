@@ -13,7 +13,7 @@ function google() {
 }
 
 function fcd() {
-	if ! isInstalled fzf; then
+	if ! type fzf 1>/dev/null 2>&1; then
 		echo "[ERROR] peco is not installed. type 'brew install peco'"
 		return 1
 	fi
@@ -84,7 +84,7 @@ function sourcetree() {
 
 # jq + less
 function jl() {
-	if ! isInstalled jq; then
+	if ! type jq 1>/dev/null 2>&1; then
 		echo "[ERROR] jq is not installed. type 'brew install jq'"
 		return 1
 	fi
