@@ -17,7 +17,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'AndrewRadev/switch.vim'								" gs on nor-mode
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Plug 'moll/vim-node'
 " Plug 'digitaltoad/vim-pug'
