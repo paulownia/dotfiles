@@ -2,7 +2,7 @@
 
 # dev command
 
-function dev_save() {
+function dev_add() {
 	local KEY=$1
 	local CD_PATH=$(pwd)
 
@@ -44,20 +44,40 @@ function dev_cd() {
 	pwd
 }
 
+function dev_cd_select() {
+	local SELECTED=$(cat ~/.dev | column -t | fzf)
+	if [[ -z $SELECTED ]]; then
+		return 1
+	fi
+
+	local KEY_PATH=($(echo $SELECTED | awk '{ print $1, $2 }'))
+	cd $KEY_PATH[2]
+	title $KEY_PATH[1]
+	pwd
+}
+
+function dev_list() {
+	column -t < ~/.dev
+}
+
 function dev() {
-	while getopts d:s:l OPT
+	while getopts d:a:sl OPT
 	do
 		case $OPT in
 			l)
-				column -t < ~/.dev
-				return 0
+				dev_list
+				return $!
 				;;
-			s)
-				dev_save "$OPTARG"
+			a)
+				dev_add "$OPTARG"
 				return $!
 				;;
 			d)
 				dev_delete "$OPTARG"
+				return $!
+				;;
+			s)
+				dev_cd_select
 				return $!
 				;;
 		esac
@@ -65,7 +85,7 @@ function dev() {
 	dev_cd $1
 }
 
-function _dev_list() {
+function _dev_projects() {
 	local -a CD_LIST
 	CD_LIST=( $(cat ~/.dev | cut -f 1) )
 	_describe "Projects" CD_LIST
@@ -78,9 +98,10 @@ function _dev_pwd() {
 function _dev() {
 	_arguments \
 		'(- *)'-l'[list all projects]' \
-		'(- *)'-s'[save project]:keyword:_dev_pwd' \
-		'(- *)'-d'[delete project]:project:_dev_list' \
-		'(- *)*:project:_dev_list'
+		'(- *)'-a'[add project]:keyword:_dev_pwd' \
+		'(- *)'-d'[delete project]:project:_dev_projects' \
+		'(- *)'-s'[select project]' \
+		'(- *)*:project:_dev_projects'
 }
 
 compdef _dev dev
