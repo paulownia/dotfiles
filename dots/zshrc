@@ -9,7 +9,7 @@ alias edit="open -a CotEditor"
 alias al="ag --pager 'less -R'"
 alias gmail="open -na 'Google Chrome' --args --app='https://mail.google.com/mail/u/0/#inbox'"
 alias bash="HISTFILE=${HOME}/.bash_history /bin/bash"
-alias reload="exec ${SHELL} -l"
+alias reload="exec ${SHELL}"
 
 
 # prompt setting
