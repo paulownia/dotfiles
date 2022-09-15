@@ -173,6 +173,11 @@ if has('conceal')
   set conceallevel=2 concealcursor=nvc
 endif
 
+" mapping typo :Wq, :Q to :wq, :q
+command Q q
+command W w
+command Wq wq
+
 "" --- Tagbar
 nnoremap t :TagbarToggle<CR>
 let g:tagbar_type_javascript = {
