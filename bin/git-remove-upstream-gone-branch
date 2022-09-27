@@ -1,0 +1,3 @@
+#!/bin/bash -e
+
+git for-each-ref --format '%(if)%(upstream:track)%(then)%(refname:short)%(end)' | xargs git branch -D
