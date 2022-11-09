@@ -100,10 +100,10 @@ zstyle ':completion:*' group-name ''
 
 # alias another basic command
 if type exa 1>/dev/null 2>&1; then
-	alias ls=" exa"
-	alias ll="ls -lF --time-style=long-iso"
+	alias ls=" exa --time-style=iso"
+	alias ll="ls -glF --time-style=long-iso"
 	alias la="ls -a"
-	alias lla="ls -alF --time-style=long-iso"
+	alias lla="ls -aglF --time-style=long-iso"
 else
 	alias ls=" ls -G"
 	alias ll="ls -lF"
