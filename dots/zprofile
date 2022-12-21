@@ -24,10 +24,10 @@ fi
 # goenv & golang
 if type goenv >/dev/null 2>&1; then
 	eval "$(goenv init -)"
-fi
+	export PATH=$PATH:$GOPATH/bin
 
-export GOPATH=$HOME/.go
-if type go 1>/dev/null 2>/dev/null; then
+elif type go 1>/dev/null 2>&1; then
+	export GOPATH=$HOME/.go
 	export PATH=$PATH:$GOPATH/bin
 fi
 
