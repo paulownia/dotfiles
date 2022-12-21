@@ -249,10 +249,10 @@ let g:lightline = {
 \      ]
 \    },
 \    'component': {
-\      'fugitive': '%{fugitive#statusline()}'
+\      'fugitive': '%{FugitiveStatusline()}'
 \    },
 \    'component_visible_condition': {
-\      'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+\      'fugitive': 'g:loaded_fugitive'
 \    }
 \  }
 
