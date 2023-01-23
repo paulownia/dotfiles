@@ -26,35 +26,33 @@ function dev_delete() {
 }
 
 function dev_cd() {
-	KEY=$1
+	local KEY DIR
+
+	KEY="$1"
 	if [ -z "$KEY" ]; then
-		KEY=default
+		local SELECTED=$(cat ~/.dev | column -t | fzf)
+		if [[ -z $SELECTED ]]; then
+			return 1
+		fi
+
+		local KEY_DIR=($(echo $SELECTED | awk '{ print $1, $2 }'))
+		KEY=$KEY_DIR[1]
+		DIR=$KEY_DIR[2]
+	else
+		DIR=$(awk -F "\t" -v "key=$KEY" '{ if ($1 == key) { print $2; exit } }' ~/.dev)
 	fi
 
-	local CD_PATH=$(awk -F "\t" -v "key=$KEY" '{ if ($1 == key) { print $2; exit } }' ~/.dev)
-
-	if [ -z "$CD_PATH" ] || [ ! -d "$CD_PATH" ]; then
+	if [ -z "$DIR" ] || [ ! -d "$DIR" ]; then
 		return 1
 	fi
 
-	cd "$CD_PATH" || return 1
+	cd "$DIR" || return 1
 
 	title $KEY
 
 	pwd
 }
 
-function dev_cd_select() {
-	local SELECTED=$(cat ~/.dev | column -t | fzf)
-	if [[ -z $SELECTED ]]; then
-		return 1
-	fi
-
-	local KEY_PATH=($(echo $SELECTED | awk '{ print $1, $2 }'))
-	cd $KEY_PATH[2]
-	title $KEY_PATH[1]
-	pwd
-}
 
 function dev_list() {
 	column -t < ~/.dev
@@ -76,10 +74,8 @@ function dev() {
 				dev_delete "$OPTARG"
 				return $!
 				;;
-			s)
-				dev_cd_select
-				return $!
-				;;
+			*)
+				return 1
 		esac
 	done
 	dev_cd $1
@@ -100,7 +96,6 @@ function _dev() {
 		'(- *)'-l'[list all projects]' \
 		'(- *)'-a'[add project]:keyword:_dev_pwd' \
 		'(- *)'-d'[delete project]:project:_dev_projects' \
-		'(- *)'-s'[select project]' \
 		'(- *)*:project:_dev_projects'
 }
 
