@@ -1,3 +1,7 @@
+# To apply this file, exec this command
+#
+#   git config --gloabl core.excludesfile ~/.gitignore_global
+
 *~
 .DS_Store
 Nyan*
@@ -11,3 +15,7 @@ hoge*
 fuga*
 piyo*
 .vscode/
+Cat*
+Dog*
+cat*
+dog*

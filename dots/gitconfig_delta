@@ -13,10 +13,14 @@
 	diffFilter = delta --color-only
 
 [delta]
-    features = side-by-side line-numbers decorations
-    whitespace-error-style = 22 reverse
+  navigate = true
+  light = false
+  side-by-side = true
+  line-number = true
+  file-style = bold yellow ul
+[merge]
+  conflictstyle = diff3
 
-[delta "decorations"]
-    commit-decoration-style = bold yellow box ul
-    file-style = bold yellow ul
-    file-decoration-style = none
+[diff]
+  colorMoved = default
+
