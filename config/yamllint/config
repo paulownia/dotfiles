@@ -1,0 +1,12 @@
+# vim: set ft=yaml :
+
+---
+extends: default
+
+rules:
+  # ブーリアンっぽい値に対する警告、on
+  # suppress warning for `on` of github action
+  truthy: disable
+
+  # 開始の---を必須にしない
+  document-start: disable
