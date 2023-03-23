@@ -1,0 +1,14 @@
+# vim: ft=sh
+
+installed() {
+	for i in "$@"; do
+		if ! type "$i" >/dev/null 2>&1; then
+			return 1
+		fi
+	done
+}
+
+log() {
+	echo "$@"
+} >&2
+
