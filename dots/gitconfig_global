@@ -5,31 +5,9 @@
 # [include]
 #   path = ~/.gitconfig_global
 #
-# or exec the command below
-#
-#   git config --add --gloabal include.path ~/.gitconfig_global
-#
-
-[core]
-	pager = delta
-
-[interactive]
-	diffFilter = delta --color-only
-
-[delta]
-  navigate = true
-  light = false
-  side-by-side = true
-  line-number = true
-  file-style = bold yellow ul
-
-[merge]
-  conflictstyle = diff3
-	ff = false
 
 [pull]
 	ff = only
 
-[diff]
-  colorMoved = default
-
+[merge]
+	ff = false

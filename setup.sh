@@ -1,8 +1,10 @@
 #!/bin/zsh
 
-source ./functions
-
 DOTFILE_DIR=$(cd "$(dirname "$0")" && pwd)
+
+log() {
+	echo "$@"
+} >&2
 
 : copy dotfile to home directory ; {
 	for DOTFILE_PATH in "${DOTFILE_DIR}/dots/"*; do
@@ -65,5 +67,3 @@ DOTFILE_DIR=$(cd "$(dirname "$0")" && pwd)
 	mkdir -p "${NVIM_AUTOLOAD_PATH}"
 	ln -s "${DOTFILE_DIR}/dots/vim/autoload/plug.vim" "${NVIM_AUTOLOAD_PATH}/plug.vim"
 }
-
-
