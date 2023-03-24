@@ -1,13 +1,31 @@
 # vim: ft=gitconfig
 #
-# add following setting to .gitconfig
+# exec the commands below
 #
-# [include]
-#   path = ~/.gitconfig_global
+#   $ brew install git-delta
+#   $ git config --add --global include.path ~/.gitconfig_global
 #
+
+[core]
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  light = false
+  side-by-side = true
+  line-number = true
+  file-style = bold yellow ul
+
+[merge]
+  conflictstyle = diff3
+	ff = false
 
 [pull]
 	ff = only
 
-[merge]
-	ff = false
+[diff]
+  colorMoved = default
+
