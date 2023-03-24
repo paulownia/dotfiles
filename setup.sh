@@ -61,9 +61,16 @@ log() {
 	done
 }
 
-# -- copy nvim config
-: nvim setting ; {
+: copy nvim setting ; {
 	NVIM_AUTOLOAD_PATH="${HOME}/.local/share/nvim/site/autoload"
 	mkdir -p "${NVIM_AUTOLOAD_PATH}"
-	ln -s "${DOTFILE_DIR}/dots/vim/autoload/plug.vim" "${NVIM_AUTOLOAD_PATH}/plug.vim"
+
+	SRC="${DOTFILE_DIR}/dots/vim/autoload/plug.vim"
+	DST="${NVIM_AUTOLOAD_PATH}/plug.vim"
+
+	if [[ -e $DST ]]; then
+		mv "${DST}" "${DST}.org" && log "${DST} already exists, rename it."
+	fi
+
+	ln -s "${SRC}" "${DST}"
 }
