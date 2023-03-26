@@ -88,3 +88,23 @@ function isSynLinked() {
 	fi
 }
 
+: sync vim setting with nvim setting ; {
+	TARGETS=(after ftdetect ftplugin)
+	for TARGET in ${TARGETS[@]}; do
+		SRC=${WORKING_DIR}/dots/vim/${TARGET}
+		DST=${HOME}/.config/nvim/
+
+		DST_FILE=${DST}${TARGET}
+
+		if isSynLinked ${SRC} ${DST_FILE}; then
+			log "skip ${DST_FILE} has already been created."
+			continue
+		elif [[ -e $DST_FILE ]]; then
+			mv ${DST_FILE} ${DST_FILE}.org && log "${DST_FILE} exists, rename it."
+		fi
+
+		ln -s ${SRC} ${DST} && log "create ${DST_FILE}"
+	done
+}
+
+
