@@ -2,21 +2,33 @@
 
 WORKING_DIR=$(cd "$(dirname "$0")" && pwd)
 
-log() {
+function log() {
 	echo "$@"
 } >&2
+
+function isSynLinked() {
+	local SRC=$1
+	local DST=$2
+	if [[ -L ${DST} ]] && [[ $(readlink ${DST}) = ${SRC} ]]; then
+		return 0
+	else
+		return 1
+	fi
+}
 
 : copy dotfile to home directory ; {
 	for SRC in ${WORKING_DIR}/dots/*; do
 		DST=${HOME}/.$(basename ${SRC})
 
-		if [[ -L $DST ]]; then
-			rm ${DST} && log "${DST} is symbolic link, remove it."
+
+		if isSynLinked $SRC $DST; then
+			log "skip ${DST} has already been created."
+			continue
 		elif [[ -e $DST ]]; then
-			mv ${DST} ${DST}.org && log "${DST} already exists, rename it."
+			mv ${DST} ${DST}.org && log "${DST} exists, rename it."
 		fi
 
-		ln -s ${SRC} ${DST}
+		ln -s ${SRC} ${DST} && log "create ${DST}"
 	done
 }
 
@@ -28,13 +40,14 @@ log() {
 	for SRC in ${WORKING_DIR}/bin/*; do
 		DST=${HOME}/apps/bin/$(basename ${SRC})
 
-		if [[ -L $DST ]]; then
-			rm ${DST} && log "${DST} is symbolic link, remove it."
+		if isSynLinked $SRC $DST; then
+			log "skip ${DST} has already been created."
+			continue
 		elif [[ -e $DST ]]; then
-			mv ${DST} ${DST}.org && log "${DST} already exists, rename it."
+			mv ${DST} ${DST}.org && log "${DST} exists, rename it."
 		fi
 
-		ln -s ${SRC} ${DST}
+		ln -s ${SRC} ${DST} && log "create ${DST}"
 	done
 }
 
@@ -46,13 +59,14 @@ log() {
 	for SRC in ${WORKING_DIR}/config/*; do
 		DST=${HOME}/.config/$(basename ${SRC})
 
-		if [[ -L $DST ]]; then
-			rm ${DST} && log "${DST} is symbolic link, remove it."
+		if isSynLinked $SRC $DST; then
+			log "skip ${DST} has already been created."
+			continue
 		elif [[ -e $DST ]]; then
-			mv ${DST} ${DST}.org && log "${DST} already exists, rename it."
+			mv ${DST} ${DST}.org && log "${DST} exists, rename it."
 		fi
 
-		ln -s ${SRC} ${DST}
+		ln -s ${SRC} ${DST} && log "create ${DST}"
 	done
 }
 
@@ -63,10 +77,14 @@ log() {
 	SRC="${WORKING_DIR}/dots/vim/autoload/plug.vim"
 	DST="${NVIM_AUTOLOAD_PATH}/plug.vim"
 
-	if [[ -e $DST ]]; then
-		mv ${DST} ${DST}.org && log "${DST} already exists, rename it."
-	fi
+	if isSynLinked $SRC $DST; then
+			log "skip ${DST} has already been created."
+	else
+		if [[ -e $DST ]]; then
+			mv ${DST} ${DST}.org && log "${DST} exists, rename it."
+		fi
 
-	ln -s ${SRC} ${DST}
+		ln -s ${SRC} ${DST} && log "create ${DST}"
+	fi
 }
 
