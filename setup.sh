@@ -16,10 +16,9 @@ function isSynLinked() {
 	fi
 }
 
-: copy dotfile to home directory ; {
+: copy dotfile to home directory ; (
 	for SRC in ${WORKING_DIR}/dots/*; do
 		DST=${HOME}/.$(basename ${SRC})
-
 
 		if isSynLinked $SRC $DST; then
 			log "skip ${DST} has already been created."
@@ -30,9 +29,9 @@ function isSynLinked() {
 
 		ln -s ${SRC} ${DST} && log "create ${DST}"
 	done
-}
+)
 
-: copy commands to ~/apps/bin ; {
+: copy commands to ~/apps/bin ; (
 	if [[ ! -d ~/apps/bin ]]; then
 		mkdir -p ~/apps/bin
 	fi
@@ -49,9 +48,9 @@ function isSynLinked() {
 
 		ln -s ${SRC} ${DST} && log "create ${DST}"
 	done
-}
+)
 
-: copy .config dir to home direcotry ; {
+: copy .config dir to home direcotry ; (
 	if [[ ! -d ~/.config ]]; then
 		mkdir ~/.config
 	fi
@@ -68,9 +67,9 @@ function isSynLinked() {
 
 		ln -s ${SRC} ${DST} && log "create ${DST}"
 	done
-}
+)
 
-: copy nvim setting ; {
+: copy nvim setting ; (
 	NVIM_AUTOLOAD_PATH="${HOME}/.local/share/nvim/site/autoload"
 	mkdir -p ${NVIM_AUTOLOAD_PATH}
 
@@ -86,9 +85,9 @@ function isSynLinked() {
 
 		ln -s ${SRC} ${DST} && log "create ${DST}"
 	fi
-}
+)
 
-: sync vim setting with nvim setting ; {
+: sync vim setting with nvim setting ; (
 	TARGETS=(after ftdetect ftplugin)
 	for TARGET in ${TARGETS[@]}; do
 		SRC=${WORKING_DIR}/dots/vim/${TARGET}
@@ -105,6 +104,6 @@ function isSynLinked() {
 
 		ln -s ${SRC} ${DST} && log "create ${DST_FILE}"
 	done
-}
+)
 
 
