@@ -31,9 +31,9 @@ else
 endif
 
 if has('nvim')
-	Plug 'b3nj5m1n/kommentary'
+  Plug 'terrortylor/nvim-comment'
 else
-	Plug 'tomtom/tcomment_vim'									" gcc on nor-mode, gc with selection on vis-mode
+  Plug 'tomtom/tcomment_vim'									" gcc on nor-mode, gc with selection on vis-mode
 end
 
 call plug#end()
