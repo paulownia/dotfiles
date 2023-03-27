@@ -174,9 +174,9 @@ if has('conceal')
 endif
 
 " mapping typo :Wq, :Q to :wq, :q
-command Q q
-command W w
-command Wq wq
+command -bang Q q<bang>
+command -bang W w<bang>
+command -bang Wq wq<bang>
 
 "" --- Tagbar
 nnoremap t :TagbarToggle<CR>
