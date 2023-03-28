@@ -38,8 +38,6 @@ end
 
 call plug#end()
 
-filetype plugin indent on
-
 " ライン番号
 " set number
 
@@ -121,10 +119,8 @@ set diffopt+=vertical
 " シンタックスハイライト
 syntax on
 
-" ファイルタイプ別プラグインを有効に
-filetype on
-filetype indent on
-filetype plugin on
+" ファイルタイプ検出を有効化
+filetype plugin indent on
 
 " インサートモードからノーマルモードへの変換をCtrl-Spaceで
 "inoremap <Nul> <ESC>
