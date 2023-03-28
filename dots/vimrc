@@ -5,14 +5,13 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'mattn/emmet-vim'										" Ctrl-y -> , on ins-mode
 Plug 'tpope/vim-fugitive'
-Plug 'majutsushi/tagbar'									" t on nor-mode
+Plug 'preservim/tagbar'									" t on nor-mode
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'kien/ctrlp.vim'										" Ctrl-p on nor-mode
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'thinca/vim-quickrun', { 'on': 'QuickRun' }
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'vim-scripts/sudo.vim'									" open a file follow command `vim sudo:/etc/passwd`
-Plug 'osyo-manga/vim-anzu'									" * or # on search word on nor-mode
 Plug 'itchyny/lightline.vim'
 Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -25,15 +24,14 @@ Plug 'AndrewRadev/switch.vim'								" gs on nor-mode
 " Plug 'elixir-lang/vim-elixir'
 
 if (has('job') && has('channel') && has('timers')) || has('nvim')
-  Plug 'w0rp/ale'
-else
-  Plug 'scrooloose/syntastic'
+  Plug 'dense-analysis/ale'
 endif
 
 if has('nvim')
   Plug 'terrortylor/nvim-comment'
 else
   Plug 'tomtom/tcomment_vim'									" gcc on nor-mode, gc with selection on vis-mode
+  Plug 'osyo-manga/vim-anzu'									" * or # on search word on nor-mode
 end
 
 call plug#end()
@@ -217,14 +215,15 @@ let g:tagbar_type_go = {
 
 
 "" --- vim-anzu
-" mapping
-nmap n <Plug>(anzu-n-with-echo)
-nmap N <Plug>(anzu-N-with-echo)
-nmap * <Plug>(anzu-star-with-echo)
-nmap # <Plug>(anzu-sharp-with-echo)
-" clear status
-nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
-
+if exists("g:loaded_anzu")
+  " mapping
+  nmap n <Plug>(anzu-n-with-echo)
+  nmap N <Plug>(anzu-N-with-echo)
+  nmap * <Plug>(anzu-star-with-echo)
+  nmap # <Plug>(anzu-sharp-with-echo)
+  " clear status
+  nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
+endif
 
 "" --- QuickRun
 " 結果を上下分割で表示
