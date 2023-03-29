@@ -120,13 +120,11 @@ syntax on
 " ファイルタイプ検出を有効化
 filetype plugin indent on
 
-" インサートモードからノーマルモードへの変換をCtrl-Spaceで
-"inoremap <Nul> <ESC>
-
 " 数値インクリメント(Ctrl-a)をCtrl-kに変更
 " 数値デクリメント(Ctrl-x)をCtrl-jに変更
 nnoremap <C-j> <C-a>
 nnoremap <C-k> <C-x>
+nnoremap <C-x> <Nop>
 
 " 行頭、行末移動をbashと同じに
 nnoremap <C-a> 0
