@@ -29,8 +29,14 @@ endif
 
 if has('nvim')
   Plug 'terrortylor/nvim-comment'
+
+  " nvim tree
+  Plug 'nvim-tree/nvim-web-devicons'
+  Plug 'nvim-tree/nvim-tree.lua'
 else
   Plug 'tomtom/tcomment_vim'									" gcc on nor-mode, gc with selection on vis-mode
+
+  " search status (nvim has the feature of anzu)
   Plug 'osyo-manga/vim-anzu'									" * or # on search word on nor-mode
 end
 
