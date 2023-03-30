@@ -33,6 +33,9 @@ if has('nvim')
   " nvim tree
   Plug 'nvim-tree/nvim-web-devicons'
   Plug 'nvim-tree/nvim-tree.lua'
+
+  " color scheme for nvim
+  Plug 'EdenEast/nightfox.nvim'
 else
   Plug 'tomtom/tcomment_vim'									" gcc on nor-mode, gc with selection on vis-mode
 
