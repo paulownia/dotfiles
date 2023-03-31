@@ -273,9 +273,10 @@ let g:ale_linters = {
 " let g:ale_lint_on_text_changed = 'never'
 " let g:ale_lint_on_insert_leave = '1'
 let g:ale_lint_delay = 1500
-highlight ALEError ctermbg=none cterm=underline,bold
-highlight ALEWarning ctermbg=none cterm=underline
-
+highlight ALEError ctermbg=none cterm=underline,bold gui=underline,bold
+highlight ALEWarning ctermbg=none cterm=underline gui=underline
+highlight ALEErrorSign ctermbg=236 ctermfg=160 guifg=#ff3333 guibg=#606060
+highlight ALEWarningSign ctermbg=236 ctermfg=226 guifg=#ffff33 guibg=#606060
 
 if filereadable(expand('~/.vimrc_local'))
   source ~/.vimrc_local
