@@ -25,4 +25,8 @@ require('nightfox').setup({
 
 vim.cmd.colorscheme "carbonfox"
 
-
+require('lualine').setup({
+  options = {
+    disabled_filetypes = {'NvimTree', 'tagbar'}
+  }
+})
