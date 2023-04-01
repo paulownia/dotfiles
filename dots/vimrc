@@ -11,7 +11,6 @@ Plug 'kien/ctrlp.vim'										" Ctrl-p on nor-mode
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'thinca/vim-quickrun', { 'on': 'QuickRun' }
 Plug 'vim-scripts/sudo.vim'									" open a file follow command `vim sudo:/etc/passwd`
-Plug 'itchyny/lightline.vim'
 Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'AndrewRadev/switch.vim'								" gs on nor-mode
@@ -29,10 +28,25 @@ endif
 
 if has('nvim')
   Plug 'terrortylor/nvim-comment'
+
+  " nvim tree
+  Plug 'nvim-tree/nvim-web-devicons'
+  Plug 'nvim-tree/nvim-tree.lua'
+
+  " color scheme for nvim
+  Plug 'EdenEast/nightfox.nvim'
+
+  " statusline
+  Plug 'nvim-lualine/lualine.nvim'
 else
   Plug 'tomtom/tcomment_vim'									" gcc on nor-mode, gc with selection on vis-mode
+
+  " search status (nvim has the feature of anzu)
   Plug 'osyo-manga/vim-anzu'									" * or # on search word on nor-mode
-end
+
+  " statusline
+  Plug 'itchyny/lightline.vim'
+endif
 
 call plug#end()
 
@@ -259,9 +273,10 @@ let g:ale_linters = {
 " let g:ale_lint_on_text_changed = 'never'
 " let g:ale_lint_on_insert_leave = '1'
 let g:ale_lint_delay = 1500
-highlight ALEError ctermbg=none cterm=underline,bold
-highlight ALEWarning ctermbg=none cterm=underline
-
+highlight ALEError ctermbg=none cterm=underline,bold gui=underline,bold
+highlight ALEWarning ctermbg=none cterm=underline gui=underline
+highlight ALEErrorSign ctermbg=236 ctermfg=160 guifg=#ff3333 guibg=#606060
+highlight ALEWarningSign ctermbg=236 ctermfg=226 guifg=#ffff33 guibg=#606060
 
 if filereadable(expand('~/.vimrc_local'))
   source ~/.vimrc_local
