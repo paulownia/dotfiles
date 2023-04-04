@@ -28,6 +28,8 @@ vim.cmd.colorscheme "carbonfox"
 
 require('lualine').setup({
   options = {
-    disabled_filetypes = {'NvimTree', 'tagbar'}
+    disabled_filetypes = {'NvimTree', 'tagbar'},
+    component_separators = { left = '|', right = '|'},
+    section_separators = { left = '', right = ''},
   }
 })
