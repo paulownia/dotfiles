@@ -26,10 +26,29 @@ require('nightfox').setup({
 
 vim.cmd.colorscheme "carbonfox"
 
+local function progress()
+  local cur = vim.fn.line('.')
+  local total = vim.fn.line('$')
+  local result
+  if cur == total then
+    result = 100
+  elseif cur == 1 then
+    result = 0
+  else
+    result = math.floor(cur / total * 100)
+  end
+
+  return string.format('%3s%%%%', result)
+end
+
+
 require('lualine').setup({
   options = {
     disabled_filetypes = {'NvimTree', 'tagbar'},
     component_separators = { left = '|', right = '|'},
     section_separators = { left = '', right = ''},
-  }
+  },
+  sections = {
+    lualine_y = { progress },
+  },
 })
