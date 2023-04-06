@@ -128,6 +128,9 @@ endif
 " diffopt追加、デフォルト縦分割にする
 set diffopt+=vertical
 
+" 文法チェックステータスカラムを常に表示
+set signcolumn=yes
+
 " シンタックスハイライト
 syntax on
 
@@ -267,7 +270,8 @@ let g:lightline = {
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'json': ['jsonlint'],
-\   'ruby': ['rubocop']
+\   'ruby': ['rubocop'],
+\   'html': ['tidy']
 \}
 
 " let g:ale_lint_on_text_changed = 'never'
