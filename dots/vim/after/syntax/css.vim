@@ -1,4 +1,5 @@
 syn keyword cssColorProp contained accent-color
+syn keyword cssColorProp contained color-scheme
 
 syn keyword cssBackgroundProp contained backdrop-filter
 
