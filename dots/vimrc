@@ -128,9 +128,6 @@ endif
 " diffopt追加、デフォルト縦分割にする
 set diffopt+=vertical
 
-" 文法チェックステータスカラムを常に表示
-set signcolumn=yes
-
 " シンタックスハイライト
 syntax on
 
