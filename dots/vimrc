@@ -183,6 +183,7 @@ endif
 command -bang Q q<bang>
 command -bang W w<bang>
 command -bang Wq wq<bang>
+command -bang WQ wq<bang>
 
 "" --- Tagbar
 nnoremap t :TagbarToggle<CR>
