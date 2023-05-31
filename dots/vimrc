@@ -14,6 +14,7 @@ Plug 'vim-scripts/sudo.vim'									" open a file follow command `vim sudo:/etc/
 Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'AndrewRadev/switch.vim'								" gs on nor-mode
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 
 " Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 " Plug 'moll/vim-node'
