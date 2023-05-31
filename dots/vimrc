@@ -22,6 +22,9 @@ Plug 'AndrewRadev/switch.vim'								" gs on nor-mode
 " Plug 'rhysd/vim-crystal'
 " Plug 'elixir-lang/vim-elixir'
 
+Plug 'github/copilot.vim'
+
+
 if (has('job') && has('channel') && has('timers')) || has('nvim')
   Plug 'dense-analysis/ale'
 endif
