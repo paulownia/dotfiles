@@ -21,19 +21,16 @@ if type pyenv >/dev/null 2>&1; then
 	eval "$(pyenv init -)"
 fi
 
-# goenv & golang
+# goenv
+# assume goenv is installed by homebrew
 if type goenv >/dev/null 2>&1; then
 	eval "$(goenv init -)"
-
-elif type go 1>/dev/null 2>&1; then
-	export GOPATH=$HOME/.go
-	export PATH=$PATH:$GOPATH/bin
 fi
 
 # user path
 export PATH=~/apps/bin:$PATH
 
-# for svn and git editor
+# for git editor
 export EDITOR=vim
 
 # The next line updates PATH for the Google Cloud SDK.
