@@ -83,6 +83,12 @@ DIRSTACKSIZE=2
 
 cdpath=(~ ../ $cdpath)
 
+
+# addtion path for completion
+if [[ -d ~/.zsh/completion ]]; then
+	fpath=(~/.zsh/completion $fpath)
+fi
+
 # zsh completion
 autoload -U compinit
 compinit

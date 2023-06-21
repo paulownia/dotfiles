@@ -106,4 +106,19 @@ function isSynLinked() {
 	done
 )
 
+: setting zsh completion ; {
+	mkdir -p ~/.zsh/completion
+	for SRC in ${WORKING_DIR}/zsh/_*; do
+		DST=${HOME}/.zsh/completion/$(basename ${SRC})
+
+		if isSynLinked $SRC $DST; then
+			log "skip ${DST} has already been created."
+			continue
+		elif [[ -e $DST ]]; then
+			mv ${DST} ${DST}.org && log "${DST} exists, rename it."
+		fi
+
+		ln -s ${SRC} ${DST} && log "create ${DST}"
+	done
+}
 
