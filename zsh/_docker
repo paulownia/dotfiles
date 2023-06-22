@@ -71,7 +71,7 @@ function () {
 	if [[ $state == "sc" ]]; then
 		if (( CURRENT == 1 )); then
 			_describe 'docker sub command' LIST
-		else
+		elif (( CURRENT == 2 )); then
 			if [[ $words[1] == "compose" ]]; then
 				local -a COMPOSE_LIST
 				COMPOSE_LIST=(exec up run start stop)
