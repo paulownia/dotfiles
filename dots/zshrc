@@ -10,7 +10,7 @@ alias al="ag --pager 'less -R'"
 alias gmail="open -na 'Google Chrome' --args --app='https://mail.google.com/mail/u/0/#inbox'"
 alias bash="HISTFILE=${HOME}/.bash_history /bin/bash"
 alias reload="exec ${SHELL}"
-
+alias preview="open -a 'Preview'"
 
 # prompt setting
 case "${OSTYPE}" in
@@ -74,7 +74,8 @@ bindkey -v '' history-incremental-search-forward
 # script alias
 alias -s rb="ruby"
 alias -s js="node"
-alias -s txt="edit"
+alias -s {txt,md,html,css,scss}="edit"
+alias -s {jpg,jpeg,png,gif,webp}="preview"
 
 # beep
 setopt no_hist_beep
