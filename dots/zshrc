@@ -50,6 +50,7 @@ SAVEHIST=10000
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 setopt EXTENDED_HISTORY
+setopt noflowcontrol
 
 # zsh binding style
 bindkey -v
@@ -66,6 +67,9 @@ bindkey -v '' vi-beginning-of-line
 bindkey -v '' vi-end-of-line
 bindkey -a '' history-incremental-search-backward
 bindkey -v '' history-incremental-search-backward
+bindkey -a '^S' history-incremental-search-forward
+bindkey -v '^S' history-incremental-search-forward
+
 
 # script alias
 alias -s rb="ruby"
