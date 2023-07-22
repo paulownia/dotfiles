@@ -7,8 +7,8 @@ syn keyword cssBackgroundProp contained backdrop-filter
 
 syn match cssBoxProp contained "\<margin-\(inline\|block\)\(-\(start\|end\)\)\=\>"
 syn match cssBoxProp contained "\<padding-\(inline\|block\)\(-\(start\|end\)\)\=\>"
-syn keyword cssBoxPros contained overflow-anchor
-syn keyword cssBoxPros contained overflow-clip-margin
+syn keyword cssBoxProp contained overflow-anchor
+syn keyword cssBoxProp contained overflow-clip-margin
 
 
 syn match cssBorderProp contained "\<border-\(inline\|block\)\(-\(start\|end\)\)\=\(-\(color\|style\|width\)\)\=\>"
