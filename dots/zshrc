@@ -133,10 +133,10 @@ if [[ -n $JAVA_HOME ]]; then
 fi
 
 # nvim
-if [ -e /opt/homebrew/bin/nvim ]; then
-	alias vi=/opt/homebrew/bin/nvim
-elif [ -e /usr/local/bin/nvim ]; then
-	alias vi=/usr/local/bin/nvim
+if type nvim 1>/dev/null 2>&1; then
+	alias vi=nvim
+	alias view="nvim -R"
+	alias vimdiff="nvim -d"
 fi
 
 # git
