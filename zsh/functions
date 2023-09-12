@@ -42,7 +42,7 @@ function ff() {
 	  F="$2"
 	fi
 
-	mdfind -onlyin "$F" -name "$1"
+	mdfind -onlyin "$F" -name "$1" 2> >(grep -v 'UserQueryParser' >&2)
 }
 
 function fo() {
