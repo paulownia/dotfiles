@@ -110,8 +110,8 @@ zstyle ':completion:*' group-name ''
 
 
 # alias another basic command
-if type exa 1>/dev/null 2>&1; then
-	alias ls=" exa --time-style=iso"
+if type eza 1>/dev/null 2>&1; then
+	alias ls=" eza --time-style=iso"
 	alias ll="ls -glF --time-style=long-iso"
 	alias la="ls -a"
 	alias lla="ls -aglF --time-style=long-iso"
@@ -153,6 +153,7 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () {
 	vcs_info
 	RPROMPT='${vcs_info_msg_0_}'
+	setopt transient_rprompt
 }
 
 # -- dev command
