@@ -10,6 +10,7 @@ syn match cssBoxProp contained "\<padding-\(inline\|block\)\(-\(start\|end\)\)\=
 syn keyword cssBoxProp contained overflow-anchor
 syn keyword cssBoxProp contained overflow-clip-margin
 
+syn match cssFlexibleBoxProp contained "\<place-\(items\|content\|self\)\>"
 
 syn match cssBorderProp contained "\<border-\(inline\|block\)\(-\(start\|end\)\)\=\(-\(color\|style\|width\)\)\=\>"
 
