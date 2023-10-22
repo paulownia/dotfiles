@@ -15,6 +15,7 @@ Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'AndrewRadev/switch.vim'								" gs on nor-mode
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
+Plug 'dense-analysis/ale'
 
 " Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 " Plug 'moll/vim-node'
@@ -26,14 +27,10 @@ Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'github/copilot.vim'
 
 
-if (has('job') && has('channel') && has('timers')) || has('nvim')
-  Plug 'dense-analysis/ale'
-endif
-
 if has('nvim')
   Plug 'terrortylor/nvim-comment'
 
-  " nvim tree
+  " nvim tree (type `T` on nor-mode)
   Plug 'nvim-tree/nvim-web-devicons'
   Plug 'nvim-tree/nvim-tree.lua'
 
