@@ -19,10 +19,12 @@ require('nightfox').setup({
   },
   groups = {
     carbonfox = {
+      -- https://github.com/EdenEast/nightfox.nvim/blob/main/lua/nightfox/group/editor.lua
       Pmenu = { bg = "#204148" },     -- 補完メニューなど
       Visual = { bg = "#60626A" },    -- v-modeでの選択範囲
       Search = { bg = "#606032" },    -- 検索結果
       VertSplit = { bg = "#505050", fg = "#505050" },    -- ウィンドウ分割時の縦線 `|`
+      MatchParen = { fg = "#FF33FF", style = "reverse,bold" or "bold" },    -- 対応する括弧
     }
   },
   specs = {
@@ -62,6 +64,14 @@ require('lualine').setup({
     section_separators = { left = '', right = ''},
   },
   sections = {
+    lualine_b = {'branch', 'diff'},
+    lualine_c = {
+      'filename',
+      {
+        'diagnostics',
+        symbols = {error = ' ', warn = ' ', info = ' '},
+      }
+    },
     lualine_y = { progress },
   },
 })
