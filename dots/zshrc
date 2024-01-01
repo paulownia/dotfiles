@@ -11,6 +11,7 @@ alias gmail="open -na 'Google Chrome' --args --app='https://mail.google.com/mail
 alias bash="HISTFILE=${HOME}/.bash_history /bin/bash"
 alias reload="exec ${SHELL}"
 alias preview="open -a 'Preview'"
+alias acl="/bin/ls -lhGe"
 
 # prompt setting
 case "${OSTYPE}" in
