@@ -31,8 +31,12 @@ syn region cssPseudoClassFn contained matchgroup=cssFunctionName start="\<has(" 
 
 syn match cssBackgroundProp contained "\<background-position-\(x\|y\)\>"
 
+syn match cssTextProp contained "\<text-\|\(indent\|wrap\)\>"
+syn keyword cssTextAttr contained hanging each-line pretty stable
+
 " css text module level 4
 syn match cssTextProp contained "\<text-\|\(autospace\|spacing-trim\)\>"
 syn keyword cssTextAttr contained no-autospace auto-phrase trim-auto
+
 
 
