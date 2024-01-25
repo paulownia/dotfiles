@@ -28,7 +28,17 @@
 
 [diff]
   colorMoved = default
+  tool = difftastic
+
+[difftool]
+  prompt = false
+
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
+
+[pager]
+  difftool = true
 
 [alias]
   changed = "!sh -c 'git diff $1^ $1' -"
-
+  difft = difftool
