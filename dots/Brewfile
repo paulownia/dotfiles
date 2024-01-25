@@ -22,7 +22,6 @@ brew "bat"
 brew "git-delta"
 brew "webp"
 brew "tidy-html5"
-brew "difftastic"
 
 # brew "ag"
 # brew "pandoc"
