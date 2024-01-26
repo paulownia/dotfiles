@@ -2,7 +2,7 @@
 #
 # exec the commands below
 #
-#   $ brew install git-delta
+#   $ brew install git-delta difftastic
 #   $ git config --add --global include.path ~/.gitconfig_global
 #
 
@@ -28,7 +28,6 @@
 
 [diff]
   colorMoved = default
-  external = difft
   tool = difftastic
 
 [difftool]
