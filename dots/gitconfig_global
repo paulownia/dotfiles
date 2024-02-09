@@ -42,3 +42,9 @@
 [alias]
   changed = "!sh -c 'git diff $1^ $1' -"
   difft = difftool
+
+# By default, the toolchains of golang use https to download modules.
+# This configuration replaces https with ssh to avoid password authentication to access private repositories on github.
+# You have to set .ssh/config to use the ssh key for github.com, instead.
+[url "git@github.com:"]
+    insteadOf = https://github.com/
