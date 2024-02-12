@@ -31,12 +31,21 @@ syn region cssPseudoClassFn contained matchgroup=cssFunctionName start="\<has(" 
 
 syn match cssBackgroundProp contained "\<background-position-\(x\|y\)\>"
 
-syn match cssTextProp contained "\<text-\|\(indent\|wrap\)\>"
-syn keyword cssTextAttr contained hanging each-line pretty stable
+" css text module level 3 unregitstered properties
+syn keyword cssTextProp contained text-emphasis text-orientation
+syn match cssTextProp contained "\<text-underline-\(position\|offset\|thickness\)\>"
 
 " css text module level 4
-syn match cssTextProp contained "\<text-\|\(autospace\|spacing-trim\)\>"
-syn keyword cssTextAttr contained no-autospace auto-phrase trim-auto
+syn keyword cssTextProp contained text-autospace text-spacing-trim text-wrap
+syn match cssTextProp contained "\<text-decoration-\(line\|style\|color\|thickness\)\>"
 
-
-
+" for text-autospace
+syn keyword cssTextAttr contained no-autospace
+" for word-break
+syn keyword cssTextAttr contained auto-phrase
+" for text-spacing-trim
+syn keyword cssTextAttr contained trim-auto
+" for text-indent
+syn keyword cssTextAttr contained hanging each-line
+" for text-wrap
+syn keyword cssTextAttr contained pretty stable
