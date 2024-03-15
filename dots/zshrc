@@ -181,3 +181,7 @@ if [[ $LC_TERMINAL == 'iTerm2' ]] && [[ -x ~/apps/bin/ssh-bg ]]; then
 fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+if [[ -f .zshrc.local ]]; then
+	source .zshrc.local
+fi

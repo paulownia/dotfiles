@@ -82,4 +82,8 @@ if type npm 1>/dev/null 2>&1; then
 fi
 
 
+if [[ -f ~/.zprofile.local ]]; then
+	source ~/.zprofile.local
+fi
+
 # next, zshrc is loaded
