@@ -1,6 +1,9 @@
 Layout/FirstHashElementIndentation:
   EnforcedStyle: consistent
 
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: comma
 
