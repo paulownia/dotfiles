@@ -1,0 +1,11 @@
+#!/usr/bin/osascript
+
+on run argv
+	set msg to "notification"
+
+	if (count of argv) > 0 then
+		set msg to (item 1 of argv)
+	end if
+
+	display notification msg with title "CLI" sound name "Glass"
+end run
