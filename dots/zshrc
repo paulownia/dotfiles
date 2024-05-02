@@ -124,7 +124,7 @@ else
 fi
 
 if type bat 1>/dev/null 2>&1; then
-	alias cat=bat
+	alias cat="bat --theme=Dracula"
 fi
 
 # settings for java
@@ -185,3 +185,4 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 if [[ -f .zshrc.local ]]; then
 	source .zshrc.local
 fi
+
