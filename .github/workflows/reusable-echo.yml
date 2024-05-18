@@ -10,4 +10,4 @@ jobs:
     run_on: ubuntu-latest
     steps:
       - run: |
-          echo ${{ input.message }}
+          echo ${{ inputs.message }}
