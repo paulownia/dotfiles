@@ -1,0 +1,9 @@
+on:
+  push:
+    - actions_test
+
+jobs:
+  hello:
+    uses: ./.github/workflows/reusable-echo.yaml
+    with:
+      message: 'Hello World'
