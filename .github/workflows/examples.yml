@@ -1,6 +1,7 @@
 on:
   push:
-    - actions_test
+    branches:
+      - actions_test
 
 jobs:
   hello:
