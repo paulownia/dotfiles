@@ -9,5 +9,5 @@ jobs:
   echo:
     run_on: ubuntu-latest
     steps:
-      run: |
-        echo ${{ input.message }}
+      - run: |
+          echo ${{ input.message }}
