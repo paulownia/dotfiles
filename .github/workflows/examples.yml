@@ -5,6 +5,14 @@ on:
 
 jobs:
   hello:
-    uses: ./.github/workflows/reusable-echo.yml
-    with:
-      message: 'Hello World'
+    steps:
+      - name: checkout
+        uses: ctions/checkout@v4
+      - name: get-commit-hash
+        id: commit_hash
+        run: |
+          echo "value=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+      - name: echo
+        uses: ./.github/workflows/reusable-echo.yml
+        with:
+          message: "HEAD is ${{ steps.commit_hash.outputs.value }}"
