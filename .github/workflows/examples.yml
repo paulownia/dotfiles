@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: ctions/checkout@v4
+        uses: actions/checkout@v4
       - name: get-commit-hash
         id: commit_hash
         run: |
