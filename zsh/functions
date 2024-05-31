@@ -42,7 +42,12 @@ function ff() {
 	  F="$2"
 	fi
 
-	mdfind -onlyin "$F" -name "$1" 2> >(grep -v 'UserQueryParser' >&2)
+	Q=$1
+	if [[ $Q != *"*"* ]]; then
+		Q="*$Q*"
+	fi
+
+	mdfind "kMDItemFSName == $Q" -onlyin "$F"
 }
 
 function fo() {
