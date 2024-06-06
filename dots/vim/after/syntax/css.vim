@@ -49,3 +49,7 @@ syn keyword cssTextAttr contained trim-auto
 syn keyword cssTextAttr contained hanging each-line
 " for text-wrap
 syn keyword cssTextAttr contained pretty stable
+
+" unit
+syn match cssValueLength contained "[-+]\=\d\+\(\.\d*\)\=\(lh\)\>" contains=cssUnitDecorators
+
