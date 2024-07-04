@@ -174,13 +174,24 @@ function print_known_hosts (){
 }
 _cache_hosts=($(print_known_hosts))
 
-# change bg color on ssh login
-if [[ $LC_TERMINAL == 'iTerm2' ]] && [[ -x ~/apps/bin/ssh-bg ]]; then
-	alias ssh=ssh-bg
-	compdef ssh-bg=ssh
+if [[ $LC_TERMINAL == iTerm2 ]]; then
+	# change bg color on ssh login
+	if [[ -x ~/apps/bin/ssh-bg ]]; then
+		alias ssh=ssh-bg
+		compdef ssh-bg=ssh
+	fi
+
+	test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 fi
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+if [[ $OSTYPE == darwin* ]]; then
+	# make
+	if [[ -x ~/apps/bin/make-notify ]]; then
+		alias make=make-notify
+		compdef make-notify=make
+	fi
+fi
+
 
 if [[ -f .zshrc.local ]]; then
 	source .zshrc.local
