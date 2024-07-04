@@ -166,14 +166,6 @@ source ~/.dotfiles/zsh/launchctl
 # -- fuctions
 source ~/.dotfiles/zsh/functions
 
-# completion ssh hosts
-function print_known_hosts (){
-	if [[ -f $HOME/.ssh/known_hosts ]]; then
-		cat $HOME/.ssh/known_hosts | tr ',' ' ' | cut -d ' ' -f 1
-	fi
-}
-_cache_hosts=($(print_known_hosts))
-
 if [[ $LC_TERMINAL == iTerm2 ]]; then
 	# change bg color on ssh login
 	if [[ -x ~/apps/bin/ssh-bg ]]; then
@@ -191,7 +183,6 @@ if [[ $OSTYPE == darwin* ]]; then
 		compdef make-notify=make
 	fi
 fi
-
 
 if [[ -f .zshrc.local ]]; then
 	source .zshrc.local
