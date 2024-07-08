@@ -4,7 +4,7 @@
 
 
 # brew path
-export PATH=/opt/homebrew/bin:/usr/local/sbin:$PATH
+export PATH=/opt/homebrew/bin:$PATH
 
 JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
 if [[ -n $JAVA_HOME ]]; then
@@ -50,15 +50,13 @@ if [[ -d $HOME/.proto ]]; then
 	export PROTO_HOME="$HOME/.proto"
 	export PATH="$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH"
 
-elif [[ -d $HOME/.volta ]]; then
-	# use volta instead of nvm
-	export VOLTA_HOME="$HOME/.volta"
-	export PATH="$VOLTA_HOME/bin:$PATH"
-
-elif [[ -f ~/.nvm/nvm.sh ]]; then
-	# installed manually
+elif [[ -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
+	# installed by homebrew (arm64 mac)
+	if [[ ! -d $HOME/.nvm ]]; then
+		mkdir $HOME/.nvm
+	fi
 	export NVM_DIR="$HOME/.nvm"
-	source ~/.nvm/nvm.sh
+	source /opt/homebrew/opt/nvm/nvm.sh
 
 elif [[ -f /usr/local/opt/nvm/nvm.sh ]]; then
 	# installed by homebrew (x86 mac)
@@ -68,13 +66,10 @@ elif [[ -f /usr/local/opt/nvm/nvm.sh ]]; then
 	export NVM_DIR="$HOME/.nvm"
 	source /usr/local/opt/nvm/nvm.sh
 
-elif [[ -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
-	# installed by homebrew (arm64 mac)
-	if [[ ! -d $HOME/.nvm ]]; then
-		mkdir $HOME/.nvm
-	fi
+elif [[ -f ~/.nvm/nvm.sh ]]; then
+	# installed manually
 	export NVM_DIR="$HOME/.nvm"
-	source /opt/homebrew/opt/nvm/nvm.sh
+	source ~/.nvm/nvm.sh
 fi
 
 
