@@ -7,9 +7,9 @@ ret=$?
 if [[ $ret -eq 2 ]]; then
 	exit 2
 elif [[ $ret -ne 0 ]]; then
-	osascript -e 'display notification "Build failed" with title "Make" sound name "Submarine"'
+	osascript -e "display notification \"make $*\" with title \"Make Failed\" sound name \"Submarine\""
 else
-	osascript -e 'display notification "Build succeeded" with title "Make" sound name "Submarine"'
+	osascript -e "display notification \"make $*\" with title \"Make Succeeded\" sound name \"Submarine\""
 fi
 
 exit $ret
