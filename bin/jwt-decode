@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+
+async function main() {
+  let data = '';
+  for await (const chunk of process.stdin) {
+    data += chunk;
+  }
+
+  const str = data.toString();
+  const [header, payload, _signiture] = str.split('.');
+
+  const headerDecoded = Buffer.from(header, 'base64').toString();
+
+  const payloadDecoded = Buffer.from(payload, 'base64').toString();
+
+  const result = {
+    header: JSON.parse(headerDecoded),
+    payload: JSON.parse(payloadDecoded),
+  };
+
+  console.log(JSON.stringify(result, null, 2));
+}
+
+main().catch(console.error);
+
+
