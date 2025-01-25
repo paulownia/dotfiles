@@ -63,13 +63,19 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey '' history-beginning-search-backward-end
 bindkey '' history-beginning-search-forward-end
 bindkey -a '' vi-beginning-of-line
-bindkey -a '' vi-end-of-line
 bindkey -v '' vi-beginning-of-line
+bindkey -a '' vi-end-of-line
 bindkey -v '' vi-end-of-line
 bindkey -a '' history-incremental-search-backward
 bindkey -v '' history-incremental-search-backward
 bindkey -a '' history-incremental-search-forward
 bindkey -v '' history-incremental-search-forward
+
+# fix keys
+bindkey '[H' beginning-of-line # home
+bindkey '[F' end-of-line # end
+bindkey '[5~' beginning-of-history # page up
+bindkey '[6~' end-of-history # page down
 
 
 # script alias
