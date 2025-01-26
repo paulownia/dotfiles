@@ -76,7 +76,9 @@ bindkey '[H' beginning-of-line # home
 bindkey '[F' end-of-line # end
 bindkey '[5~' beginning-of-history # page up
 bindkey '[6~' end-of-history # page down
-
+bindkey '[3~' backward-kill-word # delete same as ctrl-w
+bindkey -a '[2~' vi-insert # insert
+bindkey -v '[2~' vi-insert # insert
 
 # script alias
 alias -s rb="ruby"
