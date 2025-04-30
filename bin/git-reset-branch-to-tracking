@@ -5,7 +5,7 @@ key=$(shasum <(ls -al) | cut -d " " -f 1)
 git stash save "$key"
 git fetch origin
 
-git for-each-ref --format="%(refname:short) %(upstream:short)" refs/heads/ | grep "origin" | while read -r line; do
+git for-each-ref --format="%(refname:short) %(upstream:short)" refs/heads/ | grep "origin" | while read -r line; do #  0123456789
   local_name=$(echo "$line" | cut -d " " -f 1)
   if [[ $local_name == */* ]]; then
     continue
