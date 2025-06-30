@@ -1,6 +1,8 @@
+# vim: filetype=ruby
 # if you type "brew bundle --global", homebrew uses .Brewfile
 
 tap "universal-ctags/universal-ctags"
+tap "oven-sh/bun"
 
 brew "gnupg"
 brew "rbenv"
@@ -10,8 +12,8 @@ brew "rg"
 brew "neovim"
 brew "jq"
 brew "shellcheck"
-brew "jsonlint"
-brew "universal-ctags", args: ["HEAD"]
+brew "jsonlint", args: ["ignore-dependencies"]
+brew "universal-ctags"
 brew "git"
 brew "fzf"
 brew "xsv"
@@ -23,6 +25,7 @@ brew "git-delta"
 brew "webp"
 brew "tidy-html5"
 brew "difftastic"
+brew "bun"
 
 # brew "ag"
 # brew "pandoc"
