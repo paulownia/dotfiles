@@ -98,9 +98,14 @@ DIRSTACKSIZE=2
 cdpath=(~ ../ $cdpath)
 
 
-# addtion path for completion
+# addtion custom completion to fpath
 if [[ -d ~/.zsh/completion ]]; then
 	fpath=(~/.zsh/completion $fpath)
+fi
+
+# additon homebrew completion to fpath
+if [[ -d /opt/homebrew/share/zsh/site-functions ]]; then
+	fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 fi
 
 # zsh completion

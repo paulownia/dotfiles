@@ -45,31 +45,19 @@ fi
 
 
 # node manager
-if [[ -d $HOME/.proto ]]; then
-	# use proto instaad of nvm
-	export PROTO_HOME="$HOME/.proto"
-	export PATH="$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH"
+if [[ -d $HOME/.volta ]]; then
+	export VOLTA_HOME="$HOME/.volta"
+	export PATH="$VOLTA_HOME/bin:$PATH"
 
 elif [[ -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
-	# installed by homebrew (arm64 mac)
+	# nvm installed by homebrew (arm64 mac)
 	if [[ ! -d $HOME/.nvm ]]; then
 		mkdir $HOME/.nvm
 	fi
-	export NVM_DIR="$HOME/.nvm"
-	source /opt/homebrew/opt/nvm/nvm.sh
 
-elif [[ -f /usr/local/opt/nvm/nvm.sh ]]; then
-	# installed by homebrew (x86 mac)
-	if [[ ! -d $HOME/.nvm ]]; then
-		mkdir $HOME/.nvm
-	fi
 	export NVM_DIR="$HOME/.nvm"
-	source /usr/local/opt/nvm/nvm.sh
-
-elif [[ -f ~/.nvm/nvm.sh ]]; then
-	# installed manually
-	export NVM_DIR="$HOME/.nvm"
-	source ~/.nvm/nvm.sh
+	[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+	[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 fi
 
 
