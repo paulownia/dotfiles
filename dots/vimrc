@@ -66,6 +66,7 @@ set shiftwidth=2
 " スワップファイル、バックアップを作らない
 set nobackup
 set noswapfile
+set nowritebackup
 
 " ステータス行
 set laststatus=2
