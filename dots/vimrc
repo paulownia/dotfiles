@@ -136,10 +136,10 @@ syntax on
 " ファイルタイプ検出を有効化
 filetype plugin indent on
 
-" 数値インクリメント(Ctrl-a)をCtrl-kに変更
-" 数値デクリメント(Ctrl-x)をCtrl-jに変更
-nnoremap <C-j> <C-a>
-nnoremap <C-k> <C-x>
+" 数値インクリメント(Ctrl-a)をCtrl-jに変更
+" 数値デクリメント(Ctrl-x)をCtrl-kに変更
+nnoremap <C-j> <C-x>
+nnoremap <C-k> <C-a>
 nnoremap <C-x> <Nop>
 
 " 行頭、行末移動をbashと同じに
