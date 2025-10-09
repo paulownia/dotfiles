@@ -3,6 +3,7 @@
 
 tap "universal-ctags/universal-ctags"
 tap "oven-sh/bun"
+tap "delphinus/sfmono-square"
 
 brew "gnupg"
 brew "rbenv"
@@ -26,6 +27,7 @@ brew "webp"
 brew "tidy-html5"
 brew "difftastic"
 brew "bun"
+brew "sfmono-square"
 
 # brew "ag"
 # brew "pandoc"
