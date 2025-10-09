@@ -3,6 +3,7 @@ vim.cmd('source ~/.vimrc')
 vim.opt.termguicolors = true
 vim.opt.wildoptions = 'pum'
 vim.opt.pumblend = 5
+vim.g.editorconfig = true
 
 require('nvim_comment').setup()
 
