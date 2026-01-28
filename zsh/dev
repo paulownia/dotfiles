@@ -1,36 +1,41 @@
 #!/bin/zsh
 
 # dev command
+export DEV_PROJECTS_FILE=~/.local/share/dev-projects/dev
+
+if [[ ! -d ~/.local/share/dev-projects ]]; then
+	mkdir -p ~/.local/share/dev-projects
+fi
 
 function dev_add() {
 	local KEY=$1
 	local DIR=$(pwd)
 
-	if [ ! -f ~/.dev ]; then
+	if [[ ! -f $DEV_PROJECTS_FILE ]]; then
 		printf "%s\t%s\n" "$KEY" "$DIR" > ~/.dev
 	else
 		cat <(awk -F "\t" -v "key=$KEY" '{ if ($1 != key) { print $0 } }' ~/.dev) <(printf "%s\t%s\n" "$KEY" "$DIR") | sort > ~/.dev_tmp
-		mv ~/.dev_tmp ~/.dev
+		mv ~/.dev_tmp $DEV_PROJECTS_FILE
 	fi
 }
 
 function dev_delete() {
 	local KEY=$1
 
-	if [ ! -f ~/.dev ]; then
+	if [[ ! -f $DEV_PROJECTS_FILE ]]; then
 		return 1
 	fi
 
-	awk -F "\t" -v "key=$KEY" '{ if ($1 != key) { print $0 } }' ~/.dev > ~/.dev_tmp
-	mv ~/.dev_tmp ~/.dev
+	awk -F "\t" -v "key=$KEY" '{ if ($1 != key) { print $0 } }' $DEV_PROJECTS_FILE > ~/.dev_tmp
+	mv ~/.dev_tmp $DEV_PROJECTS_FILE
 }
 
 function dev_cd() {
 	local KEY DIR
 
 	KEY="$1"
-	if [ -z "$KEY" ]; then
-		local SELECTED=$(cat ~/.dev | column -t | fzf)
+	if [[ -z "$KEY" ]]; then
+		local SELECTED=$(cat $DEV_PROJECTS_FILE | column -t | fzf)
 		if [[ -z $SELECTED ]]; then
 			return 1
 		fi
@@ -39,7 +44,7 @@ function dev_cd() {
 		KEY=$KEY_DIR[1]
 		DIR=$KEY_DIR[2]
 	else
-		DIR=$(awk -F "\t" -v "key=$KEY" '{ if ($1 == key) { print $2; exit } }' ~/.dev)
+		DIR=$(awk -F "\t" -v "key=$KEY" '{ if ($1 == key) { print $2; exit } }' $DEV_PROJECTS_FILE)
 	fi
 
 	if [ -z "$DIR" ] || [ ! -d "$DIR" ]; then
@@ -55,7 +60,7 @@ function dev_cd() {
 
 
 function dev_list() {
-	column -t < ~/.dev
+	column -t < $DEV_PROJECTS_FILE
 }
 
 function dev() {
@@ -83,7 +88,7 @@ function dev() {
 
 function _dev_projects() {
 	local -a CD_LIST
-	CD_LIST=( $(cat ~/.dev | cut -f 1) )
+	CD_LIST=( $(cat $DEV_PROJECTS_FILE | cut -f 1) )
 	_describe "Projects" CD_LIST
 }
 
