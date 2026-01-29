@@ -7,14 +7,18 @@ if [[ ! -d ~/.local/share/dev-projects ]]; then
 	mkdir -p ~/.local/share/dev-projects
 fi
 
+if [[ ! -f $DEV_PROJECTS_FILE ]]; then
+	touch $DEV_PROJECTS_FILE
+fi
+
 function dev_add() {
 	local KEY=$1
 	local DIR=$(pwd)
 
 	if [[ ! -f $DEV_PROJECTS_FILE ]]; then
-		printf "%s\t%s\n" "$KEY" "$DIR" > ~/.dev
+		printf "%s\t%s\n" "$KEY" "$DIR" > $DEV_PROJECTS_FILE
 	else
-		cat <(awk -F "\t" -v "key=$KEY" '{ if ($1 != key) { print $0 } }' ~/.dev) <(printf "%s\t%s\n" "$KEY" "$DIR") | sort > ~/.dev_tmp
+		cat <(awk -F "\t" -v "key=$KEY" '{ if ($1 != key) { print $0 } }' $DEV_PROJECTS_FILE) <(printf "%s\t%s\n" "$KEY" "$DIR") | sort > ~/.dev_tmp
 		mv ~/.dev_tmp $DEV_PROJECTS_FILE
 	fi
 }
