@@ -126,14 +126,10 @@ zstyle ':completion:*' group-name ''
 # alias another basic command
 if type eza 1>/dev/null 2>&1; then
 	alias ls=" eza --time-style=iso"
-	alias ll="ls -glF --time-style=long-iso"
-	alias la="ls -a"
-	alias lla="ls -aglF --time-style=long-iso"
+	alias ll=" eza -gl --time-style=long-iso"
 else
-	alias ls=" ls -G"
-	alias ll="ls -lF"
-	alias la="ls -A"
-	alias lla="ls -AlF"
+	alias ls=" /bin/ls -G"
+	alias ll=" /bin/ls -lFG"
 fi
 
 if type bat 1>/dev/null 2>&1; then
