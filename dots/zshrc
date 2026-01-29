@@ -99,8 +99,8 @@ cdpath=(~ ../ $cdpath)
 
 
 # addtion custom completion to fpath
-if [[ -d ~/.zsh/completion ]]; then
-	fpath=(~/.zsh/completion $fpath)
+if [[ -d ~/.local/share/zsh/functions ]]; then
+	fpath=(~/.local/share/zsh/functions $fpath)
 fi
 
 # additon homebrew completion to fpath
