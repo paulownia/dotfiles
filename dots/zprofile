@@ -50,28 +50,10 @@ if [[ -d $HOME/.volta ]]; then
 	export PATH="$VOLTA_HOME/bin:$PATH"
 
 elif [[ -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
-	# nvm installed by homebrew (arm64 mac)
-	if [[ ! -d $HOME/.nvm ]]; then
-		mkdir $HOME/.nvm
-	fi
-
 	export NVM_DIR="$HOME/.nvm"
-	[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-	[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 fi
-
-
-# npm
-if type npm 1>/dev/null 2>&1; then
-	if [[ ! -f ~/.npm_completion ]]; then
-		npm completion > ~/.npm_completion
-	fi
-	source ~/.npm_completion
-fi
-
 
 if [[ -f ~/.zprofile.local ]]; then
 	source ~/.zprofile.local
 fi
 
-# next, zshrc is loaded

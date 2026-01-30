@@ -193,6 +193,13 @@ if [[ $OSTYPE == darwin* ]]; then
 	fi
 fi
 
+# enable nvm if installed by homebrew
+if [[ -n $NVM_DIR ]] && [[ -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
+	source "/opt/homebrew/opt/nvm/nvm.sh"
+	source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+fi
+
+
 if [[ -f .zshrc.local ]]; then
 	source .zshrc.local
 fi
