@@ -181,12 +181,10 @@ if [[ $LC_TERMINAL == iTerm2 ]]; then
 		alias ssh=ssh-bg
 		compdef ssh-bg=ssh
 	fi
-
-	test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 fi
 
 if [[ $OSTYPE == darwin* ]]; then
-	# make
+	# make command with notification
 	if [[ -x ~/apps/bin/make-notify ]]; then
 		alias make=make-notify
 		compdef make-notify=make
