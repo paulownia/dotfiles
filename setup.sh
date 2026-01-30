@@ -16,7 +16,7 @@ function isSynLinked() {
 	fi
 }
 
-: copy dotfile to home directory ; (
+: 'copy dotfile to home directory' ; (
 	for SRC in ${WORKING_DIR}/dots/*; do
 		DST=${HOME}/.$(basename ${SRC})
 
@@ -31,7 +31,7 @@ function isSynLinked() {
 	done
 )
 
-: copy commands to ~/apps/bin ; (
+: 'copy commands to ~/apps/bin' ; (
 	if [[ ! -d ~/apps/bin ]]; then
 		mkdir -p ~/apps/bin
 	fi
@@ -50,7 +50,7 @@ function isSynLinked() {
 	done
 )
 
-: copy .config dir to home direcotry ; (
+: 'copy .config dir to home direcotry' ; (
 	if [[ ! -d ~/.config ]]; then
 		mkdir ~/.config
 	fi
@@ -69,7 +69,7 @@ function isSynLinked() {
 	done
 )
 
-: copy nvim setting ; (
+: 'copy nvim setting' ; (
 	NVIM_AUTOLOAD_PATH="${HOME}/.local/share/nvim/site/autoload"
 	mkdir -p ${NVIM_AUTOLOAD_PATH}
 
@@ -87,7 +87,7 @@ function isSynLinked() {
 	fi
 )
 
-: sync vim setting with nvim setting ; (
+: 'sync vim setting with nvim setting' ; (
 	TARGETS=(after ftdetect ftplugin)
 	for TARGET in ${TARGETS[@]}; do
 		SRC=${WORKING_DIR}/dots/vim/${TARGET}
@@ -106,19 +106,24 @@ function isSynLinked() {
 	done
 )
 
-: setting zsh completion ; {
-	mkdir -p ~/.zsh/completion
-	for SRC in ${WORKING_DIR}/zsh/_*; do
-		DST=${HOME}/.zsh/completion/$(basename ${SRC})
+: 'create zsh autoload (completion) dir' ; (
+	ZSH_AUTOLOAD_PATH="${HOME}/.local/share/zsh/functions"
+	if [[ ! -d ${ZSH_AUTOLOAD_PATH} ]]; then
+		mkdir -p ${ZSH_AUTOLOAD_PATH}
+		log "create ${ZSH_AUTOLOAD_PATH}"
+	else
+		log "skip ${ZSH_AUTOLOAD_PATH} already exists."
+	fi
+)
 
-		if isSynLinked $SRC $DST; then
-			log "skip ${DST} has already been created."
-			continue
-		elif [[ -e $DST ]]; then
-			mv ${DST} ${DST}.org && log "${DST} exists, rename it."
-		fi
 
-		ln -s ${SRC} ${DST} && log "create ${DST}"
-	done
+: 'set up user functions' ; {
+	# dev projects
+	if [[ ! -d ~/.local/share/dev-projects ]]; then
+		mkdir -p ~/.local/share/dev-projects
+	fi
+
+	if [[ ! -f ~/.local/share/dev-projects/dev ]]; then
+		touch ~/.local/share/dev-projects/dev
+	fi
 }
-
