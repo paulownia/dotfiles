@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+# current dirに.gitがなければ何もしない
+if [ ! -d .git ]; then
+	echo "Not a git repository."
+	exit 1
+fi
+
+# to open this git repo in sourcetree
+local dir=$(git rev-parse --show-cdup)
+if [ -z "${dir}" ]; then
+	dir="."
+fi
+open -a SourceTree ${dir}
+

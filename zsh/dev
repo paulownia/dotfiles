@@ -1,59 +1,40 @@
 #!/bin/zsh
 
-# dev command
-export DEV_PROJECTS_FILE=~/.local/share/dev-projects/dev
+function _dev_add() {
+	[[ -z $DEV_PROJECTS_FILE ]] && return 1
 
-if [[ ! -d ~/.local/share/dev-projects ]]; then
-	mkdir -p ~/.local/share/dev-projects
-fi
-
-if [[ ! -f $DEV_PROJECTS_FILE ]]; then
-	touch $DEV_PROJECTS_FILE
-fi
-
-function dev_add() {
-	local KEY=$1
-	local DIR=$(pwd)
-
-	if [[ ! -f $DEV_PROJECTS_FILE ]]; then
-		printf "%s\t%s\n" "$KEY" "$DIR" > $DEV_PROJECTS_FILE
-	else
-		cat <(awk -F "\t" -v "key=$KEY" '{ if ($1 != key) { print $0 } }' $DEV_PROJECTS_FILE) <(printf "%s\t%s\n" "$KEY" "$DIR") | sort > ~/.dev_tmp
-		mv ~/.dev_tmp $DEV_PROJECTS_FILE
-	fi
-}
-
-function dev_delete() {
 	local KEY=$1
 
-	if [[ ! -f $DEV_PROJECTS_FILE ]]; then
-		return 1
-	fi
+	{
+		[[ -f $DEV_PROJECTS_FILE ]] && awk -F "\t" -v key="$KEY" '$1 != key' "$DEV_PROJECTS_FILE"
+		printf "%s\t%s\n" "$KEY" "$PWD"
+	} | sort > "$DEV_PROJECTS_FILE.tmp"
 
-	awk -F "\t" -v "key=$KEY" '{ if ($1 != key) { print $0 } }' $DEV_PROJECTS_FILE > ~/.dev_tmp
-	mv ~/.dev_tmp $DEV_PROJECTS_FILE
+	mv "$DEV_PROJECTS_FILE.tmp" "$DEV_PROJECTS_FILE"
 }
 
-function dev_cd() {
-	local KEY DIR
+function _dev_delete() {
+	[[ -z $DEV_PROJECTS_FILE || ! -f $DEV_PROJECTS_FILE ]] && return 1
+	local KEY=$1
+	awk -F "\t" -v key="$KEY" '$1 != key' "$DEV_PROJECTS_FILE" > "$DEV_PROJECTS_FILE.tmp"
+	mv "$DEV_PROJECTS_FILE.tmp" "$DEV_PROJECTS_FILE"
+}
 
-	KEY="$1"
-	if [[ -z "$KEY" ]]; then
-		local SELECTED=$(cat $DEV_PROJECTS_FILE | column -t | fzf)
-		if [[ -z $SELECTED ]]; then
-			return 1
-		fi
+function _dev_cd() {
+	[[ -z $DEV_PROJECTS_FILE || ! -f $DEV_PROJECTS_FILE ]] && return 1
 
-		local KEY_DIR=($(echo $SELECTED | awk '{ print $1, $2 }'))
-		KEY=$KEY_DIR[1]
-		DIR=$KEY_DIR[2]
+	local KEY=$1 DIR
+
+	if [[ -z $KEY ]]; then
+		local SELECTED=$(fzf < $DEV_PROJECTS_FILE)
+		[[ -z $SELECTED ]] && return 1
+		KEY=${SELECTED%%$'\t'*}
+		DIR=${SELECTED#*$'\t'}
 	else
-		DIR=$(awk -F "\t" -v "key=$KEY" '{ if ($1 == key) { print $2; exit } }' $DEV_PROJECTS_FILE)
+		DIR=$(awk -F "\t" -v "key=$KEY" '$1 == key { print $2; exit }' "$DEV_PROJECTS_FILE")
 	fi
 
-	if [ -z "$DIR" ] || [ ! -d "$DIR" ]; then
-		return 1
-	fi
+	[[ -z $DIR || ! -d $DIR ]] && return 1
 
 	cd "$DIR" || return 1
 
@@ -63,50 +44,30 @@ function dev_cd() {
 }
 
 
-function dev_list() {
-	column -t < $DEV_PROJECTS_FILE
+function _dev_list() {
+	[[ -z $DEV_PROJECTS_FILE ]] && return 1
+	column -t $DEV_PROJECTS_FILE
 }
 
-function dev() {
-	while getopts d:a:sl OPT
-	do
-		case $OPT in
-			l)
-				dev_list
-				return $!
-				;;
-			a)
-				dev_add "$OPTARG"
-				return $!
-				;;
-			d)
-				dev_delete "$OPTARG"
-				return $!
-				;;
-			*)
-				return 1
-		esac
-	done
-	dev_cd $1
-}
+while getopts d:a:sl OPT
+do
+	case $OPT in
+		l)
+			_dev_list
+			return
+			;;
+		a)
+			_dev_add "$OPTARG"
+			return
+			;;
+		d)
+			_dev_delete "$OPTARG"
+			return
+			;;
+		*)
+			return 1
+	esac
+done
 
-function _dev_projects() {
-	local -a CD_LIST
-	CD_LIST=( $(cat $DEV_PROJECTS_FILE | cut -f 1) )
-	_describe "Projects" CD_LIST
-}
-
-function _dev_pwd() {
-	_values "keyword candidates" $(basename ${PWD})
-}
-
-function _dev() {
-	_arguments \
-		'(- *)'-l'[list all projects]' \
-		'(- *)'-a'[add project]:keyword:_dev_pwd' \
-		'(- *)'-d'[delete project]:project:_dev_projects' \
-		'(- *)*:project:_dev_projects'
-}
-
-compdef _dev dev
+_dev_cd $1
 

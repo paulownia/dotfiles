@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+if [ -z "$1" ]; then
+	return 1;
+fi
+
+echo -en "\033];$@\007"
+
+

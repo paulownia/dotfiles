@@ -103,9 +103,16 @@ if [[ -d ~/.local/share/zsh/functions ]]; then
 	fpath=(~/.local/share/zsh/functions $fpath)
 fi
 
+
 # additon homebrew completion to fpath
 if [[ -d /opt/homebrew/share/zsh/site-functions ]]; then
 	fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
+fi
+
+# additon dotfiles zsh functions to fpath
+if [[ -d ~/.dotfiles/zsh ]]; then
+	fpath=(~/.dotfiles/zsh $fpath)
+	autoload -zU ~/.dotfiles/zsh/[^_]*(:t)
 fi
 
 # zsh completion
@@ -165,15 +172,6 @@ precmd () {
 	RPROMPT='${vcs_info_msg_0_}'
 	setopt transient_rprompt
 }
-
-# -- dev command
-source ~/.dotfiles/zsh/dev
-
-# -- launchctl utilities
-source ~/.dotfiles/zsh/launchctl
-
-# -- fuctions
-source ~/.dotfiles/zsh/functions
 
 if [[ $LC_TERMINAL == iTerm2 ]]; then
 	# change bg color on ssh login

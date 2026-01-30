@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+if ! type fzf 1>/dev/null 2>&1; then
+	{
+		echo "fzf not found"
+		echo "type 'brew install fzf'"
+	} >&2
+	return 1
+fi
+
+local SERVICE_NAME=$(launchctl list | grep "^-" | fzf | head -n 1 | cut -f 3)
+
+if [ -n "$SERVICE_NAME" ]; then
+	echo "Start ${SERVICE_NAME}"
+	launchctl start $SERVICE_NAME
+else
+	return 1
+fi

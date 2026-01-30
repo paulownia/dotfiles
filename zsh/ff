@@ -1,0 +1,20 @@
+#!/bin/zsh
+
+if [[ -z $1 ]]; then
+	  echo "Usage: ff <filename> [search_path]"
+	  exit 1
+fi
+
+# find regular files (excludes invisible files)
+F="./"
+if [[ -n $2 ]]; then
+  F="$2"
+fi
+
+Q=$1
+if [[ $Q != *"*"* ]]; then
+	Q="*$Q*"
+fi
+
+mdfind "kMDItemFSName == $Q" -onlyin "$F"
+
