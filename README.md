@@ -2,6 +2,9 @@
 
 ## setup
 
+    mkdir .dotfiles
+    cd .dotfiles
+    git clone git://github.com/paulownia/dotfiles.git
     ./setup.sh
 
 ## brew
@@ -20,6 +23,6 @@ if you install docker via brew, no need to do this step.
 
     docker completion zsh > ~/.local/share/zsh/functions/_docker
 
-### npm
+### volta
 
-    npm completion > ~/.local/share/zsh/functions/_npm
+    volta completions zsh > ~/.local/share/zsh/functions/_volta
