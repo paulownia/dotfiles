@@ -1,17 +1,20 @@
-#!/bin/zsh
+#autoload
+emulate -L zsh
 
-if ! type fzf 1>/dev/null 2>&1; then
-	{
-		echo "fzf not found"
-		echo "type 'brew install fzf'"
-	} >&2
+if ! command -v launchctl 1>/dev/null 2>&1; then
+	print -u2 "[ERROR] launchctl is required. This script is intended for macOS."
+	return 1
+fi
+
+if ! command -v fzf 1>/dev/null 2>&1; then
+	print -u2 "[ERROR] fzf is required. Please install it (e.g. type 'brew install peco')."
 	return 1
 fi
 
 local SERVICE_NAME=$(launchctl list | grep -v "^-" | fzf | head -n 1 | cut -f 3)
 
 if [ -n "$SERVICE_NAME" ]; then
-	echo "Stop ${SERVICE_NAME}"
+	print "Stop ${SERVICE_NAME}"
 	launchctl stop $SERVICE_NAME
 else
 	return 1

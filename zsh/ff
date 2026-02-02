@@ -1,14 +1,20 @@
-#!/bin/zsh
+#autoload
+emulate -L zsh
+
+if ! command -v mdfind 1>/dev/null 2>&1; then
+	print -u2 "[ERROR] mdfind is required. This script is intended for macOS."
+	return 1
+fi
 
 if [[ -z $1 ]]; then
-	  echo "Usage: ff <filename> [search_path]"
-	  exit 1
+	print -u2 "Usage: ff <filename> [search_path]"
+	return 1
 fi
 
 # find regular files (excludes invisible files)
 F="./"
 if [[ -n $2 ]]; then
-  F="$2"
+	F="$2"
 fi
 
 Q=$1

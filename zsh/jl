@@ -1,28 +1,29 @@
-#!/bin/zsh
+#autoload
+emulate -L zsh
 
 # jq + less
-if ! type jq 1>/dev/null 2>&1; then
-	echo "[ERROR] jq is not installed. type 'brew install jq'"
+if ! command -v jq 1>/dev/null 2>&1; then
+	print -u2 "[ERROR] jq is required. Please install it (e.g. 'brew install jq')."
 	return 1
 fi
 
 local QUERY
 local FILE
 
-if [ -p /dev/stdin ]; then
+if [[ -p /dev/stdin ]]; then
 	# pipe: cat hoge.json | jl .
-	if [ $# -eq 0 ]; then
+	if (( $# == 0 )); then
 		QUERY="."
 	else
 		QUERY="$1"
 	fi
 	FILE="-"
-elif [ -t 0 ]; then
+elif [[ -t 0 ]]; then
 	# file: jl . hoge.json
-	if [ $# -eq 1 ]; then
+	if (( $# == 1 )); then
 		QUERY="."
-		FILE=$1
-	elif [ $# -eq 2 ]; then
+		FILE="$1"
+	elif (( $# == 2 )); then
 		QUERY="$1"
 		FILE="$2"
 	else
@@ -30,7 +31,7 @@ elif [ -t 0 ]; then
 	fi
 else
 	# redirect stdin: jl . <hoge.json
-	if [ $# -eq 0 ]; then
+	if (( $# == 0 )); then
 		QUERY="."
 	else
 		QUERY="$1"
@@ -38,5 +39,5 @@ else
 	FILE="-"
 fi
 
-jq "$QUERY" -C 2>&1 $FILE | less -R
+jq -C "$QUERY" "$FILE" 2>&1 | less -R
 

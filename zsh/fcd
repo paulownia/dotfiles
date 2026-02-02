@@ -1,11 +1,17 @@
-#!/bin/zsh
+#autoload
+emulate -L zsh
 
-if ! type fzf 1>/dev/null 2>&1; then
-	echo "[ERROR] peco is not installed. type 'brew install peco'"
+if ! command -v mdfind 1>/dev/null 2>&1; then
+	print -u2 "[ERROR] mdfind is required. This script is intended for macOS."
 	return 1
 fi
 
-if [ -z "$1" ]; then
+if ! command -v fzf 1>/dev/null 2>&1; then
+	print -u2 "[ERROR] fzf is required. Please install it (e.g. type 'brew install fzf')."
+	return 0
+fi
+
+if [[ -z $1 ]]; then
 	return 1
 fi
 
