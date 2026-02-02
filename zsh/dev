@@ -1,4 +1,6 @@
-#!/bin/zsh
+#autoload
+emulate -L zsh
+setopt extendedglob
 
 function _dev_add() {
 	[[ -z $DEV_PROJECTS_FILE ]] && return 1
@@ -26,10 +28,11 @@ function _dev_cd() {
 	local KEY=$1 DIR
 
 	if [[ -z $KEY ]]; then
-		local SELECTED=$(fzf < $DEV_PROJECTS_FILE)
+		local SELECTED=$(column -t $DEV_PROJECTS_FILE | fzf)
 		[[ -z $SELECTED ]] && return 1
-		KEY=${SELECTED%%$'\t'*}
-		DIR=${SELECTED#*$'\t'}
+		KEY=${SELECTED%% *}
+		DIR=${SELECTED#* }
+		DIR=${DIR##[[:space:]]#}  # trim leading spaces
 	else
 		DIR=$(awk -F "\t" -v "key=$KEY" '$1 == key { print $2; exit }' "$DEV_PROJECTS_FILE")
 	fi
