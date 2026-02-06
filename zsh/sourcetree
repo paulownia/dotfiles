@@ -1,14 +1,12 @@
 #autoload
 emulate -L zsh
+# open git repo in sourcetree
+local dir
+dir=$(git rev-parse --show-cdup 2>/dev/null) || {
+	print -u2 "Not a git repository"
+	return 1
+}
 
-# current dirに.gitがなければ何もしない
-if [ ! -d .git ]; then
-	print -u2 "Not a git repository."
-	exit 1
-fi
-
-# to open this git repo in sourcetree
-local dir=$(git rev-parse --show-cdup)
 if [ -z "${dir}" ]; then
 	dir="."
 fi
