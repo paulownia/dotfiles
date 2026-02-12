@@ -181,7 +181,7 @@ fi
 
 if [[ $OSTYPE == darwin* ]]; then
 	# make command with notification
-	if [[ -x ~/apps/bin/make-notify ]]; then
+	if command -v make-notify 1>/dev/null 2>&1; then
 		alias make=make-notify
 		compdef make-notify=make
 	fi

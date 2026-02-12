@@ -1,15 +1,18 @@
-#!/bin/zsh
+#!/bin/bash
 
 \make "$@"
 
 ret=$?
 
-if [[ $ret -eq 2 ]]; then
-	exit 2
-elif [[ $ret -ne 0 ]]; then
-	osascript -e "display notification \"make $*\" with title \"Make Failed\" sound name \"Submarine\""
-else
-	osascript -e "display notification \"make $*\" with title \"Make Succeeded\" sound name \"Submarine\""
+if ! command -v osascript 1>/dev/null 2>&1; then
+	exit $ret
 fi
+
+msg="Success"
+if [[ $ret -ne 0 ]]; then
+	msg="Failed"
+fi
+
+osascript -e "display notification \"make $*\" with title \"Make $msg\" sound name \"Submarine\""
 
 exit $ret
