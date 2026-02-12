@@ -1,12 +1,22 @@
 #!/bin/bash -e
 
-# open git repo in sourcetree
+# open git repo in sourcetree (macOS only)
+if ! command -v open 1>/dev/null 2>&1 ; then
+	echo "[ERROR] This script is intended for macOS." >&2
+	exit 1
+fi
+
+if ! open -Ra "SourceTree" 2>/dev/null ; then
+	echo "[ERROR] SourceTree is not installed." >&2;
+	exit 1;
+fi
+
 dir=$(git rev-parse --show-cdup 2>/dev/null) || {
 	echo "[ERROR] Not a git repository" >&2
 	exit 1
 }
 
-if [ -z "${dir}" ]; then
+if [[ -z "${dir}" ]]; then
 	dir="."
 fi
-open -a SourceTree ${dir}
+open -a SourceTree "${dir}"
