@@ -5,7 +5,7 @@
 export PATH=/opt/homebrew/bin:$PATH
 
 # user path
-export PATH=~/apps/bin:$PATH
+export PATH=~/.dotfiles/bin:~/.local/bin:$PATH
 
 # for git editor
 export EDITOR=nvim
@@ -23,8 +23,7 @@ fi
 
 # node manager
 if [[ -d $HOME/.volta ]]; then
-	export VOLTA_HOME="$HOME/.volta"
-	export PATH="$VOLTA_HOME/bin:$PATH"
+	: "nothing to do, volta writes path to .zshenv"
 
 elif [[ -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
 	export NVM_DIR="$HOME/.nvm"

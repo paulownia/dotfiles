@@ -31,25 +31,6 @@ function isSynLinked() {
 	done
 )
 
-: 'copy commands to ~/apps/bin' ; (
-	if [[ ! -d ~/apps/bin ]]; then
-		mkdir -p ~/apps/bin
-	fi
-
-	for SRC in ${WORKING_DIR}/bin/*; do
-		DST=${HOME}/apps/bin/$(basename ${SRC})
-
-		if isSynLinked $SRC $DST; then
-			log "skip ${DST} has already been created."
-			continue
-		elif [[ -e $DST ]]; then
-			mv ${DST} ${DST}.org && log "${DST} exists, rename it."
-		fi
-
-		ln -s ${SRC} ${DST} && log "create ${DST}"
-	done
-)
-
 : 'copy .config dir to home direcotry' ; (
 	if [[ ! -d ~/.config ]]; then
 		mkdir ~/.config
