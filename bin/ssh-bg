@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash -e
 
 trap 'echo -ne "\033]1337;SetColors=bg=000\a"; echo -en "\033];\007"' SIGINT EXIT
 

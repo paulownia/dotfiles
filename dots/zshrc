@@ -173,7 +173,7 @@ precmd () {
 
 if [[ $LC_TERMINAL == iTerm2 ]]; then
 	# change bg color on ssh login
-	if [[ -x ~/apps/bin/ssh-bg ]]; then
+	if command -v ssh-bg 1>/dev/null 2>&1; then
 		alias ssh=ssh-bg
 		compdef ssh-bg=ssh
 	fi
