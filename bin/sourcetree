@@ -1,14 +1,12 @@
-#autoload
-emulate -L zsh
+#!/bin/bash -e
+
 # open git repo in sourcetree
-local dir
 dir=$(git rev-parse --show-cdup 2>/dev/null) || {
-	print -u2 "[ERROR] Not a git repository"
-	return 1
+	echo "[ERROR] Not a git repository" >&2
+	exit 1
 }
 
 if [ -z "${dir}" ]; then
 	dir="."
 fi
 open -a SourceTree ${dir}
-

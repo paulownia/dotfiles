@@ -1,30 +1,26 @@
-#autoload
-emulate -L zsh
+#!/bin/bash -e
 
 # fzf must be available
 if ! command -v fzf >/dev/null 2>&1; then
-  print -u2 "[ERROR] fzf is not installed. Please install it (e.g. 'brew install fzf')."
-  return 1
+  echo "[ERROR] fzf is not installed. Please install it (e.g. 'brew install fzf')." >&2
+  exit 1
 fi
 
 # jq must be available (needed to parse package.json)
 if ! command -v jq >/dev/null 2>&1; then
-  print -u2 "[ERROR] jq is not installed. Please install it (e.g. 'brew install jq')."
-  return 1
+  echo "[ERROR] jq is not installed. Please install it (e.g. 'brew install jq')." >&2
+  exit 1
 fi
 
 if [[ ! -f package.json ]]; then
-  print -u2 "[ERROR] package.json not found."
-  return 1
+  echo "[ERROR] package.json not found." >&2
+  exit 1
 fi
 
-local script
 script=$(jq -r '.scripts | keys[]' package.json | fzf --header="Select an npm script to run:" --prompt="npm script> ")
 
 # User cancelled selection
-[[ -z $script ]] && return 0
+[[ -z $script ]] && exit 0
 
-print "npm run $script"
+echo "npm run $script"
 npm run -- "$script"
-return $?
-
