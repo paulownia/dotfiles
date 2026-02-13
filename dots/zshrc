@@ -15,7 +15,7 @@ alias acl="/bin/ls -lhGe"
 # prompt setting
 case "${OSTYPE}" in
 	darwin*)
-		if [[ ${LC_TERMINAL} == iTerm2 ]] || [[ ${TERM_PROGRAM} == vscode ]] || [[ ${TERMINAL_EMULATOR} == *JediTerm ]]; then
+		if [[ ${LC_TERMINAL} == iTerm2 || ${TERM_PROGRAM} == vscode || ${TERMINAL_EMULATOR} == *JediTerm ]]; then
 			X_PROMPT="%B%F{cyan}%3~%f%b"
 		else
 			X_PROMPT="%F{green}${USER}@${HOST%%.*}%f%b:%F{blue}%3~%f%b"
@@ -211,7 +211,7 @@ if command -v goenv >/dev/null 2>&1; then
 fi
 
 # enable nvm if installed by homebrew (lazy loading with --no-use)
-if [[ -n $NVM_DIR ]] && [[ -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
+if [[ -n $NVM_DIR && -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
 	source "/opt/homebrew/opt/nvm/nvm.sh" --no-use
 	source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 	node() {
