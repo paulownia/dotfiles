@@ -114,8 +114,12 @@ if [[ -d ~/.dotfiles/zsh ]]; then
 fi
 
 # zsh completion
-autoload -U compinit
-compinit
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+	compinit
+else
+	compinit -C
+fi
 
 zstyle ':completion:*:default' menu selection
 zstyle ':completion:*' verbose yes
@@ -187,20 +191,40 @@ if [[ $OSTYPE == darwin* ]]; then
 	fi
 fi
 
-# rbenv
+# rbenv (lazy loading)
 if type rbenv >/dev/null 2>&1; then
-	eval "$(rbenv init -)"
+	rbenv() {
+		unfunction rbenv
+		eval "$(command rbenv init -)"
+		rbenv "$@"
+	}
 fi
 
-# goenv
+# goenv (lazy loading)
 if type goenv >/dev/null 2>&1; then
-	eval "$(goenv init -)"
+	goenv() {
+		unfunction goenv
+		eval "$(command goenv init -)"
+		goenv "$@"
+	}
 fi
 
-# enable nvm if installed by homebrew
+# enable nvm if installed by homebrew (lazy loading with --no-use)
 if [[ -n $NVM_DIR ]] && [[ -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
-	source "/opt/homebrew/opt/nvm/nvm.sh"
+	source "/opt/homebrew/opt/nvm/nvm.sh" --no-use
 	source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+	node() {
+		if whence -p node &>/dev/null; then unfunction node; node "$@"
+		else echo "Run 'nvm use' to activate Node.js" >&2; return 127; fi
+	}
+	npm() {
+		if whence -p npm &>/dev/null; then unfunction npm; npm "$@"
+		else echo "Run 'nvm use' to activate Node.js" >&2; return 127; fi
+	}
+	npx() {
+		if whence -p npx &>/dev/null; then unfunction npx; npx "$@"
+		else echo "Run 'nvm use' to activate Node.js" >&2; return 127; fi
+	}
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
