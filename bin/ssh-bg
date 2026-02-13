@@ -1,15 +1,16 @@
 #!/bin/bash -e
 
-trap 'echo -ne "\033]1337;SetColors=bg=000\a"; echo -en "\033];\007"' SIGINT EXIT
+trap 'printf "\033]111\a\033]0;\a"' SIGINT EXIT
 
-if [[ $@ == *prd* ]]; then
-	echo -ne '\033]1337;SetColors=bg=200\a'
-elif [[ $@ == *stg* ]]; then
-	echo -ne '\033]1337;SetColors=bg=002\a'
+if [[ $* == *prd* ]]; then
+	printf '\033]11;#220000\a'
+elif [[ $* == *stg* ]]; then
+	printf '\033]11;#000022\a'
+elif [[ $* == *local* ]]; then
+	printf '\033]11;#002222\a'
 else
-	echo -ne '\033]1337;SetColors=bg=020\a'
+	printf '\033]11;#002200\a'
 fi
 
 /usr/bin/ssh "$@"
-
 

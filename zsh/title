@@ -1,10 +1,10 @@
 #autoload
 emulate -L zsh
 
-if [ -z "$1" ]; then
+if [[ -z "$1" ]]; then
 	return 1;
 fi
 
-echo -en "\033];$@\007"
+printf "\033]0;%s\007" "$*"
 
 
