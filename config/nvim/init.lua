@@ -1,78 +1,34 @@
-vim.cmd('source ~/.vimrc')
-
-vim.opt.termguicolors = true
-vim.opt.wildoptions = 'pum'
-vim.opt.pumblend = 5
-vim.g.editorconfig = true
-
-require('nvim_comment').setup()
-
-require("nvim-tree").setup()
-
-vim.api.nvim_set_keymap("n", "T", ":NvimTreeToggle<CR>", { noremap = true })
-
-
-local C = require("nightfox.lib.color")
-
-require('nightfox').setup({
-  options = {
-    transparent = true
-  },
-  groups = {
-    carbonfox = {
-      -- https://github.com/EdenEast/nightfox.nvim/blob/main/lua/nightfox/group/editor.lua
-      Pmenu = { bg = "#204148" },     -- 補完メニューなど
-      Visual = { bg = "#60626A" },    -- v-modeでの選択範囲
-      Search = { bg = "#606032" },    -- 検索結果
-      VertSplit = { bg = "#505050", fg = "#505050" },    -- ウィンドウ分割時の縦線 `|`
-      MatchParen = { fg = "#FF33FF", style = "reverse,bold" or "bold" },    -- 対応する括弧
-    }
-  },
-  specs = {
-    carbonfox = {
-      diff = {
-        add = C("#161616"):blend(C("#25BE6A"), 0.25):to_css(),
-        delete = C("#161616"):blend(C("#EE5396"), 0.2):to_css(),
-        change = C("#161616"):blend(C("#78A9FF"), 0.3):to_css(),
-        text = "#5C03FE",
-      }
-    }
-  }
-});
-
-vim.cmd.colorscheme "carbonfox"
-
-local function progress()
-  local cur = vim.fn.line('.')
-  local total = vim.fn.line('$')
-  local result
-  if cur == total then
-    result = 100
-  elseif cur == 1 then
-    result = 0
-  else
-    result = math.floor(cur / total * 100)
-  end
-
-  return string.format('%3s%%%%', result)
+-- lazy.nvim bootstrap
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.uv.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
+require("options")
+require("keymaps")
+require("autocmds")
+require("filetypes")
 
-require('lualine').setup({
-  options = {
-    disabled_filetypes = {'NvimTree', 'tagbar'},
-    component_separators = { left = '|', right = '|'},
-    section_separators = { left = '', right = ''},
-  },
-  sections = {
-    lualine_b = {'branch', 'diff'},
-    lualine_c = {
-      'filename',
-      {
-        'diagnostics',
-        symbols = {error = ' ', warn = ' ', info = ' '},
-      }
-    },
-    lualine_y = { progress },
-  },
+require("lazy").setup("plugins", {
+  rocks = { enabled = false },
 })
+
+-- vimdiff color (termguicolors用)
+vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#002800" })
+vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#280000" })
+vim.api.nvim_set_hl(0, "DiffChange", { bg = "#002828" })
+vim.api.nvim_set_hl(0, "DiffText", { bg = "#280028" })
+
+-- ローカルオーバーライド
+local local_config = vim.fn.expand("~/.config/nvim_local.lua")
+if vim.fn.filereadable(local_config) == 1 then
+  dofile(local_config)
+end
