@@ -6,7 +6,6 @@
 alias here="open ."
 alias home="open ~/"
 alias edit="open -a CotEditor"
-alias al="ag --pager 'less -R'"
 alias gmail="open -na 'Google Chrome' --args --app='https://mail.google.com/mail/u/0/#inbox'"
 alias bash="HISTFILE=${HOME}/.bash_history /bin/bash"
 alias reload="exec ${SHELL}"
@@ -16,27 +15,27 @@ alias acl="/bin/ls -lhGe"
 # prompt setting
 case "${OSTYPE}" in
 	darwin*)
-		if [[ ${LC_TERMINAL} == iTerm2 ]] || [[ ${TERM_PROGRAM} == vscode ]] || [[ ${TERMINAL_EMULATOR} == *JediTerm ]]; then
-			X_PROMPT="%{[1;36m%}%3~%{[m%}"
+		if [[ ${LC_TERMINAL} == iTerm2 || ${TERM_PROGRAM} == vscode || ${TERMINAL_EMULATOR} == *JediTerm ]]; then
+			X_PROMPT="%B%F{cyan}%3~%f%b"
 		else
-			X_PROMPT="%{[0;32m%}${USER}@${HOST%%.*}%{[m%}:%{[0;34m%}%3~%{[m%}"
+			X_PROMPT="%F{green}${USER}@${HOST%%.*}%f%b:%F{blue}%3~%f%b"
 		fi
 		;;
 	linux*)
-		X_PROMPT="%{[0;35m%}${USER}@${HOST%%.*}%{[m%}:%{[0;34m%}%1~%{[m%}"
+		X_PROMPT="%F{magenta}${USER}@${HOST%%.*}%f%b:%F{blue}%1~%f%b"
 		;;
 esac
 
 function zle-line-init zle-keymap-select {
 	case $KEYMAP in
 		main|viins)
-			PROMPT="${X_PROMPT} %{[0;36m%}i%{[m%}%(!.#.$) "
+			PROMPT="${X_PROMPT} %F{cyan}i%f%b%(!.#.$) "
 			;;
 		vicmd)
-			PROMPT="${X_PROMPT} %{[0;31m%}n%{[m%}%(!.#.$) "
+			PROMPT="${X_PROMPT} %F{red}n%f%b%(!.#.$) "
 			;;
 		vivis|vivli)
-			PROMPT="${X_PROMPT} %{[0;31m%}v%{[m%}%(!.#.$) "
+			PROMPT="${X_PROMPT} %F{red}v%f%b%(!.#.$) "
 			;;
 	esac
 	zle reset-prompt
@@ -46,11 +45,15 @@ zle -N zle-keymap-select
 
 # history
 HISTFILE=${HOME}/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 setopt EXTENDED_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_REDUCE_BLANKS
+setopt HIST_VERIFY
+setopt HIST_NO_STORE
 setopt noflowcontrol
 
 # zsh binding style
@@ -76,7 +79,6 @@ bindkey '[H' beginning-of-line # home
 bindkey '[F' end-of-line # end
 bindkey '[5~' beginning-of-history # page up
 bindkey '[6~' end-of-history # page down
-bindkey '[3~' backward-kill-word # delete same as ctrl-w
 bindkey -a '[2~' vi-insert # insert
 bindkey -v '[2~' vi-insert # insert
 
@@ -90,46 +92,49 @@ alias -s {jpg,jpeg,png,gif,webp}="preview"
 setopt no_hist_beep
 setopt no_list_beep
 
-# cd extention
+# cd extension
 setopt auto_cd
 setopt auto_pushd
-DIRSTACKSIZE=2
+setopt pushd_ignore_dups
+DIRSTACKSIZE=20
 
-cdpath=(~ ../ $cdpath)
-
-# addtion custom completion to fpath
+# addition custom completion to fpath
 if [[ -d ~/.local/share/zsh/functions ]]; then
 	fpath=(~/.local/share/zsh/functions $fpath)
 fi
 
-# additon homebrew completion to fpath
+# addition homebrew completion to fpath
 if [[ -d /opt/homebrew/share/zsh/site-functions ]]; then
 	fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 fi
 
-# additon dotfiles zsh functions to fpath
+# addition dotfiles zsh functions to fpath
 if [[ -d ~/.dotfiles/zsh ]]; then
 	fpath=(~/.dotfiles/zsh $fpath)
 	autoload -zU ~/.dotfiles/zsh/[^_]*(:t)
 fi
 
 # zsh completion
-autoload -U compinit
-compinit
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+	compinit
+else
+	compinit -C
+fi
 
 zstyle ':completion:*:default' menu selection
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
-zstyle ':completion:*:messages' format "%{[1;33m%}%d %{[m%}"
-zstyle ':completion:*:warnings' format "%{[1;31m%}No matches for: %d %{[m%}"
-zstyle ':completion:*:descriptions' format "%{[1;34m%}%d %{[m%}"
-zstyle ':completion:*:corrections' format "%{[1;33m%}%d %{[1;31m%}(errors: %e)%b %{[m%}"
+zstyle ':completion:*:messages' format "%B%F{yellow}%d %f%b"
+zstyle ':completion:*:warnings' format "%B%F{red}No matches for: %d %f%b"
+zstyle ':completion:*:descriptions' format "%B%F{blue}%d %f%b"
+zstyle ':completion:*:corrections' format "%B%F{yellow}%d %F{red}(errors: %e)%f%b"
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*' group-name ''
 
 
 # alias another basic command
-if type eza 1>/dev/null 2>&1; then
+if command -v eza >/dev/null 2>&1; then
 	alias ls=" eza --time-style=iso"
 	alias ll=" eza -gl --time-style=long-iso"
 else
@@ -137,7 +142,7 @@ else
 	alias ll=" /bin/ls -lFG"
 fi
 
-if type bat 1>/dev/null 2>&1; then
+if command -v bat >/dev/null 2>&1; then
 	alias cat="bat --theme=Dracula"
 fi
 
@@ -148,7 +153,7 @@ if [[ -n $JAVA_HOME ]]; then
 fi
 
 # nvim
-if type nvim 1>/dev/null 2>&1; then
+if command -v nvim >/dev/null 2>&1; then
 	alias vi=nvim
 	alias view="nvim -R"
 	alias vimdiff="nvim -d"
@@ -173,7 +178,7 @@ precmd () {
 
 if [[ $LC_TERMINAL == iTerm2 ]]; then
 	# change bg color on ssh login
-	if command -v ssh-bg 1>/dev/null 2>&1; then
+	if command -v ssh-bg >/dev/null 2>&1; then
 		alias ssh=ssh-bg
 		compdef ssh-bg=ssh
 	fi
@@ -181,26 +186,46 @@ fi
 
 if [[ $OSTYPE == darwin* ]]; then
 	# make command with notification
-	if command -v make-notify 1>/dev/null 2>&1; then
+	if command -v make-notify >/dev/null 2>&1; then
 		alias make=make-notify
 		compdef make-notify=make
 	fi
 fi
 
-# rbenv
-if type rbenv >/dev/null 2>&1; then
-	eval "$(rbenv init -)"
+# rbenv (lazy loading)
+if command -v rbenv >/dev/null 2>&1; then
+	rbenv() {
+		unfunction rbenv
+		eval "$(command rbenv init -)"
+		rbenv "$@"
+	}
 fi
 
-# goenv
-if type goenv >/dev/null 2>&1; then
-	eval "$(goenv init -)"
+# goenv (lazy loading)
+if command -v goenv >/dev/null 2>&1; then
+	goenv() {
+		unfunction goenv
+		eval "$(command goenv init -)"
+		goenv "$@"
+	}
 fi
 
-# enable nvm if installed by homebrew
-if [[ -n $NVM_DIR ]] && [[ -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
-	source "/opt/homebrew/opt/nvm/nvm.sh"
+# enable nvm if installed by homebrew (lazy loading with --no-use)
+if [[ -n $NVM_DIR && -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
+	source "/opt/homebrew/opt/nvm/nvm.sh" --no-use
 	source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+	node() {
+		if whence -p node &>/dev/null; then unfunction node; node "$@"
+		else echo "Run 'nvm use' to activate Node.js" >&2; return 127; fi
+	}
+	npm() {
+		if whence -p npm &>/dev/null; then unfunction npm; npm "$@"
+		else echo "Run 'nvm use' to activate Node.js" >&2; return 127; fi
+	}
+	npx() {
+		if whence -p npx &>/dev/null; then unfunction npx; npx "$@"
+		else echo "Run 'nvm use' to activate Node.js" >&2; return 127; fi
+	}
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -214,7 +239,7 @@ if [[ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]]; then
 fi
 
 # load local zshrc if exists
-if [[ -f .zshrc.local ]]; then
-	source .zshrc.local
+if [[ -f ~/.zshrc.local ]]; then
+	source ~/.zshrc.local
 fi
 
