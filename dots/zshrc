@@ -242,7 +242,7 @@ if [[ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]]; then
 fi
 
 # load local zshrc if exists
-if [[ -f .zshrc.local ]]; then
-	source .zshrc.local
+if [[ -f ~/.zshrc.local ]]; then
+	source ~/.zshrc.local
 fi
 
