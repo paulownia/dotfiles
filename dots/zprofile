@@ -10,9 +10,6 @@ export PATH=~/.dotfiles/bin:~/.local/bin:$PATH
 # for git editor
 export EDITOR=nvim
 
-# for ussr function dev
-export DEV_PROJECTS_FILE=~/.local/share/dev-projects/dev
-
 # java home for macos
 if [[ $OSTYPE == darwin* ]]; then
 	JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)

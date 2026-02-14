@@ -2,9 +2,20 @@
 emulate -L zsh
 setopt extendedglob
 
-function _dev_add() {
-	[[ -z $DEV_PROJECTS_FILE ]] && return 1
+local DEV_PROJECTS_DIR=${DEV_PROJECTS_FILE:-"$HOME/.local/share/dev-projects"}
+local DEV_PROJECTS_FILE="$DEV_PROJECTS_DIR/dev"
 
+function _dev_init() {
+	if [[ ! -d $DEV_PROJECTS_DIR ]]; then
+		mkdir -p $DEV_PROJECTS_DIR
+	fi
+
+	if [[ ! -f $DEV_PROJECTS_FILE ]]; then
+		touch $DEV_PROJECTS_FILE
+	fi
+}
+
+function _dev_add() {
 	local KEY=$1
 
 	{
@@ -16,15 +27,12 @@ function _dev_add() {
 }
 
 function _dev_delete() {
-	[[ -z $DEV_PROJECTS_FILE || ! -f $DEV_PROJECTS_FILE ]] && return 1
 	local KEY=$1
 	awk -F "\t" -v key="$KEY" '$1 != key' "$DEV_PROJECTS_FILE" > "$DEV_PROJECTS_FILE.tmp"
 	mv "$DEV_PROJECTS_FILE.tmp" "$DEV_PROJECTS_FILE"
 }
 
 function _dev_cd() {
-	[[ -z $DEV_PROJECTS_FILE || ! -f $DEV_PROJECTS_FILE ]] && return 1
-
 	local KEY=$1 DIR
 
 	if [[ -z $KEY ]]; then
@@ -46,11 +54,12 @@ function _dev_cd() {
 	pwd
 }
 
-
 function _dev_list() {
-	[[ -z $DEV_PROJECTS_FILE ]] && return 1
 	column -t $DEV_PROJECTS_FILE
 }
+
+
+_dev_init
 
 while getopts d:a:sl OPT
 do

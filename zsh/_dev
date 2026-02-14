@@ -1,17 +1,22 @@
 #compdef dev
-function _dev_projects() {
-	[[ -z "$DEV_PROJECTS_FILE" || ! -f "$DEV_PROJECTS_FILE" ]] && return
-	local -a CD_LIST
-	CD_LIST=( $(cut -f 1 < "$DEV_PROJECTS_FILE") )
-	_describe "Projects" CD_LIST
-}
-function _dev_pwd() {
-	_values "keyword candidates" ${PWD:t}
-}
-function _dev() {
-	_arguments \
-	  '(- *)-l[list all projects]' \
-	  '(- *)-a[add project]:keyword:_dev_pwd' \
-	  '(- *)-d[delete project]:project:_dev_projects' \
-	  '(- *)*:project:_dev_projects'
-}
+
+local DEV_PROJECTS_FILE="$HOME/.local/share/dev-projects/dev"
+local state
+
+_arguments \
+	'(- *)-l[list all projects]' \
+	'(- *)-a[add project]:keyword:->pwd_keyword' \
+	'(- *)-d[delete project]:project:->projects' \
+	'(- *)*:project:->projects'
+
+case "$state" in
+	pwd_keyword)
+		_values "keyword candidates" ${PWD:t}
+		;;
+	projects)
+		[[ -z "$DEV_PROJECTS_FILE" || ! -f "$DEV_PROJECTS_FILE" ]] && return
+		local -a CD_LIST
+		CD_LIST=( $(cut -f 1 < "$DEV_PROJECTS_FILE") )
+		_describe "Projects" CD_LIST
+		;;
+esac

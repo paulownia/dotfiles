@@ -89,22 +89,3 @@ section 'Step 3 -- create custom zsh autoload directory' ; {
 	fi
 }
 
-
-section 'Step 4 -- set up dev-projects tool' ; {
-	# dev projects dir
-	DEV_PROJECTS_DIR="${HOME}/.local/share/dev-projects"
-	if [[ ! -d ${DEV_PROJECTS_DIR} ]]; then
-		mkdir -p ${DEV_PROJECTS_DIR}
-		changed "create directory ${DEV_PROJECTS_DIR##$HOME/}"
-	else
-		skip "create directory ${DEV_PROJECTS_DIR##$HOME/}"
-	fi
-
-	DEV_PROJECTS_LIST="${DEV_PROJECTS_DIR}/dev"
-	if [[ ! -f ${DEV_PROJECTS_LIST} ]]; then
-		touch ${DEV_PROJECTS_LIST}
-		changed "create file ${DEV_PROJECTS_LIST##$HOME/}"
-	else
-		skip "create file ${DEV_PROJECTS_LIST##$HOME/}"
-	fi
-}
