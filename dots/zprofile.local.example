@@ -1,0 +1,10 @@
+# Set your local environment variables here, and rename this file to .zprofile.local
+# for example: API keys, tokens, and other secrets that you don't want to share publicly
+
+# Example: If you want to set your GitHub API token for Homebrew,
+# you can uncomment the line below and replace **your_github_api_key** with your actual token.
+# And you can get your GitHub API token from https://github.com/settings/tokens
+#export HOMEBREW_GITHUB_API_TOKEN=**your_github_api_key**
+
+
+
