@@ -7,8 +7,7 @@ if [[ -z $BRANCH ]]; then
 fi
 
 for REMOTE in $(git remote); do
-	git fetch "${REMOTE}"
-	git remote prune "${REMOTE}"
-	git branch --merged "${BRANCH}" | grep '^ ' | grep "/" | xargs git branch -d
+	git fetch --prune "${REMOTE}"
+	git branch --merged "${BRANCH}" | grep -v '\*' | grep -Ev '^\s+(develop|main|master|release)$' | xargs -r git branch -d
 done
 
