@@ -4,6 +4,9 @@ vim.opt_local.shiftwidth = 4
 vim.opt_local.tabstop = 4
 
 vim.api.nvim_create_autocmd("BufEnter", {
-  pattern = ".env",
-  command = "ALEDisable",
+  pattern = ".env*",
+  callback = function()
+    vim.cmd("ALEDisable")
+    vim.b.copilot_enabled = false
+  end,
 })
