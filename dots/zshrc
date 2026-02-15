@@ -13,35 +13,36 @@ alias preview="open -a 'Preview'"
 alias acl="/bin/ls -lhGe"
 
 # prompt setting
-case "${OSTYPE}" in
-	darwin*)
-		if [[ ${LC_TERMINAL} == iTerm2 || ${TERM_PROGRAM} == vscode || ${TERMINAL_EMULATOR} == *JediTerm ]]; then
-			X_PROMPT="%B%F{cyan}%3~%f%b"
-		else
-			X_PROMPT="%F{green}${USER}@${HOST%%.*}%f%b:%F{blue}%3~%f%b"
-		fi
-		;;
-	linux*)
-		X_PROMPT="%F{magenta}${USER}@${HOST%%.*}%f%b:%F{blue}%1~%f%b"
-		;;
-esac
+BASE_PROMPT="%B%F{cyan}%3~%f%b"
+
+if [[ ${LC_TERMINAL} != iTerm2 && ${TERM_PROGRAM} != vscode && ${TERMINAL_EMULATOR} != *JediTerm ]]; then
+	BASE_PROMPT="${USER}@${HOST%%.*}:${BASE_PROMPT}"
+fi
 
 function zle-line-init zle-keymap-select {
 	case $KEYMAP in
 		main|viins)
-			PROMPT="${X_PROMPT} %F{cyan}i%f%b%(!.#.$) "
+			PROMPT="${BASE_PROMPT} %F{cyan}i%f%(?.%(!.#.$).%F{red}%(!.#.$)%f) "
 			;;
 		vicmd)
-			PROMPT="${X_PROMPT} %F{red}n%f%b%(!.#.$) "
+			PROMPT="${BASE_PROMPT} %F{magenta}n%f%(?.%(!.#.$).%F{red}%(!.#.$)%f) "
 			;;
-		vivis|vivli)
-			PROMPT="${X_PROMPT} %F{red}v%f%b%(!.#.$) "
+		visual)
+			PROMPT="${BASE_PROMPT} %F{yellow}v%f%(?.%(!.#.$).%F{red}%(!.#.$)%f) "
 			;;
 	esac
 	zle reset-prompt
 }
 zle -N zle-line-init
 zle -N zle-keymap-select
+
+function zle-line-pre-redraw {
+    if [[ $REGION_ACTIVE -ne 0 ]]; then
+		PROMPT="${X_PROMPT} %F{yellow}v%f%b%(!.#.$) "
+		zle reset-prompt
+	fi
+}
+zle -N zle-line-pre-redraw
 
 # history
 HISTFILE=${HOME}/.zsh_history
@@ -84,7 +85,7 @@ bindkey -v '[2~' vi-insert # insert
 
 # script alias
 alias -s rb="ruby"
-alias -s js="node"
+alias -s {js,ts}="bun run"
 alias -s {txt,md,html,css,scss}="edit"
 alias -s {jpg,jpeg,png,gif,webp}="preview"
 
