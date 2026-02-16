@@ -195,11 +195,13 @@ fi
 
 # rbenv (lazy loading)
 if command -v rbenv >/dev/null 2>&1; then
-	rbenv() {
-		unfunction rbenv
+	_rbenv_lazy_init() {
+		unfunction _rbenv_lazy_init rbenv ruby bundle gem rake rails irb 2>/dev/null
 		eval "$(command rbenv init -)"
-		rbenv "$@"
 	}
+	for cmd in rbenv ruby bundle gem rake rails irb; do
+		eval "${cmd}() { _rbenv_lazy_init; ${cmd} \"\$@\" }"
+	done
 fi
 
 # goenv (lazy loading)
