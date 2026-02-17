@@ -5,14 +5,13 @@ syn keyword cssColorProp contained color-scheme
 
 syn keyword cssBackgroundProp contained backdrop-filter
 
-syn match cssBoxProp contained "\<margin-\(inline\|block\)\(-\(start\|end\)\)\=\>"
-syn match cssBoxProp contained "\<padding-\(inline\|block\)\(-\(start\|end\)\)\=\>"
+syn keyword cssBoxProp contained margin-inline margin-block
+syn keyword cssBoxProp contained padding-inline padding-block
+
 syn keyword cssBoxProp contained overflow-anchor
 syn keyword cssBoxProp contained overflow-clip-margin
 
 syn match cssFlexibleBoxProp contained "\<place-\(items\|content\|self\)\>"
-
-syn match cssBorderProp contained "\<border-\(inline\|block\)\(-\(start\|end\)\)\=\(-\(color\|style\|width\)\)\=\>"
 
 syn match cssDimensionProp contained "\<\(\(max\|min\)-\)\=\(inline\|block\)-size\>"
 
@@ -24,6 +23,10 @@ syn keyword cssUIProp contained scroll-behavior
 syn keyword cssUIProp contained overscroll-behavior
 syn match cssUIProp contained "\<scroll-snap-\(type\|align\|stop\)\>"
 syn match cssUIProp contained "\<overscroll-behavior-\(x\|y\|block\|inline\)\>"
+" for scroll-behavior
+syn keyword cssUIAttr contained smooth
+" for scroll-snap-type
+syn keyword cssUIAttr contained mandatory proximity
 
 syn keyword cssPseudoClassId contained any-link
 
@@ -52,4 +55,9 @@ syn keyword cssTextAttr contained pretty stable
 
 " unit
 syn match cssValueLength contained "[-+]\=\d\+\(\.\d*\)\=\(lh\)\>" contains=cssUnitDecorators
+
+" writing mode
+syn keyword cssTextProp contained writing-mode
+syn keyword cssTextAttr contained horizontal-tb
+syn match cssTextAttr contained "\<\(sideways\|vertical\)-\(rl\|lr\)\>"
 
