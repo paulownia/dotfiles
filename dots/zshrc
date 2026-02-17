@@ -215,20 +215,14 @@ fi
 
 # enable nvm if installed by homebrew (lazy loading with --no-use)
 if [[ -n $NVM_DIR && -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
-	source "/opt/homebrew/opt/nvm/nvm.sh" --no-use
-	source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
-	node() {
-		if whence -p node &>/dev/null; then unfunction node; node "$@"
-		else echo "Run 'nvm use' to activate Node.js" >&2; return 127; fi
+	_nvm_lazy_init() {
+		unfunction _nvm_lazy_init nvm node npm npx
+		source "/opt/homebrew/opt/nvm/nvm.sh"
+		source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 	}
-	npm() {
-		if whence -p npm &>/dev/null; then unfunction npm; npm "$@"
-		else echo "Run 'nvm use' to activate Node.js" >&2; return 127; fi
-	}
-	npx() {
-		if whence -p npx &>/dev/null; then unfunction npx; npx "$@"
-		else echo "Run 'nvm use' to activate Node.js" >&2; return 127; fi
-	}
+	for cmd in nvm node npm npx; do
+		eval "${cmd}() { _nvm_lazy_init; ${cmd} \"\$@\" }"
+	done
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
