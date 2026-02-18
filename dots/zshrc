@@ -195,13 +195,17 @@ fi
 
 # rbenv (lazy loading)
 if command -v rbenv >/dev/null 2>&1; then
-	_rbenv_lazy_init() {
-		unfunction _rbenv_lazy_init rbenv ruby bundle gem rake rails irb 2>/dev/null
+	if [[ $CLAUDECODE == 1 ]]; then
 		eval "$(command rbenv init -)"
-	}
-	for cmd in rbenv ruby bundle gem rake rails irb; do
-		eval "${cmd}() { _rbenv_lazy_init; ${cmd} \"\$@\" }"
-	done
+	else
+		_rbenv_lazy_init() {
+			unfunction _rbenv_lazy_init rbenv ruby bundle gem rake rails irb 2>/dev/null
+			eval "$(command rbenv init -)"
+		}
+		for cmd in rbenv ruby bundle gem rake rails irb; do
+			eval "${cmd}() { _rbenv_lazy_init; ${cmd} \"\$@\" }"
+		done
+	fi
 fi
 
 # goenv (lazy loading)
@@ -213,16 +217,21 @@ if command -v goenv >/dev/null 2>&1; then
 	}
 fi
 
-# enable nvm if installed by homebrew (lazy loading with --no-use)
+# enable nvm if installed by homebrew (lazy loading)
 if [[ -n $NVM_DIR && -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
-	_nvm_lazy_init() {
-		unfunction _nvm_lazy_init nvm node npm npx
+	if [[ $CLAUDECODE == 1 ]]; then
 		source "/opt/homebrew/opt/nvm/nvm.sh"
 		source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
-	}
-	for cmd in nvm node npm npx; do
-		eval "${cmd}() { _nvm_lazy_init; ${cmd} \"\$@\" }"
-	done
+	else
+		_nvm_lazy_init() {
+			unfunction _nvm_lazy_init nvm node npm npx
+			source "/opt/homebrew/opt/nvm/nvm.sh"
+			source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+		}
+		for cmd in nvm node npm npx; do
+			eval "${cmd}() { _nvm_lazy_init; ${cmd} \"\$@\" }"
+		done
+	fi
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -239,4 +248,5 @@ fi
 if [[ -f ~/.zshrc.local ]]; then
 	source ~/.zshrc.local
 fi
+
 
