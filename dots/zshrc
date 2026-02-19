@@ -210,11 +210,17 @@ fi
 
 # goenv (lazy loading)
 if command -v goenv >/dev/null 2>&1; then
-	goenv() {
-		unfunction goenv
+	if [[ $CLAUDECODE == 1 ]]; then
 		eval "$(command goenv init -)"
-		goenv "$@"
-	}
+	else
+		_goenv_lazy_init() {
+			unfunction _goenv_lazy_init goenv go
+			eval "$(command goenv init -)"
+		}
+		for cmd in goenv go; do
+			eval "${cmd}() { _goenv_lazy_init; ${cmd} \"\$@\" }"
+		done
+	fi
 fi
 
 # enable nvm if installed by homebrew (lazy loading)
