@@ -38,7 +38,7 @@ zle -N zle-keymap-select
 
 function zle-line-pre-redraw {
     if [[ $REGION_ACTIVE -ne 0 ]]; then
-		PROMPT="${X_PROMPT} %F{yellow}v%f%b%(!.#.$) "
+		PROMPT="${BASE_PROMPT} %F{yellow}v%f%b%(!.#.$) "
 		zle reset-prompt
 	fi
 }
