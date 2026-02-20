@@ -1,9 +1,19 @@
 #!/bin/bash -e
 
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  echo "error: not a git repository" >&2
+  exit 1
+fi
+
 BRANCH=${1}
 
 if [[ -z $BRANCH ]]; then
 	BRANCH=$(git symbolic-ref --short HEAD)
+else
+	if ! git show-ref --verify --quiet "refs/heads/${BRANCH}"; then
+		echo "error: branch '${BRANCH}' does not exist" >&2
+		exit 1
+	fi
 fi
 
 for REMOTE in $(git remote); do
