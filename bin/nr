@@ -1,5 +1,11 @@
 #!/bin/bash -e
 
+# npm must be available
+if ! command -v npm >/dev/null 2>&1; then
+  echo "[ERROR] npm is not found. Please set up Node.js." >&2
+  exit 1
+fi
+
 # fzf must be available
 if ! command -v fzf >/dev/null 2>&1; then
   echo "[ERROR] fzf is not installed. Please install it (e.g. 'brew install fzf')." >&2

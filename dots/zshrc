@@ -230,11 +230,11 @@ if [[ -n $NVM_DIR && -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
 		source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 	else
 		_nvm_lazy_init() {
-			unfunction _nvm_lazy_init nvm node npm npx
+			unfunction _nvm_lazy_init nvm node npm npx nr
 			source "/opt/homebrew/opt/nvm/nvm.sh"
 			source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 		}
-		for cmd in nvm node npm npx; do
+		for cmd in nvm node npm npx nr; do
 			eval "${cmd}() { _nvm_lazy_init; ${cmd} \"\$@\" }"
 		done
 	fi
