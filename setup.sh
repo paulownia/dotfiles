@@ -41,6 +41,21 @@ section "Step 1 -- deploy dotfiles to home directory"; (
 	for SRC in ${WORKING_DIR}/dots/*; do
 		DST=${HOME}/.$(basename ${SRC})
 
+		if [[ ${SRC} == *.example ]]; then
+			if [[ -L ${DST} ]]; then
+				rm ${DST}
+				changed "remove symlink ${DST##$HOME/}"
+			fi
+			if [[ -f ${DST} ]]; then
+				skip "create file ${DST##$HOME/}"
+				continue
+			fi
+			cp ${SRC} ${DST}
+			changed "create file ${DST##$HOME/}"
+			continue
+		fi
+
+
 		if isSynLinked $SRC $DST; then
 			skip "create symlink ${DST##$HOME/}"
 			continue
