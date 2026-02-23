@@ -1,0 +1,7 @@
+-- Machine-local Neovim overrides
+-- Copy this file to local.lua and edit as needed:
+--   cp local.lua.example local.lua
+--
+-- Example:
+--   vim.opt.background = "light"
+--   vim.g.ale_fix_on_save = 1

@@ -28,7 +28,7 @@ vim.api.nvim_set_hl(0, "DiffChange", { bg = "#002828" })
 vim.api.nvim_set_hl(0, "DiffText", { bg = "#280028" })
 
 -- ローカルオーバーライド
-local local_config = vim.fn.expand("~/.config/nvim_local.lua")
+local local_config = vim.fn.stdpath("config") .. "/local.lua"
 if vim.fn.filereadable(local_config) == 1 then
   dofile(local_config)
 end
