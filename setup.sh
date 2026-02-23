@@ -1,4 +1,5 @@
 #!/bin/zsh -eu
+setopt EXTENDED_GLOB
 
 WORKING_DIR=$(cd "$(dirname "$0")" && pwd)
 
@@ -38,23 +39,8 @@ function isSynLinked() {
 
 
 section "Step 1 -- deploy dotfiles to home directory"; (
-	for SRC in ${WORKING_DIR}/dots/*; do
+	for SRC in ${WORKING_DIR}/dots/^*.example; do
 		DST=${HOME}/.$(basename ${SRC})
-
-		if [[ ${SRC} == *.example ]]; then
-			if [[ -L ${DST} ]]; then
-				rm ${DST}
-				changed "remove symlink ${DST##$HOME/}"
-			fi
-			if [[ -f ${DST} ]]; then
-				skip "create file ${DST##$HOME/}"
-				continue
-			fi
-			cp ${SRC} ${DST}
-			changed "create file ${DST##$HOME/}"
-			continue
-		fi
-
 
 		if isSynLinked $SRC $DST; then
 			skip "create symlink ${DST##$HOME/}"
@@ -68,6 +54,23 @@ section "Step 1 -- deploy dotfiles to home directory"; (
 
 		ln -s ${SRC} ${DST}
 		changed "create symlink ${DST##$HOME/}"
+	done
+
+	for SRC in ${WORKING_DIR}/dots/*.example; do
+		DST=${HOME}/.$(basename ${SRC%.example})
+
+		if [[ -L ${DST} ]]; then
+			rm ${DST}
+			changed "remove symlink ${DST##$HOME/}"
+		fi
+
+		if [[ -f ${DST} ]]; then
+			skip "create file ${DST##$HOME/}"
+			continue
+		fi
+
+		cp ${SRC} ${DST}
+		changed "create file ${DST##$HOME/}"
 	done
 )
 
