@@ -1,0 +1,22 @@
+{
+  "alwaysThinkingEnabled": true,
+  "statusLine": {
+    "type": "command",
+    "command": "sh $HOME/.claude/statusline-command.sh"
+  },
+  "permissions": {
+    "defaultMode": "default",
+    "allow": [
+      "Grep",
+      "Glob",
+      "Bash(ls *)",
+      "Bash(/bin/ls *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git branch *)",
+      "Bash(git rev-parse *)",
+      "Bash(which *)"
+    ]
+  }
+}

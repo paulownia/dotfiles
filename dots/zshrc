@@ -1,5 +1,4 @@
 # vim: set ft=zsh :
-
 # zshrc is loaded in interactive mode.
 
 # basic aliases
@@ -135,16 +134,18 @@ zstyle ':completion:*' group-name ''
 
 
 # alias another basic command
-if command -v eza >/dev/null 2>&1; then
-	alias ls=" eza --time-style=iso"
-	alias ll=" eza -gl --time-style=long-iso"
-else
-	alias ls=" /bin/ls -G"
-	alias ll=" /bin/ls -lFG"
-fi
+if [[ $CLAUDECODE != 1 ]]; then
+	if command -v eza >/dev/null 2>&1; then
+		alias ls=" eza --time-style=iso"
+		alias ll=" eza -gl --time-style=long-iso"
+	else
+		alias ls=" /bin/ls -G"
+		alias ll=" /bin/ls -lFG"
+	fi
 
-if command -v bat >/dev/null 2>&1; then
-	alias cat="bat --theme=Dracula"
+	if command -v bat >/dev/null 2>&1; then
+		alias cat="bat --theme=Dracula"
+	fi
 fi
 
 # settings for java

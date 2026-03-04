@@ -97,7 +97,31 @@ section 'Step 2 -- deploy XDG configs to ~/.config' ; (
 	done
 )
 
-section 'Step 3 -- create custom zsh autoload directory' ; {
+section 'Step 3 -- deploy Claude Code configs to ~/.claude' ; (
+	if [[ ! -d ~/.claude ]]; then
+		mkdir ~/.claude
+		changed "create directory ~/.claude"
+	fi
+
+	for SRC in ${WORKING_DIR}/claude/*; do
+		DST=${HOME}/.claude/$(basename ${SRC})
+
+		if isSynLinked $SRC $DST; then
+			skip "create symlink ${DST##$HOME/}"
+			continue
+		fi
+
+		if [[ -e $DST ]]; then
+			mv ${DST} ${DST}.org
+			warn "${DST##$HOME/} exists, rename to ${DST##*/}.org"
+		fi
+
+		ln -s ${SRC} ${DST}
+		changed "create symlink ${DST##$HOME/}"
+	done
+)
+
+section 'Step 4 -- create custom zsh autoload directory' ; {
 	ZSH_AUTOLOAD_PATH="${HOME}/.local/share/zsh/functions"
 	if [[ ! -d ${ZSH_AUTOLOAD_PATH} ]]; then
 		mkdir -p ${ZSH_AUTOLOAD_PATH}
