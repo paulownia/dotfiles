@@ -1,11 +1,5 @@
 {
-  "alwaysThinkingEnabled": true,
-  "statusLine": {
-    "type": "command",
-    "command": "sh $HOME/.claude/statusline-command.sh"
-  },
   "permissions": {
-    "defaultMode": "default",
     "allow": [
       "Grep",
       "Glob",
@@ -17,6 +11,13 @@
       "Bash(git branch *)",
       "Bash(git rev-parse *)",
       "Bash(which *)"
-    ]
-  }
+    ],
+    "defaultMode": "default"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  },
+  "language": "Japanese",
+  "alwaysThinkingEnabled": true
 }
