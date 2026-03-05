@@ -23,6 +23,3 @@ if you install docker via brew, no need to do this step.
 
     docker completion zsh > ~/.local/share/zsh/functions/_docker
 
-### volta
-
-    volta completions zsh > ~/.local/share/zsh/functions/_volta

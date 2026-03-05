@@ -19,10 +19,7 @@ if [[ $OSTYPE == darwin* ]]; then
 fi
 
 # node manager
-if [[ -d $HOME/.volta ]]; then
-	: "nothing to do, volta writes path to .zshenv"
-
-elif [[ -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
+if [[ -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
 	export NVM_DIR="$HOME/.nvm"
 fi
 
