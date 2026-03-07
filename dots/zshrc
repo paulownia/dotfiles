@@ -199,12 +199,12 @@ if command -v rbenv >/dev/null 2>&1; then
 	if [[ $CLAUDECODE == 1 ]]; then
 		eval "$(command rbenv init -)"
 	else
-		_rbenv_lazy_init() {
-			unfunction _rbenv_lazy_init rbenv ruby bundle gem rake rails irb 2>/dev/null
+		rbenv-init() {
+			unfunction rbenv ruby bundle gem rake rails irb 2>/dev/null
 			eval "$(command rbenv init -)"
 		}
 		for cmd in rbenv ruby bundle gem rake rails irb; do
-			eval "${cmd}() { _rbenv_lazy_init; ${cmd} \"\$@\" }"
+			eval "${cmd}() { rbenv-init; ${cmd} \"\$@\" }"
 		done
 	fi
 fi
@@ -214,12 +214,12 @@ if command -v goenv >/dev/null 2>&1; then
 	if [[ $CLAUDECODE == 1 ]]; then
 		eval "$(command goenv init -)"
 	else
-		_goenv_lazy_init() {
-			unfunction _goenv_lazy_init goenv go
+		goenv-init() {
+			unfunction goenv go
 			eval "$(command goenv init -)"
 		}
 		for cmd in goenv go; do
-			eval "${cmd}() { _goenv_lazy_init; ${cmd} \"\$@\" }"
+			eval "${cmd}() { goenv-init; ${cmd} \"\$@\" }"
 		done
 	fi
 fi
@@ -230,13 +230,13 @@ if [[ -n $NVM_DIR && -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
 		source "/opt/homebrew/opt/nvm/nvm.sh"
 		source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 	else
-		_nvm_lazy_init() {
-			unfunction _nvm_lazy_init nvm node npm npx nr
+		nvm-init() {
+			unfunction nvm node npm npx nr
 			source "/opt/homebrew/opt/nvm/nvm.sh"
 			source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 		}
 		for cmd in nvm node npm npx nr; do
-			eval "${cmd}() { _nvm_lazy_init; ${cmd} \"\$@\" }"
+			eval "${cmd}() { nvm-init; ${cmd} \"\$@\" }"
 		done
 	fi
 fi
