@@ -203,6 +203,7 @@ if command -v rbenv >/dev/null 2>&1; then
 		rbenv-init() {
 			unfunction rbenv ruby bundle gem rake rails irb 2>/dev/null
 			eval "$(command rbenv init -)"
+			rbenv-init() { :; }
 		}
 		for cmd in rbenv ruby bundle gem rake rails irb; do
 			eval "${cmd}() { rbenv-init; ${cmd} \"\$@\" }"
@@ -216,8 +217,9 @@ if command -v goenv >/dev/null 2>&1; then
 		eval "$(command goenv init -)"
 	else
 		goenv-init() {
-			unfunction goenv go
+			unfunction goenv go 2>/dev/null
 			eval "$(command goenv init -)"
+			goenv-init() { :; }
 		}
 		for cmd in goenv go; do
 			eval "${cmd}() { goenv-init; ${cmd} \"\$@\" }"
@@ -232,9 +234,10 @@ if [[ -n $NVM_DIR && -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
 		source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 	else
 		nvm-init() {
-			unfunction nvm node npm npx nr
+			unfunction nvm node npm npx nr 2>/dev/null
 			source "/opt/homebrew/opt/nvm/nvm.sh"
 			source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+			nvm-init() { :; }
 		}
 		for cmd in nvm node npm npx nr; do
 			eval "${cmd}() { nvm-init; ${cmd} \"\$@\" }"
