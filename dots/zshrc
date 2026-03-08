@@ -54,6 +54,7 @@ setopt SHARE_HISTORY
 setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 setopt HIST_NO_STORE
+HISTORY_IGNORE="(*SECRET*|*PASSWORD*|*TOKEN*|*KEY*)"
 setopt noflowcontrol
 
 # zsh binding style
