@@ -1,20 +1,23 @@
 {
   "permissions": {
     "allow": [
-      "Grep",
-      "Glob",
       "Bash(ls *)",
-      "Bash(/bin/ls *)",
       "Bash(git status)",
       "Bash(git diff *)",
       "Bash(git log *)",
       "Bash(git branch *)",
       "Bash(git rev-parse *)",
+      "Bash(git show *)",
+      "Bash(git stash list)",
       "Bash(which *)"
     ],
+    "ask":[
+    ],
     "deny": [
-      "Read(.env*)",
-      "Bash(*.env*)"
+      "Read(**/.env*)",
+      "Bash(*.env*)",
+      "Read(~/.ssh/*)",
+      "Bash(*.ssh*)"
     ],
     "defaultMode": "default"
   },
