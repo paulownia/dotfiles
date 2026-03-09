@@ -27,7 +27,7 @@ function section() {
 	log "[0;36m$*[m"
 }
 
-function isSynLinked() {
+function isSymlinked() {
 	local SRC=$1
 	local DST=$2
 	if [[ -L ${DST} && $(readlink ${DST}) = ${SRC} ]]; then
@@ -42,7 +42,7 @@ section "Step 1 -- deploy dotfiles to home directory"; (
 	for SRC in ${WORKING_DIR}/dots/^*.example; do
 		DST=${HOME}/.$(basename ${SRC})
 
-		if isSynLinked $SRC $DST; then
+		if isSymlinked $SRC $DST; then
 			skip "create symlink ${DST##$HOME/}"
 			continue
 		fi
@@ -82,7 +82,7 @@ section 'Step 2 -- deploy XDG configs to ~/.config' ; (
 	for SRC in ${WORKING_DIR}/config/*; do
 		DST=${HOME}/.config/$(basename ${SRC})
 
-		if isSynLinked $SRC $DST; then
+		if isSymlinked $SRC $DST; then
 			skip "create symlink ${DST##$HOME/}"
 			continue
 		fi
@@ -106,7 +106,7 @@ section 'Step 3 -- deploy Claude Code configs to ~/.claude' ; (
 	for SRC in ${WORKING_DIR}/claude/*; do
 		DST=${HOME}/.claude/$(basename ${SRC})
 
-		if isSynLinked $SRC $DST; then
+		if isSymlinked $SRC $DST; then
 			skip "create symlink ${DST##$HOME/}"
 			continue
 		fi
@@ -130,4 +130,3 @@ section 'Step 4 -- create custom zsh autoload directory' ; {
 		skip "create directory ${ZSH_AUTOLOAD_PATH##$HOME/}"
 	fi
 }
-
