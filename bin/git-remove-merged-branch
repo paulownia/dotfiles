@@ -16,8 +16,24 @@ else
 	fi
 fi
 
+PROTECTED_BRANCHES='^\s+(develop|main|master|release)$'
+
 for REMOTE in $(git remote); do
 	git fetch --prune "${REMOTE}"
-	git branch --merged "${BRANCH}" | grep -v '[*+]' | grep -Ev '^\s+(develop|main|master|release)$' | xargs -r git branch -d
+	# 通常マージされたブランチを削除
+	git branch --merged "${BRANCH}" | grep -v '[*+]' | grep -Ev "${PROTECTED_BRANCHES}" | xargs -r git branch -d
+done
+
+# squash マージされたブランチを削除
+git for-each-ref refs/heads/ --format='%(refname:short)' | while read -r b; do
+	[[ "$b" == "${BRANCH}" ]] && continue
+	echo "$b" | grep -qE "${PROTECTED_BRANCHES}" && continue
+	[[ "$b" == "$(git branch --show-current)" ]] && continue
+
+	merge_base=$(git merge-base "${BRANCH}" "$b" 2>/dev/null) || continue
+	tree_commit=$(git commit-tree "$(git rev-parse "$b^{tree}")" -p "$merge_base" -m _)
+	if [ "$(git cherry "${BRANCH}" "$tree_commit" | head -1 | cut -c1)" = "-" ]; then
+		git branch -D "$b"
+	fi
 done
 
