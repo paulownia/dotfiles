@@ -1,0 +1,29 @@
+#!/bin/bash -e
+
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  echo "error: not a git repository" >&2
+  exit 1
+fi
+
+repo=${1:-origin}
+url=$(git config --get "remote.${repo}.url" 2>/dev/null) || true
+if [[ -z $url ]]; then
+	echo "error: remote '$repo' not found" >&2
+	exit 1
+fi
+
+if [[ $url == git@* ]]; then
+	url="${url/://}"
+	url="${url/git@/https://}"
+fi
+
+url="${url%.git}"
+case "$(uname -s)" in
+	Linux*)
+		xdg-open "$url" ;;
+	Darwin*)
+		open "$url" ;;
+	*)
+		echo "error: unsupported platform" >&2
+		exit 1 ;;
+esac
