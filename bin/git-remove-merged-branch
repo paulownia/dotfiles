@@ -20,9 +20,10 @@ PROTECTED_BRANCHES='^\s+(develop|main|master|release)$'
 
 for REMOTE in $(git remote); do
 	git fetch --prune "${REMOTE}"
-	# 通常マージされたブランチを削除
-	git branch --merged "${BRANCH}" | grep -v '[*+]' | grep -Ev "${PROTECTED_BRANCHES}" | xargs -r git branch -d
 done
+
+# 通常マージされたブランチを削除
+git branch --merged "${BRANCH}" | grep -v '[*+]' | grep -Ev "${PROTECTED_BRANCHES}" | xargs -r git branch -d
 
 # squash マージされたブランチを削除
 git for-each-ref refs/heads/ --format='%(refname:short)' | while read -r b; do
