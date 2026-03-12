@@ -27,3 +27,17 @@
 ### 優先順位
 
 deny > allow > defaultMode の順で評価される。
+
+## 注意点
+
+### sandbox制限の挙動差異
+
+- Bashツールはsandbox（bwrap/sandbox-exec）内で実行されるため、`denyWithinAllow` 等のファイルシステム制限が適用される
+- Write/Edit/Read/Glob等の組み込みツールはClaude Codeプロセス自身が直接操作するため、sandbox制限を受けない
+- この挙動差異は将来のアップデートで変更される可能性が高い。sandbox制限に依存したワークアラウンドは避けること
+
+### 定期的な見直し
+
+- Claude Codeの開発速度が速く、sandbox周りの仕様は頻繁に変わりうる
+- アップデート後に意図通り動作しているか定期的に確認する
+- 特にallow/denyルールの記法やsandboxの適用範囲は変更が入りやすい
