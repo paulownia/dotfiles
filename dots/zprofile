@@ -23,6 +23,9 @@ if [[ -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
 	export NVM_DIR="$HOME/.nvm"
 fi
 
+# claude code env file
+export CLAUDE_ENV_FILE="$HOME/.claude/env.sh"
+
 # load local zprofile if exists
 if [[ -f ~/.zprofile.local ]]; then
 	source ~/.zprofile.local
