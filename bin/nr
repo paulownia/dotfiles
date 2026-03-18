@@ -18,12 +18,12 @@ if ! command -v jq >/dev/null 2>&1; then
   exit 1
 fi
 
-if [[ ! -f package.json ]]; then
+scripts=$(npm pkg get scripts 2>/dev/null) || {
   echo "[ERROR] package.json not found." >&2
   exit 1
-fi
+}
 
-script=$(jq -r '.scripts | keys[]' package.json | fzf --header="Select an npm script to run:" --prompt="npm script> ")
+script=$(echo "$scripts" | jq -r 'keys[]' | fzf --header="Select an npm script to run:" --prompt="npm script> ")
 
 # User cancelled selection
 [[ -z $script ]] && exit 0
