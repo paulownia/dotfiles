@@ -22,7 +22,11 @@
       "Grep(~/.gnupg/*)",
       "Grep(~/.netrc)",
       "Grep(~/.kube/*)",
-      "Grep(~/.docker/config.json)"
+      "Grep(~/.docker/config.json)",
+      "Bash(gh extension*)",
+      "Bash(gh ext *)",
+      "Bash(gh codespace*)",
+      "Bash(gh cs *)"
     ],
     "ask": [],
     "defaultMode": "default"
@@ -39,6 +43,9 @@
   "language": "japanese",
   "sandbox": {
     "enabled": true,
+    "excludedCommands": [
+      "gh:*"
+    ],
     "autoAllowBashIfSandboxed": true,
     "allowUnsandboxedCommands": false,
     "network": {
