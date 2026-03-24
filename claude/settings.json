@@ -1,15 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(ls *)",
-      "Bash(git status)",
-      "Bash(git diff *)",
-      "Bash(git log *)",
-      "Bash(git branch *)",
-      "Bash(git rev-parse *)",
-      "Bash(git show *)",
-      "Bash(git stash list)",
-      "Bash(which *)"
+      "Edit(/**)",
+      "Write(/**)"
     ],
     "deny": [
       "Read(**/.env*)",
@@ -46,17 +39,15 @@
   "language": "japanese",
   "sandbox": {
     "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": false,
     "network": {
       "allowedDomains": [
-        "github.com",
-        "api.github.com",
-        "raw.githubusercontent.com"
+        "api.github.com"
       ]
     },
     "filesystem": {
-      "allowWrite": [
-        "~/.claude/projects"
-      ],
+      "allowWrite": [],
       "denyRead": [
         "~/.ssh",
         "~/.aws",
