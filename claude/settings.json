@@ -1,8 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Edit(/**)",
-      "Write(/**)"
+      "Edit(**)",
+      "Write(**)"
     ],
     "deny": [
       "Read(**/.env*)",
