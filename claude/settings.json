@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Edit(**)",
-      "Write(**)"
+      "Write(**)",
+      "Bash(gh issue *)",
+      "Bash(gh pr *)",
+      "Bash(gh search *)"
     ],
     "deny": [
       "Read(**/.env*)",
@@ -23,9 +26,9 @@
       "Grep(~/.netrc)",
       "Grep(~/.kube/*)",
       "Grep(~/.docker/config.json)",
-      "Bash(gh extension*)",
+      "Bash(gh extension *)",
       "Bash(gh ext *)",
-      "Bash(gh codespace*)",
+      "Bash(gh codespace *)",
       "Bash(gh cs *)"
     ],
     "ask": [],
@@ -50,6 +53,7 @@
     "allowUnsandboxedCommands": false,
     "network": {
       "allowedDomains": [
+        "github.com",
         "api.github.com"
       ]
     },
