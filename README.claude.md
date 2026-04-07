@@ -33,18 +33,23 @@ deny > ask > allow > defaultMode の順で評価される。
 
 ## sandbox
 
-sandboxはBashツールとそのサブプロセスに対する制限
+sandboxはBashツールとそのサブプロセスに対する制限。その目的はセキュリティ確保と確認プロンプトの削減
 
-- 常に有効化(`enable: true`)
-- `autoAllowBashIfSandboxed`をtrueに設定し、許可なしでコマンドを実行可能にする
-- `allowUnsandboxedCommands`をfalseに設定し、sandbox外でのコマンド実行を防止する
-
-sandboxの制限は
+### sandboxの制限
 
 - コマンドによる書き込みは、プロジェクト内であれば許可、プロジェクト外はエラー
 - コマンドによる読み込みは、ファイルシステム全体で許可
+- ネットワークアクセスは、許可ドメインは自動承認、それ以外は承認プロンプトの表示
 
-主に読み込みをカスタマイズして、機密ファイルが読まれるのを防止するのが主眼となる。
+### 基本方針
+
+- sandboxを有効にする
+  - sandboxでコマンドによるプロジェクト外への変更を禁止（sandboxのデフォルト制限）
+  − sandbox内であれば承認なしでのコマンド実行を行う
+    - `autoAllowBashIfSandboxed: true`
+  - sandbox外でのコマンド実行を抑制
+    - `allowUnsandboxedCommands: false`
+    - `excludedCommands`で指定されたコマンドはsandbox外での実行が可能
 
 ### filesystem.allowWrite
 
@@ -54,7 +59,24 @@ sandboxの制限は
 
 permissions.denyの指定と同じパスが拒否されるように指定。
 
-## 注意点
+### sandbox外のコマンド実行について
+
+ghコマンドはsandboxの例外に追加し、sandbox外で実行する
+
+#### 理由
+
+goのツールのHTTPSアクセスがsandboxによりエラーになる。これは証明書ストアへのアクセスが拒絶されるため
+
+#### 対応
+
+- `sandbox.excludedCommands`にghを追加
+- `permissions.allow`に次のghサブコマンドを追加し、確認プロンプトを省略
+  - `issue`
+  - `pr`
+  - `search`
+- permissions.denyに次のサブコマンドを追加し、実行を抑制
+  - `codespace (cs)`: ローカルで開発するのでcodespaceを使用しないので
+  - `extension (ext)`: Agentの自律実行で機能拡張を変更すべきではないので
 
 ### sandbox制限の挙動差異
 
