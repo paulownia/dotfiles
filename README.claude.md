@@ -41,6 +41,12 @@ sandboxはBashツールとそのサブプロセスに対する制限。その目
 - コマンドによる読み込みは、ファイルシステム全体で許可
 - ネットワークアクセスは、許可ドメインは自動承認、それ以外は承認プロンプトの表示
 
+### sandboxの適用範囲
+
+- Bashツールはsandbox内で実行されるため、`denyWithinAllow` 等のファイルシステム制限が適用される
+- Write/Edit/Read/Glob等の組み込みツールはClaude Codeプロセス自身が直接操作するため、sandbox制限を受けない
+- この挙動は一貫性がないので、将来のアップデートで変更される可能性も考慮する
+
 ### 基本方針
 
 - sandboxを有効にする
@@ -74,15 +80,11 @@ goのツールのHTTPSアクセスがsandboxによりエラーになる。これ
   - `issue`
   - `pr`
   - `search`
+  - `release`
 - permissions.denyに次のサブコマンドを追加し、実行を抑制
   - `codespace (cs)`: ローカルで開発するのでcodespaceを使用しないので
   - `extension (ext)`: Agentの自律実行で機能拡張を変更すべきではないので
 
-### sandbox制限の挙動差異
-
-- Bashツールはsandbox（bwrap/sandbox-exec）内で実行されるため、`denyWithinAllow` 等のファイルシステム制限が適用される
-- Write/Edit/Read/Glob等の組み込みツールはClaude Codeプロセス自身が直接操作するため、sandbox制限を受けない
-- この挙動差異は将来のアップデートで変更される可能性が高い。sandbox制限に依存したワークアラウンドは避けること
 
 ### 定期的な見直し
 
