@@ -12,8 +12,8 @@ vim.opt.backup = false
 vim.opt.swapfile = false
 vim.opt.writebackup = false
 
--- ステータス行
-vim.opt.laststatus = 2
+-- ステータス行(3 = グローバルステータスラインを使う)
+vim.opt.laststatus = 3
 
 -- 8進数インクリメントの設定を解除
 vim.opt.nrformats = "bin,hex"
