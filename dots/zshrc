@@ -82,6 +82,7 @@ bindkey '[5~' beginning-of-history # page up
 bindkey '[6~' end-of-history # page down
 bindkey -a '[2~' vi-insert # insert
 bindkey -v '[2~' vi-insert # insert
+bindkey -v '^?' backward-delete-char # backspace over insert point
 
 # script alias
 alias -s rb="ruby"
