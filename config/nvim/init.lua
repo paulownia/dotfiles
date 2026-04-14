@@ -28,7 +28,7 @@ vim.api.nvim_set_hl(0, "DiffChange", { bg = "#002828" })
 vim.api.nvim_set_hl(0, "DiffText", { bg = "#280028" })
 
 -- ウィンドウ分割の境界線
-vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#4f4f4f" })
+vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#606060" })
 
 -- ローカルオーバーライド
 local local_config = vim.fn.stdpath("config") .. "/local.lua"
