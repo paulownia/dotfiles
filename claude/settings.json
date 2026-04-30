@@ -1,8 +1,6 @@
 {
   "permissions": {
     "allow": [
-      "Edit(**)",
-      "Write(**)",
       "Bash(gh issue *)",
       "Bash(gh pr *)",
       "Bash(gh search *)",
@@ -30,10 +28,17 @@
       "Bash(gh extension *)",
       "Bash(gh ext *)",
       "Bash(gh codespace *)",
-      "Bash(gh cs *)"
+      "Bash(gh cs *)",
+      "Bash(gh pr merge *)",
+      "Bash(gh pr close *)",
+      "Bash(gh pr reopen *)",
+      "Bash(gh pr ready *)",
+      "Bash(gh pr lock *)",
+      "Bash(gh pr unlock *)",
+      "Bash(gh pr update-branch *)"
     ],
     "ask": [],
-    "defaultMode": "default"
+    "defaultMode": "auto"
   },
   "statusLine": {
     "type": "command",
@@ -71,5 +76,6 @@
         "~/.docker/config.json"
       ]
     }
-  }
+  },
+  "skipAutoPermissionPrompt": true
 }
