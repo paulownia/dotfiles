@@ -64,7 +64,9 @@
       ]
     },
     "filesystem": {
-      "allowWrite": [],
+      "allowWrite": [
+        "~/.claude/projects/*/memory"
+      ],
       "denyRead": [
         "~/.ssh",
         "~/.aws",
