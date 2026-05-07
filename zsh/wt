@@ -11,33 +11,14 @@ if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
 	return 1
 fi
 
-local KEY=$1 DIR
-
-if [[ -z $KEY ]]; then
-	if ! command -v fzf 1>/dev/null 2>&1; then
-		print -u2 "[ERROR] fzf is required. Please install it (e.g. type 'brew install fzf')."
-		return 1
-	fi
-	local SELECTED=$(git worktree list | fzf)
-	[[ -z $SELECTED ]] && return 1
-	DIR=${SELECTED%% *}
-else
-	DIR=$(git worktree list --porcelain | awk -v key="$KEY" '
-		/^worktree / { wt = substr($0, 10) }
-		/^branch refs\/heads\// {
-			if (substr($0, 19) == key) { print wt; exit }
-		}
-	')
-	if [[ -z $DIR ]]; then
-		DIR=$(git worktree list --porcelain | awk -v key="$KEY" '
-			/^worktree / {
-				wt = substr($0, 10)
-				n = split(wt, parts, "/")
-				if (parts[n] == key) { print wt; exit }
-			}
-		')
-	fi
+if ! command -v fzf 1>/dev/null 2>&1; then
+	print -u2 "[ERROR] fzf is required. Please install it (e.g. type 'brew install fzf')."
+	return 1
 fi
+
+local SELECTED=$(git worktree list | fzf)
+[[ -z $SELECTED ]] && return 1
+local DIR=${SELECTED%% *}
 
 [[ -z $DIR || ! -d $DIR ]] && return 1
 
@@ -48,4 +29,3 @@ if command -v title >/dev/null 2>&1; then
 fi
 
 pwd
-
