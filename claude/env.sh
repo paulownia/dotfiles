@@ -1,8 +1,9 @@
 #!/bin/bash
 #
-# claude codeはzshrcを読み込んでPATHを設定するが、rbenvやnvmを実行して設定したパスが反映されないことがある。
-# バージョン2.1.74では反映されたが2.1.76では反映されなかった。
-# その対策として、このスクリプトでnvmとrbenvのパスを直接設定する。
+# claude codeは起動時に.zshrcを読み込むが、PATHの変更が反映されないことがある。
+# rbenv initは全く反映されない、nvmは反映される場合がある、Google Cloud SDKはほぼ反映される。
+# 確実にPATHが通るように、このスクリプトでnvmとrbenvのパスを直接設定する。
+#
 # CLAUDE_ENV_FILE 環境変数でこのファイルを指定すると claude code 起動時にこのスクリプトが実行される。
 # CLAUDE_ENV_FILE は.zprofile で設定されることを想定している。
 
