@@ -196,47 +196,12 @@ if [[ $OSTYPE == darwin* ]]; then
 	fi
 fi
 
-# rbenv (lazy loading)
-if command -v rbenv >/dev/null 2>&1; then
+# enable mise
+if command -v mise >/dev/null 2>&1; then
 	if [[ $CLAUDECODE != 1 ]]; then
-		rbenv-init() {
-			unfunction rbenv ruby bundle gem rake rails irb 2>/dev/null
-			eval "$(command rbenv init -)"
-			rbenv-init() { :; }
-		}
-		for cmd in rbenv ruby bundle gem rake rails irb; do
-			eval "${cmd}() { rbenv-init; ${cmd} \"\$@\" }"
-		done
+		eval "$(mise activate zsh)"
 	fi
-fi
 
-# goenv (lazy loading)
-if command -v goenv >/dev/null 2>&1; then
-	if [[ $CLAUDECODE != 1 ]]; then
-		goenv-init() {
-			unfunction goenv go 2>/dev/null
-			eval "$(command goenv init -)"
-			goenv-init() { :; }
-		}
-		for cmd in goenv go; do
-			eval "${cmd}() { goenv-init; ${cmd} \"\$@\" }"
-		done
-	fi
-fi
-
-# enable nvm if installed by homebrew (lazy loading)
-if [[ -n $NVM_DIR && -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
-	if [[ $CLAUDECODE != 1 ]]; then
-		nvm-init() {
-			unfunction nvm node npm npx nr 2>/dev/null
-			source "/opt/homebrew/opt/nvm/nvm.sh"
-			source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
-			nvm-init() { :; }
-		}
-		for cmd in nvm node npm npx nr; do
-			eval "${cmd}() { nvm-init; ${cmd} \"\$@\" }"
-		done
-	fi
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
