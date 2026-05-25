@@ -1,0 +1,11 @@
+#autoload
+emulate -L zsh
+
+root=$(git rev-parse --show-toplevel 2>/dev/null) || {
+	echo "[ERROR] Not a git respository"
+	return 1
+}
+
+cd "$root" || return 1
+
+
