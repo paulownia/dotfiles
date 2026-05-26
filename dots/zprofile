@@ -1,5 +1,4 @@
 # vim: set ft=zsh :
-# zprofile is loaded only when zsh is run as login shell
 
 # brew path
 export PATH=/opt/homebrew/bin:$PATH
@@ -7,7 +6,7 @@ export PATH=/opt/homebrew/bin:$PATH
 # user path
 export PATH=~/.dotfiles/bin:~/.local/bin:$PATH
 
-# for git editor
+# editor
 export EDITOR=nvim
 
 # java home for macos
@@ -16,11 +15,6 @@ if [[ $OSTYPE == darwin* ]]; then
 	if [[ -n $JAVA_HOME ]]; then
 		export JAVA_HOME
 	fi
-fi
-
-# node manager
-if [[ -f /opt/homebrew/opt/nvm/nvm.sh ]]; then
-	export NVM_DIR="$HOME/.nvm"
 fi
 
 # claude code env file
