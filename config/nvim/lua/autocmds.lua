@@ -1,10 +1,14 @@
 local augroup = vim.api.nvim_create_augroup("vimrc", { clear = true })
 
 -- auto trim trailing whitespace
+local trim_exclude = { markdown = true, diff = true }
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = augroup,
   pattern = "*",
   callback = function()
+    if trim_exclude[vim.bo.filetype] then
+      return
+    end
     local pos = vim.api.nvim_win_get_cursor(0)
     vim.cmd([[%s/\s\+$//ge]])
     vim.api.nvim_win_set_cursor(0, pos)
