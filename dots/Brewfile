@@ -2,8 +2,6 @@
 # if you type "brew bundle --global", homebrew uses .Brewfile
 
 tap "universal-ctags/universal-ctags"
-# tap "oven-sh/bun"
-tap "delphinus/sfmono-square"
 
 brew "gnupg"
 brew "tig"
@@ -22,27 +20,40 @@ brew "git-delta"
 brew "webp"
 brew "tidy-html5"
 brew "difftastic"
-brew "sfmono-square"
 brew "gh"
-brew "dotenvx/brew/dotenvx"
 brew "glow"
 brew "mise"
 
+# -- ansible
 # brew "ansible"
 # brew "ansible-lint"
-# brew "bun"
-# brew "colima"
-# brew "goenv"
-# brew "maven"
-# brew "mono"
-# brew "nvm"
-# brew "pandoc"
-# brew "rbenv"
-# brew "ruby-build"
-# brew "sbt"
-# brew "scala"
 # brew "yamllint"
 
-# brew "mysql" use docker image instead
-# brew "postgresql" use docker image instead
-# brew "jsonlint" # use "npm install -g jsonlint" instead
+# -- colima docker
+# brew "colima"
+# brew "docker"
+# brew "docker-compose"
+# brew "docker-buildx"
+
+# -- other tools
+# brew "maven"
+# brew "mono"
+# brew "pandoc"
+# brew "sbt"
+# brew "scala"
+# brew "dotenvx/brew/dotenvx"
+
+
+# -- use mise instead
+# brew "bun"
+# brew "nvm"
+# brew "goenv"
+# brew "rbenv"
+# brew "ruby-build"
+
+# -- use docker instead
+# brew "mysql"
+# brew "postgresql"
+
+# -- "npm install -g jsonlint" instead
+# brew "jsonlint"
