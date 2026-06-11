@@ -51,9 +51,6 @@
   "language": "japanese",
   "sandbox": {
     "enabled": true,
-    "excludedCommands": [
-      "gh:*"
-    ],
     "autoAllowBashIfSandboxed": true,
     "allowUnsandboxedCommands": false,
     "network": {
@@ -76,7 +73,11 @@
         "~/.kube",
         "~/.docker/config.json"
       ]
-    }
+    },
+    "excludedCommands": [
+      "gh:*"
+    ]
   },
+  "theme": "dark",
   "skipAutoPermissionPrompt": true
 }
