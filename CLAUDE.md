@@ -31,6 +31,7 @@ macOS/Linux。
 - **`config/`** — `~/.config/` 以下にリンクされるXDG設定（nvim, yamllint）
 - **`bin/`** — PATHに追加されるユーティリティスクリプト群。.zprofileで`~/.dotfiles/bin/` がPATHに追加される。
 - **`zsh/`** — Zsh autoload関数、補完定義。.zshrcで`~/.dotfiles/zsh/` がfpathに追加される。
+- **`git/`** — global gitconfigから読み込まれる追加のconfig, ignore。
 
 ### 前提コマンド類
 
