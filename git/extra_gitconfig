@@ -1,10 +1,4 @@
 # vim: ft=gitconfig
-#
-# exec the commands below
-#
-#   $ brew install git-delta difftastic
-#   $ git config --add --global include.path ~/.gitconfig_global
-#
 
 [core]
 	pager = delta
