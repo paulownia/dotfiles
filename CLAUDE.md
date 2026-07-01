@@ -21,17 +21,18 @@ macOS/Linux。
 
 ## ディレクトリ構成:
 
-- **`CLAUDE.md`** — このファイル
+- `CLAUDE.md` - AI向けにこのリポジトリの概要と使用方法を説明する、Claude Code用
+- `AGENTS.md` - CLAUDE.mdのシンボリックリンク、Codex用
 - `README.md` — リポジトリの概要と使用方法
 - `README.nvim.md` — Neovim設定の詳細
 - `README.claude.md` - Claude Code設定の詳細と方針
 - `setup.sh` — 初期セットアップスクリプト。シンボリックリンクの作成や必要なディレクトリの作成を行う。繰り返し実行可能。
-- **`dots/`** — ホームディレクトリにリンクされるドットファイル群（`dots/zshrc` → `~/.zshrc` 等）
-- **`claude/`** — `~/.claude/` 以下にリンクされるClaude Code設定（CLAUDE.md, settings.json等）
-- **`config/`** — `~/.config/` 以下にリンクされるXDG設定（nvim, yamllint）
-- **`bin/`** — PATHに追加されるユーティリティスクリプト群。.zprofileで`~/.dotfiles/bin/` がPATHに追加される。
-- **`zsh/`** — Zsh autoload関数、補完定義。.zshrcで`~/.dotfiles/zsh/` がfpathに追加される。
-- **`git/`** — global gitconfigから読み込まれる追加のconfig, ignore。
+- `dots/` — ホームディレクトリにリンクされるドットファイル群（`dots/zshrc` → `~/.zshrc` 等）
+- `claude/` — `~/.claude/` 以下にリンクされるClaude Code設定（CLAUDE.md, settings.json等）
+- `config/` — `~/.config/` 以下にリンクされるXDG設定（nvim, yamllint）
+- `bin/` — PATHに追加されるユーティリティスクリプト群。.zprofileで`~/.dotfiles/bin/` がPATHに追加される。
+- `zsh/` — Zsh autoload関数、補完定義。.zshrcで`~/.dotfiles/zsh/` がfpathに追加される。
+- `git/` — global gitconfigから読み込まれる追加のconfig, ignore。
 
 ### 前提コマンド類
 
