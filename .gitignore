@@ -1,2 +1,5 @@
 /config/nvim/lazy-lock.json
 /config/nvim/local.lua
+
+.claude/settings.local.json
+CLAUDE.local.md
