@@ -10,22 +10,26 @@
 
 ### permissions.defaultMode
 
-`"default"` を使用する。allow/denyに含まれないツール呼び出しは都度ユーザーに確認が入る。
+承認プロンプトを減らす目的で`"auto"` を使用する。`permissions.allow/deny/ask` にマッチした場合はそちらが優先される。
 
 ### permissions.allow
 
-allowにマッチしたツールは自動承認される
+allowにマッチしたツールは自動承認される。
 
-- Read, Grep, Globはデフォルトで自動承認されるので追加しない
-- Bashツールは `autoAllowBashIfSandboxed` で実行が許可されるので追加しない
-- Edit, Writeはプロジェクト内のファイル(`/**`)を自動承認
+- Read, Grep, Globはデフォルトで自動承認されるので追加しない。
+- Bashツールは `autoAllowBashIfSandboxed` で実行が許可されるので追加しない。
+- Edit, Writeはプロジェクト内のファイル(`/**`)を自動承認。
 
 ### permissions.deny
 
-denyにマッチしたものは確認プロンプトすら出さずに即ブロックされる
+denyにマッチしたものは確認プロンプトすら出さずに即ブロックされる。
 
-- 対象: 認証情報・秘密鍵など、誤って読まれると致命的なファイルをブロック
-- Bashツールはsandboxの機能でブロックするので、ここには追加しない
+- 対象: 認証情報・秘密鍵など、誤って読まれると致命的なファイルをブロック。
+- Bashツールはsandboxの機能でブロックするので、ここには追加しない。
+
+### permissions.ask
+
+必ず確認してから実行したいツールを指定する。
 
 ### 優先順位
 
@@ -81,10 +85,11 @@ goのツールのHTTPSアクセスがsandboxによりエラーになる。これ
   - `pr`
   - `search`
   - `release`
-- permissions.denyに次のサブコマンドを追加し、実行を抑制
+- `permissions.deny`に次のサブコマンドを追加し、実行を抑制
   - `codespace (cs)`: ローカルで開発するのでcodespaceを使用しないので
   - `extension (ext)`: Agentの自律実行で機能拡張を変更すべきではないので
 
+書き込み・変更が発生するものは抑制（またはask）。読み込みのみのものは許可する。
 
 ### 定期的な見直し
 
