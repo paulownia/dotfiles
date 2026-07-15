@@ -7,7 +7,7 @@
       "Bash(gh release *)"
     ],
     "deny": [
-      "Read(**/.env*)",
+      "Read(//**/.env*)",
       "Read(~/.ssh/*)",
       "Read(~/.aws/*)",
       "Read(~/.config/gh/hosts.yml)",
@@ -16,14 +16,6 @@
       "Read(~/.netrc)",
       "Read(~/.kube/*)",
       "Read(~/.docker/config.json)",
-      "Grep(~/.ssh/*)",
-      "Grep(~/.aws/*)",
-      "Grep(~/.config/gh/hosts.yml)",
-      "Grep(~/.config/gcloud/*)",
-      "Grep(~/.gnupg/*)",
-      "Grep(~/.netrc)",
-      "Grep(~/.kube/*)",
-      "Grep(~/.docker/config.json)",
       "Bash(gh extension *)",
       "Bash(gh ext *)",
       "Bash(gh codespace *)",
@@ -39,6 +31,7 @@
     "ask": [],
     "defaultMode": "auto"
   },
+  "model": "opus[1m]",
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
@@ -61,7 +54,10 @@
     },
     "filesystem": {
       "allowWrite": [
-        "~/.claude/projects/*/memory"
+        "~/.claude/projects/*/memory",
+        "~/.cache",
+        "~/.npm",
+        "~/.local/share/uv"
       ],
       "denyRead": [
         "~/.ssh",
@@ -78,7 +74,7 @@
       "gh:*"
     ]
   },
+  "tui": "fullscreen",
   "theme": "dark",
-  "skipAutoPermissionPrompt": true,
-  "tui": "fullscreen"
+  "skipAutoPermissionPrompt": true
 }
