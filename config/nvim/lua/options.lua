@@ -15,9 +15,6 @@ vim.opt.writebackup = false
 -- ステータス行(3 = グローバルステータスラインを使う)
 vim.opt.laststatus = 3
 
--- 8進数インクリメントの設定を解除（nvimデフォルトと同じ）
--- vim.opt.nrformats = "bin,hex"
-
 -- 折り返し表示オプション
 vim.opt.linebreak = true
 vim.opt.showbreak = ">"
@@ -34,18 +31,7 @@ vim.opt.smartcase = true
 -- vim.opt.incsearch = true  -- nvimデフォルト
 
 -- コマンド補完
--- vim.opt.wildmenu = true  -- nvimデフォルト
 vim.opt.wildmode = "longest:full,full"
-
--- CJK記号の幅調整
-vim.opt.ambiwidth = "double"
-
--- モードライン（nvimデフォルトと同じ）
--- vim.opt.modeline = true
--- vim.opt.modelines = 5
-
--- deleteキー操作（nvimデフォルトと同じ）
--- vim.opt.backspace = "start,eol,indent"
 
 -- yankをclipboardへ
 vim.opt.clipboard = "unnamedplus"

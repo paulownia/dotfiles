@@ -65,7 +65,7 @@ return {
         options = {
           disabled_filetypes = { "NvimTree", "tagbar" },
           component_separators = { left = "|", right = "|" },
-          section_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
         },
         sections = {
           lualine_b = { "branch", "diff" },
@@ -73,7 +73,6 @@ return {
             "filename",
             {
               "diagnostics",
-              symbols = { error = " ", warn = " ", info = " " },
             },
           },
           lualine_y = { progress },
