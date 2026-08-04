@@ -3,6 +3,7 @@ vim.filetype.add({
     ["Jenkinsfile"] = "groovy",
   },
   pattern = {
+    [".*/%.vscode/settings%.json"] = "jsonc",
     [".*playbooks/.*%.yml"] = "ansible.yaml",
     [".*%.yml%.liquid"] = "yaml",
   },
