@@ -11,12 +11,14 @@ if ! open -Ra "SourceTree" 2>/dev/null ; then
 	exit 1;
 fi
 
-dir=$(git rev-parse --show-cdup 2>/dev/null) || {
+# use the common git dir so that worktrees open the original repository
+common_dir=$(git rev-parse --git-common-dir 2>/dev/null) || {
 	echo "[ERROR] Not a git repository" >&2
 	exit 1
 }
 
-if [[ -z "${dir}" ]]; then
-	dir="."
-fi
+dir=$(cd "${common_dir}/.." && pwd) || {
+	echo "[ERROR] Failed to resolve repository directory" >&2
+	exit 1
+}
 open -a SourceTree "${dir}"
