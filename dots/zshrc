@@ -87,7 +87,7 @@ bindkey -v '^?' backward-delete-char # backspace over insert point
 # script alias
 alias -s rb="ruby"
 alias -s {js,ts}="bun run"
-alias -s {txt,md,html,css,scss}="edit"
+alias -s {txt,md,html,css,scss}="cat"
 alias -s {jpg,jpeg,png,gif,webp}="preview"
 
 # beep
