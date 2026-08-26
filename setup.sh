@@ -22,6 +22,11 @@ function skip() {
 	log "[0;32mskip:[m $*"
 }
 
+function ok() {
+	# green color
+	log "[0;32mok:[m $*"
+}
+
 function section() {
 	# cyan color
 	log "[0;36m$*[m"
@@ -37,6 +42,27 @@ function isSymlinked() {
 	fi
 }
 
+
+section "Step 0 -- find tools"; (
+	# check if homebrew is installed
+	if ! command -v brew >/dev/null 2>&1; then
+		warn "Homebrew is not installed. Please install Homebrew first."
+		exit 1
+	else
+		ok "brew"
+	fi
+
+	# check if necessary packages are installed by homebrew
+	# only warn if not installed, but do not exit
+	tools=(jq fzf nvim delta difft bat eza)
+	for tool in "${tools[@]}"; do
+		if ! command -v ${tool} >/dev/null 2>&1; then
+			warn "${tool} is not installed. Please install ${tool} using Homebrew."
+		else
+			ok "${tool}"
+		fi
+	done
+)
 
 section "Step 1 -- deploy dotfiles to home directory"; (
 	for SRC in ${WORKING_DIR}/dots/^*.example; do
@@ -121,7 +147,7 @@ section 'Step 3 -- deploy Claude Code configs to ~/.claude' ; (
 	done
 )
 
-section 'Step 4 -- create custom zsh autoload directory' ; {
+section 'Step 4 -- create custom zsh autoload directory' ; (
 	ZSH_AUTOLOAD_PATH="${HOME}/.local/share/zsh/functions"
 	if [[ ! -d ${ZSH_AUTOLOAD_PATH} ]]; then
 		mkdir -p ${ZSH_AUTOLOAD_PATH}
@@ -129,7 +155,7 @@ section 'Step 4 -- create custom zsh autoload directory' ; {
 	else
 		skip "create directory ${ZSH_AUTOLOAD_PATH##$HOME/}"
 	fi
-}
+)
 
 section 'Step 5 -- modify git global configuration '; (
 	EXTRA_CONFIG_PATH=${HOME}/.dotfiles/git/extra_gitconfig
