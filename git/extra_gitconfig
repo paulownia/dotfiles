@@ -1,10 +1,4 @@
 # vim: ft=gitconfig
-#
-# exec the commands below
-#
-#   $ brew install git-delta difftastic
-#   $ git config --add --global include.path ~/.gitconfig_global
-#
 
 [core]
 	pager = delta
@@ -40,7 +34,7 @@
   difftool = true
 
 [alias]
-  changed = "!sh -c 'git diff $1^ $1' -"
+  changed = "!sh -c 'git difftool $1^ $1' -"
   difft = difftool
 
 # By default, the toolchains of golang use https to download modules.
