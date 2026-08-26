@@ -8,6 +8,12 @@ if ! command -v osascript 1>/dev/null 2>&1; then
 	exit $ret
 fi
 
+# skip notification when not run interactively (e.g. invoked from zsh
+# completion, which captures stdout and redirects stderr)
+if [[ ! -t 1 && ! -t 2 ]]; then
+	exit $ret
+fi
+
 msg="Success"
 if [[ $ret -ne 0 ]]; then
 	msg="Failed"
