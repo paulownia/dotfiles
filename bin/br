@@ -1,0 +1,39 @@
+#!/bin/bash -e
+
+# bun must be available
+if ! command -v bun >/dev/null 2>&1; then
+  echo "[ERROR] bun is not found. Please install Bun." >&2
+  exit 1
+fi
+
+# fzf must be available
+if ! command -v fzf >/dev/null 2>&1; then
+  echo "[ERROR] fzf is not installed. Please install it (e.g. 'brew install fzf')." >&2
+  exit 1
+fi
+
+# jq must be available (needed to parse package.json)
+if ! command -v jq >/dev/null 2>&1; then
+  echo "[ERROR] jq is not installed. Please install it (e.g. 'brew install jq')." >&2
+  exit 1
+fi
+
+if [[ ! -f package.json ]]; then
+  echo "[ERROR] package.json not found." >&2
+  exit 1
+fi
+
+scripts=$(jq -r '.scripts // {} | keys[]' package.json)
+
+if [[ -z $scripts ]]; then
+  echo "[ERROR] package.json has no scripts." >&2
+  exit 1
+fi
+
+script=$(echo "$scripts" | fzf --header="Select a bun script to run:" --prompt="bun script> ")
+
+# User cancelled selection
+[[ -z $script ]] && exit 0
+
+echo "bun run $script"
+bun run "$script"
