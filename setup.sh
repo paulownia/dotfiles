@@ -130,3 +130,25 @@ section 'Step 4 -- create custom zsh autoload directory' ; {
 		skip "create directory ${ZSH_AUTOLOAD_PATH##$HOME/}"
 	fi
 }
+
+section 'Step 5 -- modify git global configuration '; (
+	EXTRA_CONFIG_PATH=${HOME}/.dotfiles/git/extra_gitconfig
+	CURRENT_EXTRA_CONFIG_PATH=$(git config --global include.path || echo "")
+
+	if [[ $CURRENT_EXTRA_CONFIG_PATH != ${EXTRA_CONFIG_PATH} ]]; then
+		git config --add --global include.path ${EXTRA_CONFIG_PATH}
+		changed "Add extra config to include.path"
+	else
+		skip "Add extra config to include.path"
+	fi
+
+	COMMON_IGNORE_PATH=${HOME}/.dotfiles/git/common_gitignore
+	CURRENT_COMMON_IGNORE_PATH=$(git config --global core.excludesfile || echo "")
+
+	if [[ $COMMON_IGNORE_PATH != $CURRENT_COMMON_IGNORE_PATH ]]; then
+		git config --add --global core.excludesfile ~/.dotfiles/git/common_gitignore
+		changed "Add common ignore list to core.excludesfile"
+	else
+		skip "Add common ignore list to core.excludesfile"
+	fi
+)
