@@ -21,7 +21,8 @@ macOS/Linux。
 
 ## ディレクトリ構成:
 
-- **`CLAUDE.md`** — このファイル
+- **`CLAUDE.md`** — Claude Code向け指示
+- **`AGENTS.md`** — Codex向け指示（CLAUDE.mdのシンボリックリンク）
 - `README.md` — リポジトリの概要と使用方法
 - `README.nvim.md` — Neovim設定の詳細
 - `README.claude.md` - Claude Code設定の詳細と方針
