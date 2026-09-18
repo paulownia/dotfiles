@@ -10,3 +10,9 @@ wang*
 hoge*
 fuga*
 piyo*
+
+_temporary/
+
+settings.local.json
+CLAUDE.local.md
+
