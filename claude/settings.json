@@ -28,7 +28,9 @@
       "Bash(gh pr unlock *)",
       "Bash(gh pr update-branch *)"
     ],
-    "ask": [],
+    "ask": [
+      "Bash(docker *)"
+    ],
     "defaultMode": "auto"
   },
   "model": "opus[1m]",
@@ -66,12 +68,14 @@
         "~/.config/gcloud",
         "~/.gnupg",
         "~/.netrc",
-        "~/.kube",
-        "~/.docker/config.json"
+        "~/.kube"
       ]
     },
     "excludedCommands": [
-      "gh:*"
+      "gh:*",
+      "gcloud:*",
+      "bq:*",
+      "docker:*"
     ]
   },
   "tui": "fullscreen",

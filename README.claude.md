@@ -69,27 +69,16 @@ sandboxはBashツールとそのサブプロセスに対する制限。その目
 
 permissions.denyの指定と同じパスが拒否されるように指定。
 
-### sandbox外のコマンド実行について
+### sandboxからの除外
 
-ghコマンドはsandboxの例外に追加し、sandbox外で実行する
+特別な理由がある場合に限りコマンドをsandboxから除外する。
 
-#### 理由
 
-goのツールのHTTPSアクセスがsandboxによりエラーになる。これは証明書ストアへのアクセスが拒絶されるため
+- gh: `~/.ssh` と `~/.config/gh` がdenyReadのため。また、go製ツールはHTTPSアクセスでOSの証明書ストアを利用する、これがsandboxのデフォルトで拒否されるため
+- gcloud, bq: `~/.config/gcloud` がdenyReadでコマンドを実行できないため
 
-#### 対応
+sandboxから除外する代わりにdeny, allowで細かい権限設定を行う。あるいは、askで必ずユーザの承認を求めるようにする
 
-- `sandbox.excludedCommands`にghを追加
-- `permissions.allow`に次のghサブコマンドを追加し、確認プロンプトを省略
-  - `issue`
-  - `pr`
-  - `search`
-  - `release`
-- `permissions.deny`に次のサブコマンドを追加し、実行を抑制
-  - `codespace (cs)`: ローカルで開発するのでcodespaceを使用しないので
-  - `extension (ext)`: Agentの自律実行で機能拡張を変更すべきではないので
-
-書き込み・変更が発生するものは抑制（またはask）。読み込みのみのものは許可する。
 
 ### 定期的な見直し
 
