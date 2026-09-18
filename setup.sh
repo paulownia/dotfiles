@@ -132,6 +132,14 @@ section 'Step 3 -- deploy Claude Code configs to ~/.claude' ; (
 	for SRC in ${WORKING_DIR}/claude/*; do
 		DST=${HOME}/.claude/$(basename ${SRC})
 
+		# settings.json is not symlinked. Claude Code and its integrations
+		# rewrite ~/.claude/settings.json and destroy the symlink, so bin/claude
+		# passes the file in this repository via --settings instead.
+		if [[ $(basename ${SRC}) = settings.json ]]; then
+			skip "create symlink ${DST##$HOME/} (loaded by bin/claude)"
+			continue
+		fi
+
 		if isSymlinked $SRC $DST; then
 			skip "create symlink ${DST##$HOME/}"
 			continue

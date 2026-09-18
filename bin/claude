@@ -1,0 +1,23 @@
+#!/bin/bash -e
+
+# Claude Code wrapper that always loads the dotfiles-managed settings.
+#
+# ~/.claude/settings.json is rewritten by Claude Code itself and by related
+# integrations, which destroys a symlink placed there. Pass the repository copy
+# explicitly instead. Note that ~/.claude/settings.json is still loaded as a
+# lower-precedence layer, so runtime-generated entries keep working.
+
+CLAUDE_BIN="${HOME}/.local/bin/claude"
+SETTINGS="${HOME}/.dotfiles/claude/settings.json"
+
+if [[ ! -x $CLAUDE_BIN ]]; then
+	echo "[ERROR] claude is required. ${CLAUDE_BIN} not found." >&2
+	exit 1
+fi
+
+if [[ ! -f $SETTINGS ]]; then
+	echo "[ERROR] ${SETTINGS} not found. Run setup.sh." >&2
+	exit 1
+fi
+
+exec "$CLAUDE_BIN" --settings "$SETTINGS" "$@"
