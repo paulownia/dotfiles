@@ -1,5 +1,7 @@
 #autoload
 emulate -L zsh
+# dev での移動元はスタックに追加しないため、popd では戻れない。
+unsetopt auto_pushd
 setopt extendedglob
 
 local DEV_PROJECTS_DIR=${DEV_PROJECTS_FILE:-"$HOME/.local/share/dev-projects"}
@@ -82,4 +84,3 @@ do
 done
 
 _dev_cd $1
-
