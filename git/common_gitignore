@@ -16,3 +16,5 @@ _temporary/
 settings.local.json
 CLAUDE.local.md
 
+
+**/.claude/.cc-writes/
