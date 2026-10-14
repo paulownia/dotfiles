@@ -7,5 +7,10 @@ sandboxによりプロジェクト外のディレクトリに対する書き込�
 
 ## sandbox除外コマンドのループ構文の注意
 
-gh, gcloud コマンドはユーザレベルのsettings.jsonでsandboxから除外されている。ただし`for`/`while`ループ構文の中ではsandbox除外が適用されずエラーになる。ghコマンドを複数回実行したいときは**ループを使わない**こと。
+gh, bq, gcloud, docker コマンドはユーザレベルのsettings.jsonでsandboxから除外されている。
 
+ただし呼び出し方によってsandbox内から実行される。コマンド置換、サブシェル、ifやforなどの制御構文を含む、ディレクトリ移動を含む `cd ... && gh ...` 、パイプやリダイレクトを含む `docker ps | head`, `docker build . > build.log`、これらはsandbox内での実行になります。
+
+sandbox除外コマンドでエラーが出るときは呼び出しの形を疑ってください。呼び出しからこれらの形を除けるかどうか検討してください。
+
+ghはサブコマンドごとにallow, denyが設定されているため、sandbox外でも失敗することがあります。ext, codespace, csはdenyです。prはmerge、closeなどPRを編集するものがdenyです

@@ -12,10 +12,8 @@
       "Read(~/.aws/*)",
       "Read(~/.config/gh/hosts.yml)",
       "Read(~/.config/gcloud/*)",
-      "Read(~/.gnupg/*)",
-      "Read(~/.netrc)",
-      "Read(~/.kube/*)",
       "Read(~/.docker/config.json)",
+      "Read(~/.gnupg/*)",
       "Bash(gh extension *)",
       "Bash(gh ext *)",
       "Bash(gh codespace *)",
@@ -58,11 +56,10 @@
       "denyRead": [
         "~/.ssh",
         "~/.aws",
-        "~/.config/gh",
+        "~/.config/gh/host.yml",
         "~/.config/gcloud",
-        "~/.gnupg",
-        "~/.netrc",
-        "~/.kube"
+        "~/.docker/config.json",
+        "~/.gnupg"
       ]
     },
     "excludedCommands": [
